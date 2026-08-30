@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const lastUpdated = "August 31, 2026";
+---
+
+<Layout 
+  title="Terms and Conditions – GigpilotAIScore"
+  description="Read the terms and conditions of use for GigpilotAIScore's free ATS resume checker and score guide."
+  activePath="/terms"
+>
+  <section class="terms-hero">
+    <div class="terms-container">
+      <div class="terms-pill" data-reveal="scale">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Terms of Service
+      </div>
+
+      <h1 class="hero-title" data-reveal="fade-up">Terms & Conditions</h1>
+      <p class="last-updated" data-reveal="fade-up" style="--reveal-delay: 60ms;">
+        Last Updated: {lastUpdated}
+      </p>
+
+      <p class="hero-desc" data-reveal="fade-up" style="--reveal-delay: 120ms;">
+        Please read these terms and conditions carefully before using the GigpilotAIScore web application and services.
+      </p>
+    </div>
+  </section>
+
+  <section class="terms-body-section">
+    <div class="terms-container">
+      <article class="prose-card" data-reveal="fade-up">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing or using <strong>GigpilotAIScore</strong> ("the Service"), you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not access or use the website.
+        </p>
+
+        <h2>2. Description of Service</h2>
+        <p>
+          GigpilotAIScore provides a free, 100% client-side web tool designed to parse resume files (.pdf, .docx, .txt), evaluate ATS layout compatibility, match job description keywords, and calculate an educational ATS compatibility score.
+        </p>
+        <p>
+          All resume text processing occurs locally within your web browser tab.
+        </p>
+
+        <h2>3. Disclaimer of Guarantee & Employment Results</h2>
+        <div class="notice-box">
+          <strong>Important Educational Notice:</strong>
+          <span>GigpilotAIScore offers heuristic evaluations based on standard recruitment software practices. However, ATS software implementations vary widely across employers and ATS vendors (such as Workday, Taleo, Greenhouse, Lever, etc.). Achieving a 100% score on GigpilotAIScore does not guarantee job interviews, hiring manager reviews, or job offers.</span>
+        </div>
+
+        <h2>4. User Responsibilities & Acceptable Use</h2>
+        <p>When using our Service, you agree that you will not:</p>
+        <ul>
+          <li>Use the Service for any unlawful or unauthorized purpose.</li>
+          <li>Attempt to reverse-engineer, decompile, or tamper with the web application scripts to malicious ends.</li>
+          <li>Upload corrupted, malicious, or intentionally harmful file formats.</li>
+          <li>Misrepresent third-party personal details or submit resumes belonging to other individuals without permission.</li>
+        </ul>
+
+        <h2>5. Intellectual Property</h2>
+        <p>
+          All content, code, logos, designs, text, graphics, and software implementations associated with GigpilotAIScore are the property of GigpilotAIScore and are protected by applicable copyright, trademark, and intellectual property laws.
+        </p>
+
+        <h2>6. Limitation of Liability</h2>
+        <p>
+          To the maximum extent permitted by applicable law, GigpilotAIScore and its operators shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your access to, use of, or inability to use the Service or any decisions made based on score results provided by the tool.
+        </p>
+
+        <h2>7. Modifications to Service and Terms</h2>
+        <p>
+          We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time without prior notice. We may update these Terms and Conditions periodically. Continued use of the website following any changes constitutes acceptance of those updates.
+        </p>
+
+        <h2>8. Governing Law & Severability</h2>
+        <p>
+          These Terms shall be governed by and construed in accordance with applicable laws. If any provision of these Terms is held to be invalid or unenforceable, that provision shall be severed, and the remaining provisions shall remain in full force and effect.
+        </p>
+
+        <h2>9. Contact Us</h2>
+        <p>
+          If you have questions or concerns regarding these Terms & Conditions, please contact us at:
+          <br />
+          <strong>Email:</strong> legal@gigpilotaiscore.com
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .terms-hero {
+    padding: 4rem 1.5rem 2rem 1.5rem;
+  }
+
+  .terms-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .terms-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    background: rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .last-updated {
+    color: var(--color-text-dim);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-desc {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .terms-body-section {
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  .prose-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3rem 2.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .prose-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 2.25rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose-card h2:first-of-type {
+    margin-top: 0;
+  }
+
+  .prose-card p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .notice-box {
+    background: rgba(217, 119, 6, 0.06);
+    border: 1px solid rgba(217, 119, 6, 0.25);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .notice-box strong {
+    display: block;
+    color: var(--color-warning);
+    font-size: 1rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .notice-box span {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .prose-card ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .prose-card li {
+    font-size: 0.96875rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    .prose-card {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>

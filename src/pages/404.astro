@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Page Not Found (404) – GigpilotAIScore"
+  description="The page you are looking for does not exist or has been moved. Return to GigpilotAIScore free ATS resume checker."
+  activePath="/404"
+>
+  <section class="error-hero">
+    <div class="error-container">
+      <div class="error-badge" data-reveal="scale">
+        <span class="badge-dot"></span>
+        Error 404
+      </div>
+
+      <div class="error-code-display" data-reveal="fade-up">404</div>
+
+      <h1 class="error-title" data-reveal="fade-up" style="--reveal-delay: 60ms;">
+        Page Not Found
+      </h1>
+
+      <p class="error-description" data-reveal="fade-up" style="--reveal-delay: 120ms;">
+        Sorry, the page you're looking for doesn't exist, has been removed, or the link may be broken. Let's get you back on track!
+      </p>
+
+      <div class="error-actions" data-reveal="fade-up" style="--reveal-delay: 180ms;">
+        <a href="/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Return to Homepage
+        </a>
+        <a href="/ats-resume-checker" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          Free ATS Resume Scan
+        </a>
+      </div>
+
+      <div class="helpful-links-box" data-reveal="scale" style="--reveal-delay: 240ms;">
+        <h2 class="box-heading">Looking for something specific?</h2>
+        <div class="links-grid">
+          <a href="/ats-resume-checker" class="link-card">
+            <div class="link-title">Free ATS Resume Checker</div>
+            <div class="link-desc">Upload PDF/DOCX and get instant keyword matching score.</div>
+          </a>
+          <a href="/ats-resume-score" class="link-card">
+            <div class="link-title">ATS Score Guide</div>
+            <div class="link-desc">Learn how applicant tracking systems score your resume.</div>
+          </a>
+          <a href="/check-resume-for-ats" class="link-card">
+            <div class="link-title">Check Resume For ATS</div>
+            <div class="link-desc">Step-by-step optimization recommendations for job seekers.</div>
+          </a>
+          <a href="/about" class="link-card">
+            <div class="link-title">About GigpilotAIScore</div>
+            <div class="link-desc">Learn about our 100% private, client-side resume scanner.</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .error-hero {
+    padding: 5rem 1.5rem;
+    text-align: center;
+  }
+
+  .error-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .error-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    color: var(--color-error);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-error);
+  }
+
+  .error-code-display {
+    font-size: 6.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.75rem;
+  }
+
+  .error-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .error-description {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .error-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-surface-hover);
+    border-color: var(--color-border-light);
+    color: var(--color-text);
+  }
+
+  .helpful-links-box {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem 2rem;
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .box-heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .link-card {
+    display: block;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    transition: border-color 0.2s ease, transform 0.15s ease;
+    text-decoration: none;
+  }
+
+  .link-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .link-title {
+    font-weight: 700;
+    color: var(--color-text);
+    font-size: 1rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .link-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .error-code-display {
+      font-size: 5rem;
+    }
+    .error-title {
+      font-size: 1.75rem;
+    }
+    .error-hero {
+      padding: 3rem 1rem;
+    }
+  }
+</style>

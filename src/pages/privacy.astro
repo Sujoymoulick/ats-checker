@@ -1,0 +1,247 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const lastUpdated = "August 31, 2026";
+---
+
+<Layout 
+  title="Privacy Policy – GigpilotAIScore"
+  description="Read the privacy policy for GigpilotAIScore. Learn how our 100% client-side ATS resume checker processes data strictly inside your browser without server uploads."
+  activePath="/privacy"
+>
+  <section class="policy-hero">
+    <div class="policy-container">
+      <div class="policy-pill" data-reveal="scale">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Data Protection Guarantee
+      </div>
+
+      <h1 class="hero-title" data-reveal="fade-up">Privacy Policy</h1>
+      <p class="last-updated" data-reveal="fade-up" style="--reveal-delay: 60ms;">
+        Last Updated: {lastUpdated}
+      </p>
+
+      <div class="privacy-highlight-box" data-reveal="scale" style="--reveal-delay: 120ms;">
+        <div class="highlight-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <div class="highlight-content">
+          <strong>Summary of Our Core Commitment:</strong>
+          <span>Your resume, job description text, and analysis results are processed 100% locally in your web browser. We never upload, transmit, store, or sell your documents or personal resume information.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="policy-body-section">
+    <div class="policy-container">
+      <article class="prose-card" data-reveal="fade-up">
+        <h2>1. Information We Do Not Collect</h2>
+        <p>
+          Unlike traditional online resume checkers that require cloud servers to parse PDF and Word documents, <strong>GigpilotAIScore</strong> executes all parsing and scoring logic entirely client-side using JavaScript within your local web browser session.
+        </p>
+        <ul>
+          <li><strong>No Document Uploads:</strong> Your uploaded PDF, DOCX, or TXT resume files are never sent to any backend server.</li>
+          <li><strong>No Personal Identifiable Information (PII):</strong> Names, phone numbers, email addresses, and employment histories parsed from your resume remain strictly in browser memory.</li>
+          <li><strong>No Account Signups:</strong> We do not require registration, email verification, or account passwords.</li>
+        </ul>
+
+        <h2>2. How Client-Side Processing Works</h2>
+        <p>
+          When you select or drop a file into the ATS checker:
+        </p>
+        <ol class="styled-list">
+          <li>Your web browser uses client-side libraries (such as PDF text extraction scripts) to read raw text into local JavaScript memory.</li>
+          <li>Deterministic heuristic rules analyze section headers, keyword frequencies, contact items, and layout parameters inside your browser tab.</li>
+          <li>When you close or refresh your browser tab, all temporary memory allocated for document text is automatically cleared by your browser.</li>
+        </ol>
+
+        <h2>3. Anonymous Analytics & Technical Metrics</h2>
+        <p>
+          To understand overall site performance and optimize website navigation, we utilize standard aggregate website analytics (such as Google Analytics / Google Tag Manager).
+        </p>
+        <p>
+          These analytics collect non-personally identifiable technical information, such as:
+        </p>
+        <ul>
+          <li>Browser type, screen size, and operating system</li>
+          <li>General country or region location</li>
+          <li>Pages visited and duration on site</li>
+        </ul>
+        <p>
+          <em>Note: Analytical scripts never inspect, read, or track the contents of uploaded resume files or job description inputs.</em>
+        </p>
+
+        <h2>4. Cookies & Local Storage</h2>
+        <p>
+          GigpilotAIScore does not use tracking cookies or persistent advertising identifiers. Temporary session state (such as UI preferences) may be stored in your browser's standard <code>sessionStorage</code> or <code>localStorage</code> strictly to keep the application responsive while you use it. You can clear this data at any time via your browser settings.
+        </p>
+
+        <h2>5. Third-Party Resources</h2>
+        <p>
+          Our application loads standard web assets (such as web fonts and analytics scripts) from trusted content delivery networks (CDNs). These providers process technical HTTP requests according to standard web standards.
+        </p>
+
+        <h2>6. Security Commitment</h2>
+        <p>
+          Because no resume data is transmitted over the internet or stored in a database, your files are protected from server-side security breaches, data leaks, or unauthorized cloud access by design.
+        </p>
+
+        <h2>7. Contact & Inquiries</h2>
+        <p>
+          If you have questions regarding this Privacy Policy or our client-side architecture, please contact us at:
+          <br />
+          <strong>Email:</strong> privacy@gigpilotaiscore.com
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .policy-hero {
+    padding: 4rem 1.5rem 2rem 1.5rem;
+  }
+
+  .policy-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .policy-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    background: rgba(5, 150, 105, 0.08);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+    color: var(--color-success);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .last-updated {
+    color: var(--color-text-dim);
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+  }
+
+  .privacy-highlight-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(5, 150, 105, 0.06);
+    border: 1px solid rgba(5, 150, 105, 0.25);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+  }
+
+  .highlight-icon {
+    color: var(--color-success);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .highlight-content strong {
+    display: block;
+    color: #047857;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .highlight-content span {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .policy-body-section {
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .prose-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3rem 2.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .prose-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 2.25rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose-card h2:first-of-type {
+    margin-top: 0;
+  }
+
+  .prose-card p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-card ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .prose-card li {
+    font-size: 0.96875rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .styled-list {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .styled-list li {
+    font-size: 0.96875rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-card code {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    .prose-card {
+      padding: 1.75rem 1.25rem;
+    }
+    .privacy-highlight-box {
+      flex-direction: column;
+    }
+  }
+</style>

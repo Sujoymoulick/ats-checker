@@ -1,0 +1,306 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="About Us – GigpilotAIScore | 100% Private Client-Side ATS Resume Checker"
+  description="Discover GigpilotAIScore: an open, privacy-first, 100% browser-based ATS resume compatibility scanner created to help job seekers optimize their resumes for free."
+  activePath="/about"
+>
+  <section class="about-hero">
+    <div class="about-container">
+      <div class="about-pill" data-reveal="scale">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Privacy-First Mission
+      </div>
+
+      <h1 class="hero-title" data-reveal="fade-up">
+        Democratizing Job Application Tools for Everyone
+      </h1>
+
+      <p class="hero-subtitle" data-reveal="fade-up" style="--reveal-delay: 80ms;">
+        GigpilotAIScore was created with a single vision: empower job seekers with transparent, accurate, and completely free ATS resume analysis without sacrificing their privacy or demanding subscription signups.
+      </p>
+    </div>
+  </section>
+
+  <section class="mission-section">
+    <div class="about-container">
+      <div class="values-grid" data-reveal-group data-reveal-type="fade-up" data-reveal-stagger="90">
+        <div class="value-card" data-reveal-item>
+          <div class="card-icon text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h3>100% Client-Side Privacy</h3>
+          <p>We believe your resume belongs to you. Our parser runs entirely inside your browser using WebAssembly and local JavaScript. Zero files are uploaded to cloud servers.</p>
+        </div>
+
+        <div class="value-card" data-reveal-item>
+          <div class="card-icon text-success">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h3>Zero Paywalls & Signups</h3>
+          <p>No credit cards, trial limits, or hidden fees. We provide unlimited resume scans and job description matching to level the playing field for candidates.</p>
+        </div>
+
+        <div class="value-card" data-reveal-item>
+          <div class="card-icon text-accent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+          </div>
+          <h3>Deterministic & Transparent</h3>
+          <p>No vague black-box scoring. Our scoring model evaluates real ATS parameters—contact extraction, section recognition, keyword coverage, and format safety.</p>
+        </div>
+
+        <div class="value-card" data-reveal-item>
+          <div class="card-icon text-warning">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <h3>Instant Browser Feedback</h3>
+          <p>Because text parsing happens directly in your browser tab, analysis takes seconds. Instantly test formatting updates without waiting for server response times.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="about-container">
+      <div class="prose-box" data-reveal="fade-up">
+        <h2>Why We Built GigpilotAIScore</h2>
+        <p>
+          Applicant Tracking Systems (ATS) are used by over 98% of Fortune 500 companies and thousands of small businesses worldwide. Yet, most job seekers struggle to know how automated tools read their resumes before a human recruiter ever sees them.
+        </p>
+        <p>
+          Commercial resume checkers often exploit this uncertainty by trapping candidates behind expensive subscription paywalls or collecting sensitive employment data. We built <strong>GigpilotAIScore</strong> as a privacy-respecting alternative that guarantees total data confidentiality while offering instant, actionable career insights.
+        </p>
+
+        <h2>How It Works Under the Hood</h2>
+        <div class="tech-stack-box">
+          <div class="stack-item">
+            <strong>Client-Side PDF Parsing:</strong> Reads document streams directly in your browser using local PDF engine routines.
+          </div>
+          <div class="stack-item">
+            <strong>DOCX XML Extraction:</strong> Decompresses Office Open XML formats locally to parse paragraph nodes and tables safely.
+          </div>
+          <div class="stack-item">
+            <strong>Skill & Keyword Alignment Engine:</strong> Matches candidate technical skills and experience phrases against job descriptions using weighted frequency analysis.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="about-container">
+      <div class="cta-box" data-reveal="scale">
+        <h2>Ready to check your resume compatibility?</h2>
+        <p>Test your resume against target job descriptions in seconds—100% free and private.</p>
+        <a href="/ats-resume-checker" class="btn-cta">
+          Start Free Resume Scan
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-hero {
+    padding: 4rem 1.5rem 3rem 1.5rem;
+    text-align: center;
+  }
+
+  .about-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .about-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .mission-section {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .value-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .value-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-light);
+  }
+
+  .card-icon {
+    margin-bottom: 1.25rem;
+  }
+
+  .text-primary { color: var(--color-primary); }
+  .text-success { color: var(--color-success); }
+  .text-accent { color: var(--color-accent); }
+  .text-warning { color: var(--color-warning); }
+
+  .value-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.625rem;
+  }
+
+  .value-card p {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .story-section {
+    padding: 4rem 1.5rem;
+    background: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose-box {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3rem 2.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .prose-box h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .prose-box h2:nth-of-type(2) {
+    margin-top: 2.5rem;
+  }
+
+  .prose-box p {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .tech-stack-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stack-item {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .stack-item strong {
+    color: var(--color-text);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .cta-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, #0284c714 0%, #4f46e514 100%);
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    border-radius: var(--radius-xl);
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+
+  .cta-box h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-box p {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.75rem;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    text-decoration: none;
+  }
+
+  .btn-cta:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    .prose-box {
+      padding: 1.75rem 1.25rem;
+    }
+    .cta-box {
+      padding: 2.5rem 1.25rem;
+    }
+  }
+</style>
