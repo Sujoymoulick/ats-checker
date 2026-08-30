@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy dist",
     "test": "node --test --experimental-strip-types src/lib/ats/sections.test.ts src/lib/ats/contactExtractor.test.ts src/lib/ats/benchmark.test.ts src/lib/latex/pdfGenerator.test.ts"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@types/node": "^22.10.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.127.0"
   }
 }
