@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /ats-benchmark
+Disallow: /404
+Disallow: /500
+
+Sitemap: https://gigpilotaiscore.gigpilotai.com/sitemap.xml
+Sitemap: https://gigpilotaiscore.gigpilotai.com/sitemap-index.xml

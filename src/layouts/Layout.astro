@@ -7,13 +7,143 @@ export interface Props {
   title?: string;
   description?: string;
   activePath?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  type?: string;
 }
 
 const {
-  title = 'GigpilotAIScore – Check Your Resume for ATS Compatibility',
-  description = 'Check your resume for ATS compatibility, keywords, formatting issues, and job-description matching. 100% free, private, and browser-based with no signup required.',
-  activePath = '/'
+  title = 'Free ATS Checker & AI Resume Score | GigPilotAIScore',
+  description = 'Free ATS checker to scan your resume for keywords, formatting risks, and job description fit directly in your browser. 100% private with instant AI scoring.',
+  activePath = '/',
+  noindex = false,
+  ogImage = 'https://gigpilotaiscore.gigpilotai.com/og-image.png',
+  type = 'website'
 } = Astro.props;
+
+const siteDomain = 'https://gigpilotaiscore.gigpilotai.com';
+const canonicalUrl = `${siteDomain}${activePath === '/' ? '' : activePath}`;
+
+// Breadcrumb Schema construction
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": siteDomain
+  }
+];
+
+if (activePath !== '/') {
+  const pageNameMap: Record<string, string> = {
+    '/ats-resume-checker': 'Free ATS Resume Checker',
+    '/free-ats-checker': 'Free ATS Checker & Scanner',
+    '/ats-resume-score': 'ATS Resume Score Guide',
+    '/check-resume-for-ats': 'Check Resume for ATS Guide',
+    '/about': 'About Us',
+    '/privacy': 'Privacy Policy',
+    '/terms': 'Terms and Conditions',
+    '/ats-benchmark': 'ATS Calibration Benchmark'
+  };
+
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": 2,
+    "name": pageNameMap[activePath] || 'Guide',
+    "item": canonicalUrl
+  });
+}
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "GigPilotAIScore",
+  "url": siteDomain,
+  "description": "100% Free, Private & Client-Side ATS Resume Checker & AI Score Scanner"
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "GigPilotAIScore",
+  "url": siteDomain,
+  "logo": `${siteDomain}/favicon.svg`
+};
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GigPilotAIScore Free ATS Resume Checker",
+  "url": siteDomain,
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "100% Client-side browser text extraction",
+    "Deterministic ATS Score out of 100",
+    "Job description keyword matching",
+    "Formatting risk & table detection",
+    "No signups or credit card required"
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an ATS resume checker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An Applicant Tracking System (ATS) resume checker scans your resume file using parsing algorithms similar to those used by employers. It checks whether your text, sections, formatting, and keywords are easily readable by automated recruitment software."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this ATS resume checker 100% free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Our ATS resume checker is completely free with no hidden fees, premium paywalls, or limits on how many times you can test your resume."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to create an account or sign up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No signup or account creation is required. You can immediately upload your resume and receive a comprehensive score report."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my resume uploaded to an external server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your privacy is guaranteed. All text extraction and ATS analysis happen 100% client-side directly inside your browser window. No resume data ever leaves your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I check my resume against a specific job description?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! You can paste any job description into the checker. The tool extracts key technical skills, tools, and qualifications required by the employer and measures your exact keyword match percentage."
+      }
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -30,6 +160,7 @@ const {
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <!-- Favicons & Web App Manifest -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -42,27 +173,48 @@ const {
     <meta name="theme-color" content="#020101" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="GigPilotAIScore" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:domain" content="gigpilotaiscore.gigpilotai.com" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
-    <meta name="robots" content="index, follow" />
+    <!-- Robots Directives -->
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
   <body>
     <Header activePath={activePath} />
