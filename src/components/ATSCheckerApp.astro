@@ -9,7 +9,6 @@ import ResumeSections from './ResumeSections.astro';
 import FormattingIssues from './FormattingIssues.astro';
 import ResumeWarnings from './ResumeWarnings.astro';
 import Recommendations from './Recommendations.astro';
-import AIInsights from './AIInsights.astro';
 import ResumePreview from './ResumePreview.astro';
 ---
 
@@ -32,7 +31,6 @@ import ResumePreview from './ResumePreview.astro';
     <ResumeSections />
     <FormattingIssues />
     <Recommendations />
-    <AIInsights />
     <ResumePreview />
   </div>
 </div>
@@ -216,11 +214,6 @@ import ResumePreview from './ResumePreview.astro';
       updateProgressStep('stepScore', 'completed', '✓ ATS score calculated');
       await delay(250);
 
-      // Save references for optional Cloudflare Workers AI analysis
-      currentAnalysisText = parsedResume.fullText || '';
-      currentJobDesc = jobDescription || '';
-      currentTargetRole = analysisResult.keywords.targetRole || '';
-
       // Render Results
       renderResults(analysisResult);
 
@@ -233,159 +226,6 @@ import ResumePreview from './ResumePreview.astro';
       progressCard.classList.add('hidden');
       appInputSection.classList.remove('hidden');
       showError(err.message || 'An error occurred while parsing your resume file.');
-    }
-  }
-
-  // AI Insights State & Elements
-  let currentAnalysisText = '';
-  let currentJobDesc = '';
-  let currentTargetRole = '';
-  let isAiAnalyzing = false;
-
-  const getAiInsightsBtn = document.getElementById('getAiInsightsBtn') as HTMLButtonElement;
-  const aiLoadingBox = document.getElementById('aiLoadingBox') as HTMLElement;
-  const aiRateLimitBox = document.getElementById('aiRateLimitBox') as HTMLElement;
-  const aiErrorBox = document.getElementById('aiErrorBox') as HTMLElement;
-  const aiErrorTitle = document.getElementById('aiErrorTitle') as HTMLElement;
-  const aiErrorMsgText = document.getElementById('aiErrorMsgText') as HTMLElement;
-  const aiResultsWrapper = document.getElementById('aiResultsWrapper') as HTMLElement;
-  const aiQuotaCountText = document.getElementById('aiQuotaCountText') as HTMLElement;
-  const rateLimitMsgText = document.getElementById('rateLimitMsgText') as HTMLElement;
-
-  if (getAiInsightsBtn) {
-    getAiInsightsBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      if (isAiAnalyzing || !currentAnalysisText) return;
-
-      // 1. Immediately disable button & prevent double clicks
-      isAiAnalyzing = true;
-      getAiInsightsBtn.disabled = true;
-      getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Analyzing with Cloudflare AI...</span>';
-
-      aiLoadingBox?.classList.remove('hidden');
-      aiRateLimitBox?.classList.add('hidden');
-      aiErrorBox?.classList.add('hidden');
-      aiResultsWrapper?.classList.add('hidden');
-
-      try {
-        const response = await fetch('/api/analyze-resume', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            resumeText: currentAnalysisText,
-            jobDescription: currentJobDesc,
-            targetRole: currentTargetRole
-          })
-        });
-
-        const data = await response.json();
-        aiLoadingBox?.classList.add('hidden');
-
-        // 2. Handle 429 Rate Limit
-        if (response.status === 429) {
-          if (aiRateLimitBox) aiRateLimitBox.classList.remove('hidden');
-          if (rateLimitMsgText && data.message) rateLimitMsgText.innerText = data.message;
-          if (aiQuotaCountText) aiQuotaCountText.innerText = '0 free scans remaining today';
-          getAiInsightsBtn.disabled = true;
-          getAiInsightsBtn.innerHTML = '<span>Daily Scan Limit Reached (2/2)</span>';
-          isAiAnalyzing = false;
-          return;
-        }
-
-        // 3. Handle General Error Responses
-        if (!response.ok) {
-          if (aiErrorBox) {
-            if (aiErrorTitle) aiErrorTitle.innerText = data.error || 'Request Error';
-            if (aiErrorMsgText) aiErrorMsgText.innerText = data.message || 'An error occurred during AI analysis.';
-            aiErrorBox.classList.remove('hidden');
-          }
-          getAiInsightsBtn.disabled = false;
-          getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Try AI Analysis Again</span>';
-          isAiAnalyzing = false;
-          return;
-        }
-
-        // 4. Handle Fallback / AI Service Unavailable
-        if (!data.aiAvailable) {
-          if (aiErrorBox) {
-            if (aiErrorTitle) aiErrorTitle.innerText = 'AI Insights Temporarily Unavailable';
-            if (aiErrorMsgText) aiErrorMsgText.innerText = data.message || 'AI service is busy. Your local ATS report is fully active.';
-            aiErrorBox.classList.remove('hidden');
-          }
-          getAiInsightsBtn.disabled = false;
-          getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Try AI Analysis Again</span>';
-          isAiAnalyzing = false;
-          return;
-        }
-
-        // 5. Success - Render AI Insights
-        if (data.success && data.analysis) {
-          renderAiResults(data.analysis);
-          aiResultsWrapper?.classList.remove('hidden');
-
-          if (aiQuotaCountText) {
-            if (data.remaining === 0) {
-              aiQuotaCountText.innerText = '0 free scans remaining today';
-              getAiInsightsBtn.disabled = true;
-              getAiInsightsBtn.innerHTML = '<span>Daily Scan Limit Reached (2/2)</span>';
-            } else {
-              aiQuotaCountText.innerText = `${data.remaining} free AI scan remaining today`;
-              getAiInsightsBtn.disabled = false;
-              getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Re-run AI Analysis</span>';
-            }
-          }
-        }
-      } catch (err: any) {
-        console.error('AI analysis fetch error:', err);
-        aiLoadingBox?.classList.add('hidden');
-        if (aiErrorBox) {
-          if (aiErrorTitle) aiErrorTitle.innerText = 'Network Error';
-          if (aiErrorMsgText) aiErrorMsgText.innerText = 'Could not reach server endpoint. Local ATS report is unaffected.';
-          aiErrorBox.classList.remove('hidden');
-        }
-        getAiInsightsBtn.disabled = false;
-        getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Get AI Resume Insights</span>';
-      } finally {
-        isAiAnalyzing = false;
-      }
-    });
-  }
-
-  function renderAiResults(analysis: any) {
-    const scoreNumEl = document.getElementById('aiSemanticMatchNum');
-    if (scoreNumEl) scoreNumEl.innerText = String(analysis.semanticMatch || 75);
-
-    const strengthsList = document.getElementById('aiStrengthsList');
-    if (strengthsList) {
-      strengthsList.innerHTML = (analysis.strengths || []).map((s: string) => `<li>${s}</li>`).join('') || '<li>Strong background detected.</li>';
-    }
-
-    const gapsList = document.getElementById('aiGapsList');
-    if (gapsList) {
-      gapsList.innerHTML = (analysis.gaps || []).map((g: string) => `<li>${g}</li>`).join('') || '<li>No critical gaps detected.</li>';
-    }
-
-    const summaryText = document.getElementById('aiSummaryText');
-    if (summaryText) {
-      summaryText.innerText = analysis.summaryFeedback || 'Summary communicates core alignment effectively.';
-    }
-
-    const bulletsList = document.getElementById('aiBulletsList');
-    if (bulletsList) {
-      bulletsList.innerHTML = (analysis.bulletFeedback || []).map((b: any) => `
-        <div class="bullet-item">
-          <div class="bullet-orig">"${b.original}"</div>
-          <div class="bullet-issue">Issue: ${b.issue}</div>
-          <div class="bullet-sug">Suggestion: ${b.suggestion}</div>
-        </div>
-      `).join('');
-    }
-
-    const recsList = document.getElementById('aiRecsList');
-    if (recsList) {
-      recsList.innerHTML = (analysis.recommendations || []).map((r: string) => `<li>${r}</li>`).join('');
     }
   }
 
@@ -405,16 +245,6 @@ import ResumePreview from './ResumePreview.astro';
 
   // Render Full Dashboard Results
   function renderResults(result: ATSAnalysisResult) {
-    // Reset AI container view when a new resume is parsed
-    aiLoadingBox?.classList.add('hidden');
-    aiRateLimitBox?.classList.add('hidden');
-    aiErrorBox?.classList.add('hidden');
-    aiResultsWrapper?.classList.add('hidden');
-    if (getAiInsightsBtn) {
-      getAiInsightsBtn.disabled = false;
-      getAiInsightsBtn.innerHTML = '<span>Get AI Resume Insights</span>';
-    }
-
     // 1. Score Gauge & Main Score
     const scoreValEl = document.getElementById('scoreValueNum');
     const scoreGaugeFill = document.getElementById('scoreGaugeFill');
