@@ -6,15 +6,24 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host localhost --port 4321",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node --test --experimental-strip-types src/lib/ats/sections.test.ts src/lib/ats/contactExtractor.test.ts src/lib/ats/benchmark.test.ts src/lib/latex/pdfGenerator.test.ts"
   },
   "dependencies": {
-    "astro": "^7.2.9"
+    "@astrojs/cloudflare": "^14.2.5",
+    "astro": "^7.2.9",
+    "mammoth": "^1.12.1",
+    "pdfjs-dist": "^6.2.108"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^22.10.0",
+    "typescript": "^6.0.3"
   }
 }

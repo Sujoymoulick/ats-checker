@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ATSCheckerApp from '../components/ATSCheckerApp.astro';
+import FAQ from '../components/FAQ.astro';
+---
+
+<Layout 
+  title="GigpilotAIScore – Step-by-Step ATS Optimization Guide"
+  description="Check your resume for ATS screening algorithms. Discover missing skills, fix formatting red flags, and optimize your resume before applying."
+  activePath="/check-resume-for-ats"
+>
+  <section class="seo-hero">
+    <div class="seo-container">
+      <div class="privacy-pill" data-reveal="scale">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align: middle; margin-right: 4px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Step-by-Step ATS Optimization
+      </div>
+      <h1 class="seo-title" data-reveal="fade-up">Check Your Resume for ATS Compatibility</h1>
+      <p class="seo-intro" data-reveal="fade-up" style="--reveal-delay: 80ms;">
+        Before submitting your job application, scan your resume against employer ATS parsers. Our free browser tool tests your PDF or DOCX file, detects formatting risks, and identifies missing skills.
+      </p>
+
+      <div class="checker-wrapper" data-reveal="scale" style="--reveal-delay: 150ms;">
+        <ATSCheckerApp />
+      </div>
+    </div>
+  </section>
+
+  <section class="seo-content-section">
+    <div class="seo-container">
+      <article class="prose-box">
+        <h2 data-reveal="fade-up">5-Step Checklist to Make Your Resume ATS-Friendly</h2>
+        <ol class="checklist-ol" data-reveal-group data-reveal-type="fade-up" data-reveal-stagger="80">
+          <li data-reveal-item>
+            <strong>Use a clean single-column structure:</strong> Avoid complex multi-column tables or embedded text boxes that can cause text out-of-order merging.
+          </li>
+          <li data-reveal-item>
+            <strong>Include standard section titles:</strong> Stick to standard headings like "Work Experience", "Education", and "Skills".
+          </li>
+          <li data-reveal-item>
+            <strong>Match key terms naturally:</strong> Incorporate core technical skills and qualifications mentioned in the job posting.
+          </li>
+          <li data-reveal-item>
+            <strong>Quantify your professional impact:</strong> Include numbers, percentages, dollar values, or team growth metrics in your experience bullet points.
+          </li>
+          <li data-reveal-item>
+            <strong>Save as a text-based PDF or DOCX file:</strong> Ensure your exported file contains selectable text rather than scanned images.
+          </li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <FAQ />
+</Layout>
+
+<style>
+  .seo-hero {
+    padding: 3.5rem 1.5rem 2rem 1.5rem;
+  }
+
+  .seo-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .privacy-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    color: #a5b4fc;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .seo-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .seo-intro {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .seo-content-section {
+    padding: 4rem 1.5rem;
+    background: #f1f5f9;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose-box h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 2rem 0 1rem 0;
+  }
+
+  .checklist-ol {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+  }
+
+  .checklist-ol li {
+    margin-bottom: 1rem;
+  }
+</style>

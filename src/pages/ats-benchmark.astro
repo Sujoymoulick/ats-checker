@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { runBenchmarkCalibration } from '../lib/ats/benchmarkRunner';
+import { ATS_BENCHMARKS } from '../data/ats-benchmark-index';
+
+export const prerender = true;
+
+const report = runBenchmarkCalibration();
+---
+
+<Layout title="ATS Benchmark Calibration Dashboard | Internal Dev" description="Internal calibration dashboard for the 10 gold-standard ATS resume benchmarks." activePath="/ats-benchmark">
+  <div class="py-12 bg-slate-900 text-slate-100 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Title Bar -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between pb-8 border-b border-slate-800 gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">Dev-Only Calibration Tool</span>
+            <span class="text-xs text-slate-400 font-mono">Internal Suite</span>
+          </div>
+          <h1 class="text-3xl font-extrabold text-white mt-2 font-display tracking-tight">ATS Score Calibration Dashboard</h1>
+          <p class="text-sm text-slate-400 mt-1">Calibrating 10 synthetic gold-standard reference resumes against the ATS scoring model.</p>
+        </div>
+        <div class="text-right flex md:flex-col justify-between items-end gap-2">
+          <div class="text-xs text-slate-400 font-mono">Last Calibrated: {new Date(report.timestamp).toLocaleTimeString()}</div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs text-slate-300 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Engine Calibrated
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Summary Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 my-8">
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow-lg">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Benchmarks</div>
+          <div class="text-3xl font-bold text-white mt-2">{report.totalBenchmarks}</div>
+          <div class="text-xs text-slate-400 mt-1">Curated synthetic profiles</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow-lg">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">In Expected Range</div>
+          <div class="text-3xl font-bold text-emerald-400 mt-2">{report.inRangeCount} / {report.totalBenchmarks}</div>
+          <div class="text-xs text-emerald-400/80 mt-1">{Math.round((report.inRangeCount / report.totalBenchmarks) * 100)}% accuracy compliance</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow-lg">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Average Benchmark Score</div>
+          <div class="text-3xl font-bold text-cyan-400 mt-2">{report.averageScore}<span class="text-sm font-normal text-slate-400">/100</span></div>
+          <div class="text-xs text-slate-400 mt-1">Target range: 90 - 100</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-5 shadow-lg">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Weighted Model</div>
+          <div class="text-3xl font-bold text-indigo-400 mt-2">10 <span class="text-sm font-normal text-slate-400">Factors</span></div>
+          <div class="text-xs text-slate-400 mt-1">Keyword 25%, Skills 15%, Exp 15%</div>
+        </div>
+      </div>
+
+      <!-- Benchmark Calibration Table -->
+      <div class="bg-slate-800/60 border border-slate-700 rounded-xl overflow-hidden shadow-xl mb-12">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-800/90 flex justify-between items-center">
+          <h2 class="text-lg font-bold text-white">Calibration Test Results</h2>
+          <span class="text-xs text-slate-400">Comparing expected score vs actual engine output</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-slate-300 font-sans">
+            <thead class="bg-slate-900/60 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-700">
+              <tr>
+                <th scope="col" class="px-6 py-3.5">Benchmark Resume</th>
+                <th scope="col" class="px-4 py-3.5">Level / Industry</th>
+                <th scope="col" class="px-4 py-3.5 text-center">Expected</th>
+                <th scope="col" class="px-4 py-3.5 text-center">Actual Score</th>
+                <th scope="col" class="px-4 py-3.5 text-center">Diff</th>
+                <th scope="col" class="px-4 py-3.5 text-center">Confidence</th>
+                <th scope="col" class="px-6 py-3.5 text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-700/60">
+              {report.results.map((res) => {
+                const diffFormatted = res.difference === 0 ? '±0' : res.difference > 0 ? `+${res.difference}` : `${res.difference}`;
+                return (
+                  <tr class="hover:bg-slate-700/40 transition-colors">
+                    <td class="px-6 py-4">
+                      <div class="font-semibold text-white">{res.role}</div>
+                      <div class="text-xs text-slate-400 font-mono">{res.id}</div>
+                    </td>
+                    <td class="px-4 py-4">
+                      <span class="inline-block px-2 py-0.5 rounded text-xs bg-slate-700 text-slate-300 capitalize">{res.level}</span>
+                      <span class="ml-1 text-xs text-slate-400 capitalize">({res.category})</span>
+                    </td>
+                    <td class="px-4 py-4 text-center font-mono font-medium text-slate-300">
+                      {res.expectedRange[0]}–{res.expectedRange[1]}
+                    </td>
+                    <td class="px-4 py-4 text-center">
+                      <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-md bg-slate-900 font-mono font-bold text-base text-cyan-300 border border-slate-700">
+                        {res.actualScore}
+                      </span>
+                    </td>
+                    <td class="px-4 py-4 text-center font-mono text-xs">
+                      <span class={res.difference === 0 ? 'text-slate-400' : res.difference > 0 ? 'text-emerald-400' : 'text-rose-400'}>
+                        {diffFormatted}
+                      </span>
+                    </td>
+                    <td class="px-4 py-4 text-center font-mono text-xs text-slate-300">
+                      {Math.round(res.confidence * 100)}%
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      {res.status === 'In Range' && (
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                          In Range
+                        </span>
+                      )}
+                      {res.status === 'Above Expected' && (
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                          Above Target
+                        </span>
+                      )}
+                      {res.status === 'Below Expected' && (
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                          Below Target
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Detailed Breakdown Cards -->
+      <div class="space-y-6">
+        <h2 class="text-xl font-bold text-white">Benchmark Profiles Breakdown</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {report.results.map((res) => {
+            const fullBenchmark = ATS_BENCHMARKS.find(b => b.id === res.id);
+            return (
+              <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-6 shadow-md flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <h3 class="text-lg font-bold text-white">{res.role}</h3>
+                      <p class="text-xs text-slate-400 font-mono mt-0.5">ID: {res.id}</p>
+                    </div>
+                    <div class="text-right">
+                      <div class="text-2xl font-bold text-cyan-400 font-mono">{res.actualScore}<span class="text-xs text-slate-400 font-normal">/100</span></div>
+                      <div class="text-xs text-slate-400">Target: {res.expectedRange[0]}-{res.expectedRange[1]}</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 pt-4 border-t border-slate-700/60">
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Category Score Allocations</div>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+                      {res.breakdown.map(b => (
+                        <div class="flex justify-between bg-slate-900/60 px-2.5 py-1 rounded border border-slate-800">
+                          <span class="text-slate-400 truncate pr-2">{b.category}</span>
+                          <span class="text-slate-200 font-semibold">{b.score}/{b.maxScore}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {fullBenchmark && (
+                    <div class="mt-4 text-xs text-slate-400">
+                      <span class="font-semibold text-slate-300">Key Skills:</span> {fullBenchmark.skills.slice(0, 6).join(', ')}
+                    </div>
+                  )}
+                </div>
+
+                <div class="mt-5 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+                  <span>Confidence: <strong class="text-slate-200">{Math.round(res.confidence * 100)}%</strong></span>
+                  <span>Format Risk: <strong class="text-emerald-400 capitalize">{res.formattingRiskLevel}</strong></span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</Layout>

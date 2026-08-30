@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ATSCheckerApp from '../components/ATSCheckerApp.astro';
+import FAQ from '../components/FAQ.astro';
+---
+
+<Layout 
+  title="GigpilotAIScore – Free ATS Resume Checker"
+  description="Check your resume for ATS compatibility, keywords, formatting issues, and job-description matching. Free, private, and no signup required."
+  activePath="/ats-resume-checker"
+>
+  <section class="seo-hero">
+    <div class="seo-container">
+      <div class="privacy-pill" data-reveal="scale">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align: middle; margin-right: 4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        100% Client-Side & Private
+      </div>
+      <h1 class="seo-title" data-reveal="fade-up">GigpilotAIScore</h1>
+      <p class="seo-intro" data-reveal="fade-up" style="--reveal-delay: 80ms;">
+        Over 90% of Fortune 500 companies use Applicant Tracking Systems (ATS) to filter resumes before a human recruiter ever sees them. Use our free ATS resume checker to optimize your resume, detect missing keywords, fix formatting risks, and boost your ATS score.
+      </p>
+
+      <!-- Embedded Checker -->
+      <div class="checker-wrapper" data-reveal="scale" style="--reveal-delay: 150ms;">
+        <ATSCheckerApp />
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Guide -->
+  <section class="seo-content-section">
+    <div class="seo-container">
+      <article class="prose-box">
+        <h2 data-reveal="fade-up">How Our Free ATS Resume Checker Works</h2>
+        <p data-reveal="fade-up">
+          Our ATS checker uses browser-based text extraction libraries to analyze your resume file locally in JavaScript. It mimics the parsing steps used by major recruitment systems like Workday, Taleo, Greenhouse, and Lever:
+        </p>
+
+        <ol class="step-ol" data-reveal-group data-reveal-type="fade-up" data-reveal-stagger="70">
+          <li data-reveal-item><strong>Upload your resume:</strong> We support text-based PDF, DOCX, and TXT files up to 10MB.</li>
+          <li data-reveal-item><strong>Add a target job description:</strong> Paste the job posting to analyze skill matching and target role alignment.</li>
+          <li data-reveal-item><strong>Parse & analyze text:</strong> Our deterministic engine scans your document for contact info, sections, keywords, and layout risks.</li>
+          <li data-reveal-item><strong>Review your ATS score:</strong> View an overall compatibility score out of 100 alongside category breakdowns.</li>
+          <li data-reveal-item><strong>Fix detected issues:</strong> Follow prioritized recommendations to resolve missing keywords or formatting red flags.</li>
+        </ol>
+
+        <h2 data-reveal="fade-up">What Our ATS Checker Evaluates</h2>
+        <div class="eval-grid" data-reveal-group data-reveal-type="scale" data-reveal-stagger="80">
+          <div class="eval-card">
+            <h3>1. Keyword Coverage</h3>
+            <p>Compares technical skills, software tools, frameworks, and certifications in your resume against the target job posting.</p>
+          </div>
+          <div class="eval-card">
+            <h3>2. Resume Structure</h3>
+            <p>Detects standard section headings such as Work Experience, Education, Skills, and Professional Summary.</p>
+          </div>
+          <div class="eval-card">
+            <h3>3. ATS Formatting Safety</h3>
+            <p>Checks for image-based PDFs, multi-column tables, tab spacing, long symbol dividers, and excessive capitalization.</p>
+          </div>
+          <div class="eval-card">
+            <h3>4. Contact Details</h3>
+            <p>Verifies the presence of clear contact details including full name, professional email address, and phone number.</p>
+          </div>
+          <div class="eval-card">
+            <h3>5. Action Verbs & Metrics</h3>
+            <p>Evaluates experience bullet points for strong action verbs (Built, Led, Optimized) and quantifiable metrics (percentages, revenue, team size).</p>
+          </div>
+          <div class="eval-card">
+            <h3>6. Readability & Length</h3>
+            <p>Measures overall word count, sentence flow, and text density to ensure optimal document length.</p>
+          </div>
+        </div>
+
+        <h2 data-reveal="fade-up">How Applicant Tracking Systems Filter Resumes</h2>
+        <p data-reveal="fade-up">
+          Applicant Tracking Systems (ATS) are recruitment database tools designed to collect, sort, and rank job applications. When you apply online, an ATS extracts plain text from your file, indexes your skills, and assigns a match relevance score based on the employer's job description.
+        </p>
+        <p data-reveal="fade-up">
+          Resumes with complex graphic layouts, scanned images, missing standard section headings, or low keyword overlap often receive lower relevance scores or fail text extraction altogether.
+        </p>
+
+        <h2 data-reveal="fade-up">Common ATS Resume Mistakes to Avoid</h2>
+        <ul data-reveal-group data-reveal-type="fade-up" data-reveal-stagger="70">
+          <li data-reveal-item><strong>Using image-based or scanned PDFs:</strong> ATS parsers cannot read embedded images without text layers.</li>
+          <li data-reveal-item><strong>Designing multi-column tables:</strong> Columns can cause text from adjacent lines to merge into scrambled sentences.</li>
+          <li data-reveal-item><strong>Using non-standard headings:</strong> Headings like "What I've Done" instead of "Work Experience" confuse automated parsers.</li>
+          <li data-reveal-item><strong>Keyword stuffing:</strong> Repeating keywords unnaturally hurts human readability and can trigger overused keyword flags.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <FAQ />
+</Layout>
+
+<style>
+  .seo-hero {
+    padding: 3.5rem 1.5rem 2rem 1.5rem;
+  }
+
+  .seo-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .privacy-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(5, 150, 105, 0.08);
+    border: 1px solid rgba(5, 150, 105, 0.25);
+    color: #047857;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .seo-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .seo-intro {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .seo-content-section {
+    padding: 4rem 1.5rem;
+    background: #f1f5f9;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose-box h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 2.5rem 0 1rem 0;
+  }
+
+  .prose-box h2:first-child {
+    margin-top: 0;
+  }
+
+  .prose-box p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .step-ol {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+  }
+
+  .eval-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0 2.5rem 0;
+  }
+
+  .eval-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  .eval-card h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .eval-card p {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+  }
+
+  .prose-box ul {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+</style>

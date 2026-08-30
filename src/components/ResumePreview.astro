@@ -1,0 +1,98 @@
+---
+---
+
+<div class="preview-card" id="previewSection">
+  <details class="preview-details">
+    <summary class="preview-summary">
+      <div class="summary-content">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <span>What our checker can read (Extracted Resume Text)</span>
+      </div>
+      <span class="chevron">▼</span>
+    </summary>
+
+    <div class="preview-body">
+      <p class="preview-hint">
+        This is the plain text that browser ATS engines extract from your file. If text appears missing or scrambled here, an ATS will also struggle to read it.
+      </p>
+      <pre class="extracted-text-box" id="extractedTextPre">No text parsed yet.</pre>
+    </div>
+  </details>
+</div>
+
+<style>
+  .preview-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .preview-details {
+    width: 100%;
+  }
+
+  .preview-summary {
+    padding: 1.25rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    user-select: none;
+  }
+
+  .preview-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .summary-content {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--color-primary);
+  }
+
+  .chevron {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .preview-details[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .preview-body {
+    padding: 0 1.75rem 1.75rem 1.75rem;
+    border-top: 1px solid var(--color-border);
+    background: #ffffff;
+  }
+
+  .preview-hint {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin: 1rem 0;
+  }
+
+  .extracted-text-box {
+    background: #f8fafc;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: #0f172a;
+    max-height: 400px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+</style>

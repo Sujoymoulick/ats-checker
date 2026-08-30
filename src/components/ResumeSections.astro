@@ -1,0 +1,84 @@
+---
+---
+
+<div class="sections-card" id="sectionsCard">
+  <div class="card-header">
+    <h3 class="card-title">Resume Structure & Contact Info</h3>
+    <p class="card-subtitle">Detected standard resume sections and extracted contact details</p>
+  </div>
+
+  <div class="sections-grid">
+    <div class="sub-card">
+      <h4 class="sub-title">Contact Information</h4>
+      <div class="contact-list" id="contactInfoContainer">
+        <!-- Contact items populated by JS -->
+      </div>
+    </div>
+
+    <div class="sub-card">
+      <h4 class="sub-title">Detected Sections</h4>
+      <div class="section-list" id="detectedSectionsContainer">
+        <!-- Section items populated by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sections-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .card-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .sub-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+
+  .sub-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact-list, .section-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  @media (max-width: 768px) {
+    .sections-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

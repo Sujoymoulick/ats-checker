@@ -1,0 +1,230 @@
+---
+---
+
+<div class="score-card" id="scoreCard">
+  <div class="score-main">
+    <div class="gauge-wrapper">
+      <svg class="score-gauge" viewBox="0 0 120 120">
+        <circle 
+          class="gauge-bg" 
+          cx="60" 
+          cy="60" 
+          r="52" 
+          stroke-width="12"
+        ></circle>
+        <circle 
+          class="gauge-fill" 
+          id="scoreGaugeFill" 
+          cx="60" 
+          cy="60" 
+          r="52" 
+          stroke-width="12" 
+          stroke-dasharray="326.72" 
+          stroke-dashoffset="326.72"
+        ></circle>
+      </svg>
+      <div class="gauge-center">
+        <div class="score-value" id="scoreValueNum">0</div>
+        <div class="score-max">/ 100</div>
+      </div>
+    </div>
+
+    <div class="score-details">
+      <div class="score-tag" id="scoreCategoryBadge">Good ATS Compatibility</div>
+      <h2 class="score-heading">Overall ATS Compatibility Score</h2>
+      <p class="score-explanation" id="scoreExplanationText">
+        Your resume is generally ATS-friendly, but improving keyword alignment and simplifying formatting could increase compatibility.
+      </p>
+
+      <div class="score-meta">
+        <span class="meta-item" id="fileMetaBadge">resume.pdf</span>
+        <span class="meta-item" id="jdMetaBadge">Job Description Matched</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-actions no-print">
+    <button type="button" class="btn-reset" id="resetBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+      </svg>
+      <span>Check Another Resume</span>
+    </button>
+
+    <button type="button" class="btn-print" id="printReportBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      <span>Print / Save as PDF</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .score-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .score-main {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .gauge-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+  }
+
+  .score-gauge {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .gauge-bg {
+    fill: none;
+    stroke: var(--color-border);
+  }
+
+  .gauge-fill {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-out, stroke 0.5s ease;
+  }
+
+  .gauge-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .score-max {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .score-details {
+    flex: 1;
+  }
+
+  .score-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--color-primary);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+
+  .score-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .score-explanation {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .score-meta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-size: 0.8125rem;
+    color: var(--color-text-dim);
+    background: #f1f5f9;
+    border: 1px solid var(--color-border);
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .score-actions {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-reset, .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-reset {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    color: var(--color-text);
+  }
+
+  .btn-reset:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .btn-print {
+    background: #f1f5f9;
+    border: 1px solid var(--color-border-light);
+    color: var(--color-text-muted);
+  }
+
+  .btn-print:hover {
+    color: var(--color-text);
+    border-color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .score-main {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .score-meta {
+      justify-content: center;
+    }
+  }
+</style>

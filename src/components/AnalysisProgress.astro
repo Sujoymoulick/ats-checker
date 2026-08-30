@@ -1,0 +1,120 @@
+---
+---
+
+<div class="progress-card hidden" id="analysisProgress">
+  <div class="progress-header">
+    <div class="spinner"></div>
+    <div>
+      <h3 class="progress-title">Analyzing your resume...</h3>
+      <p class="progress-subtitle">Parsing text and evaluating ATS compatibility locally in browser</p>
+    </div>
+  </div>
+
+  <div class="progress-steps">
+    <div class="step" id="stepRead">
+      <span class="step-icon">•</span>
+      <span class="step-text">Reading resume file</span>
+    </div>
+    <div class="step" id="stepSections">
+      <span class="step-icon">•</span>
+      <span class="step-text">Detecting sections & contact info</span>
+    </div>
+    <div class="step" id="stepFormat">
+      <span class="step-icon">•</span>
+      <span class="step-text">Checking ATS formatting risks</span>
+    </div>
+    <div class="step" id="stepKeywords">
+      <span class="step-icon">•</span>
+      <span class="step-text">Extracting skills & keywords</span>
+    </div>
+    <div class="step" id="stepJd">
+      <span class="step-icon">•</span>
+      <span class="step-text">Comparing target job description</span>
+    </div>
+    <div class="step" id="stepScore">
+      <span class="step-icon">•</span>
+      <span class="step-text">Calculating ATS score & report</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .progress-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .progress-card.hidden {
+    display: none;
+  }
+
+  .progress-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(2, 132, 199, 0.15);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .progress-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .progress-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .progress-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-text-dim);
+    transition: all 0.2s ease;
+  }
+
+  .step.active {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .step.completed {
+    color: #059669;
+    font-weight: 500;
+  }
+
+  .step-icon {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .progress-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

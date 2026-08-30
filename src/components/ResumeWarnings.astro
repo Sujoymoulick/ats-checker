@@ -1,0 +1,58 @@
+---
+---
+
+<div class="image-warning-card hidden" id="imagePdfWarning">
+  <div class="warning-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+      <line x1="12" y1="9" x2="12" y2="13"></line>
+      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+  </div>
+  <div class="warning-body">
+    <h4 class="warning-title">We couldn't extract enough text from this PDF</h4>
+    <p class="warning-text">
+      This may mean your resume is image-based or scanned. ATS software often works better with text-based resumes. Try uploading a text-based PDF or DOCX file.
+    </p>
+  </div>
+</div>
+
+<style>
+  .image-warning-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: rgba(217, 119, 6, 0.08);
+    border: 1px solid rgba(217, 119, 6, 0.25);
+    border-radius: var(--radius-xl);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    color: #b45309;
+  }
+
+  .image-warning-card.hidden {
+    display: none;
+  }
+
+  .warning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: rgba(217, 119, 6, 0.15);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .warning-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .warning-text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #78350f;
+  }
+</style>

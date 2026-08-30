@@ -1,23 +1,135 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  activePath?: string;
+}
+
+const {
+  title = 'GigpilotAIScore – Check Your Resume for ATS Compatibility',
+  description = 'Check your resume for ATS compatibility, keywords, formatting issues, and job-description matching. 100% free, private, and browser-based with no signup required.',
+  activePath = '/'
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicons & Web App Manifest -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="GigPilotAIScore" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#020101" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <meta name="robots" content="index, follow" />
+  </head>
+  <body>
+    <Header activePath={activePath} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    
+    <script>
+      // Scroll-Reveal System driven by design-taste-frontend skill directives
+      function initScrollReveal() {
+        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        // 1. Process group containers for staggered animations
+        const groups = document.querySelectorAll('[data-reveal-group]');
+        groups.forEach((group) => {
+          const staggerStep = parseInt(group.getAttribute('data-reveal-stagger') || '80', 10);
+          const items = group.querySelectorAll('[data-reveal-item], .feature-card, .step-card, .eval-card, .tier-card, .faq-item, .breakdown-item, .rec-item');
+          
+          items.forEach((item, index) => {
+            if (!item.hasAttribute('data-reveal')) {
+              item.setAttribute('data-reveal', group.getAttribute('data-reveal-type') || 'scale');
+            }
+            (item as HTMLElement).style.setProperty('--reveal-delay', `${index * staggerStep}ms`);
+          });
+        });
+
+        const revealElements = document.querySelectorAll('[data-reveal]');
+        if (revealElements.length === 0) return;
+
+        if (isReducedMotion) {
+          revealElements.forEach((el) => el.classList.add('is-revealed'));
+          return;
+        }
+
+        const observerOptions: IntersectionObserverInit = {
+          root: null,
+          rootMargin: '0px 0px -40px 0px',
+          threshold: 0.08,
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target as HTMLElement;
+              target.classList.add('is-revealed');
+              obs.unobserve(target); // Only trigger once for clean entry
+            }
+          });
+        }, observerOptions);
+
+        revealElements.forEach((el) => {
+          // If element is already high in the viewport on page load, reveal immediately
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.88) {
+            el.classList.add('is-revealed');
+          } else {
+            observer.observe(el);
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollReveal);
+      } else {
+        initScrollReveal();
+      }
+
+      // Re-run on Astro page transitions or dynamic DOM updates
+      document.addEventListener('astro:page-load', initScrollReveal);
+
+      // Observe dynamic changes (e.g., when ATS analysis results load)
+      const mutationObserver = new MutationObserver(() => {
+        initScrollReveal();
+      });
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+    </script>
+  </body>
+</html>

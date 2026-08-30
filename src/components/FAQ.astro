@@ -1,0 +1,140 @@
+---
+const faqs = [
+  {
+    q: 'What is an ATS resume checker?',
+    a: 'An Applicant Tracking System (ATS) resume checker scans your resume file using parsing algorithms similar to those used by employers. It checks whether your text, sections, formatting, and keywords are easily readable by automated recruitment software.'
+  },
+  {
+    q: 'Is this ATS resume checker 100% free?',
+    a: 'Yes! Our ATS resume checker is completely free with no hidden fees, premium paywalls, or limits on how many times you can test your resume.'
+  },
+  {
+    q: 'Do I need to create an account or sign up?',
+    a: 'No signup or account creation is required. You can immediately upload your resume and receive a comprehensive score report.'
+  },
+  {
+    q: 'Is my resume uploaded to an external server?',
+    a: 'No. Your privacy is guaranteed. All text extraction and ATS analysis happen 100% client-side directly inside your browser window. No resume data ever leaves your device.'
+  },
+  {
+    q: 'Can I check my resume against a specific job description?',
+    a: 'Yes! You can paste any job description into the checker. The tool extracts key technical skills, tools, and qualifications required by the employer and measures your exact keyword match percentage.'
+  },
+  {
+    q: 'What file types are supported?',
+    a: 'We support standard resume formats including PDF (.pdf), Microsoft Word (.docx), and plain text (.txt).'
+  },
+  {
+    q: 'Does a high ATS score guarantee a job interview?',
+    a: 'No. An ATS score reflects how well your resume can be parsed by software and how closely your keywords align with a job posting. Human recruiters still evaluate your experience, achievements, and culture fit.'
+  },
+  {
+    q: 'Can ATS systems read tables, text boxes, and multi-column layouts?',
+    a: 'Compatibility varies across ATS software vendors. Multi-column layouts, graphics, tables, and text boxes can cause text to merge out of order during parsing. Standard single-column text layouts are generally the safest option.'
+  },
+  {
+    q: 'How can I improve my ATS resume score?',
+    a: 'You can increase your score by incorporating relevant missing keywords from the job posting, using clear standard section headings (like "Work Experience" and "Education"), beginning experience bullets with strong action verbs, and quantifying your achievements with numbers and metrics.'
+  }
+];
+---
+
+<div class="faq-section" id="faq">
+  <div class="section-header" data-reveal="fade-up">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-subtitle">Everything you need to know about ATS resume screening and compatibility</p>
+  </div>
+
+  <div class="faq-accordion" data-reveal-group data-reveal-type="fade-up" data-reveal-stagger="70">
+    {faqs.map((faq, index) => (
+      <details class="faq-item" open={index === 0}>
+        <summary class="faq-question">
+          <span>{faq.q}</span>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>{faq.a}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</div>
+
+<style>
+  .faq-section {
+    max-width: 900px;
+    margin: 4rem auto 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+  }
+
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-border-light);
+  }
+
+  .faq-question {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem 1.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    border-top: 1px solid var(--color-border);
+    margin-top: 0.25rem;
+    padding-top: 1rem;
+  }
+</style>

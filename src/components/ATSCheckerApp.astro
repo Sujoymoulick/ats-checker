@@ -1,0 +1,796 @@
+---
+import ResumeUploader from './ResumeUploader.astro';
+import JobDescriptionInput from './JobDescriptionInput.astro';
+import AnalysisProgress from './AnalysisProgress.astro';
+import ATSScore from './ATSScore.astro';
+import ScoreBreakdown from './ScoreBreakdown.astro';
+import KeywordAnalysis from './KeywordAnalysis.astro';
+import ResumeSections from './ResumeSections.astro';
+import FormattingIssues from './FormattingIssues.astro';
+import ResumeWarnings from './ResumeWarnings.astro';
+import Recommendations from './Recommendations.astro';
+import AIInsights from './AIInsights.astro';
+import ResumePreview from './ResumePreview.astro';
+---
+
+<div class="ats-checker-app" id="atsCheckerApp">
+  <!-- Input Form Area -->
+  <div class="app-input-section" id="appInputSection">
+    <ResumeUploader />
+    <JobDescriptionInput />
+  </div>
+
+  <!-- Progress State -->
+  <AnalysisProgress />
+
+  <!-- Results Dashboard -->
+  <div class="app-results-section hidden" id="appResultsSection">
+    <ResumeWarnings />
+    <ATSScore />
+    <ScoreBreakdown />
+    <KeywordAnalysis />
+    <ResumeSections />
+    <FormattingIssues />
+    <Recommendations />
+    <AIInsights />
+    <ResumePreview />
+  </div>
+</div>
+
+<script>
+  import { parseResumeFile } from '../lib/ats/parser';
+  import { analyzeResume } from '../lib/ats/analyzer';
+  import type { ATSAnalysisResult } from '../lib/ats/types';
+
+  let selectedFile: File | null = null;
+  let parsedResume: any = null;
+
+  // DOM Elements
+  const dropzone = document.getElementById('resumeDropzone') as HTMLElement;
+  const fileInput = document.getElementById('resumeFileInput') as HTMLInputElement;
+  const contentIdle = document.getElementById('dropzoneContentIdle') as HTMLElement;
+  const contentSelected = document.getElementById('dropzoneContentSelected') as HTMLElement;
+  const selectedFileName = document.getElementById('selectedFileName') as HTMLElement;
+  const selectedFileSize = document.getElementById('selectedFileSize') as HTMLElement;
+  const changeFileBtn = document.getElementById('changeFileBtn') as HTMLButtonElement;
+  const uploaderError = document.getElementById('uploaderError') as HTMLElement;
+  const uploaderErrorText = document.getElementById('uploaderErrorText') as HTMLElement;
+
+  const jdTextarea = document.getElementById('jdTextarea') as HTMLTextAreaElement;
+  const analyzeBtn = document.getElementById('analyzeBtn') as HTMLButtonElement;
+  const skipJdBtn = document.getElementById('skipJdBtn') as HTMLButtonElement;
+
+  const progressCard = document.getElementById('analysisProgress') as HTMLElement;
+  const appInputSection = document.getElementById('appInputSection') as HTMLElement;
+  const appResultsSection = document.getElementById('appResultsSection') as HTMLElement;
+
+  const resetBtn = document.getElementById('resetBtn') as HTMLButtonElement;
+  const printReportBtn = document.getElementById('printReportBtn') as HTMLButtonElement;
+
+  // Setup Event Listeners
+  if (dropzone && fileInput) {
+    dropzone.addEventListener('click', (e) => {
+      if (e.target !== changeFileBtn) {
+        fileInput.click();
+      }
+    });
+
+    dropzone.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        fileInput.click();
+      }
+    });
+
+    // Drag & Drop
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('dragover');
+      });
+    });
+
+    dropzone.addEventListener('drop', (e: DragEvent) => {
+      const files = e.dataTransfer?.files;
+      if (files && files.length > 0) {
+        handleFileSelection(files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files.length > 0) {
+        handleFileSelection(fileInput.files[0]);
+      }
+    });
+
+    if (changeFileBtn) {
+      changeFileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fileInput.click();
+      });
+    }
+  }
+
+  function handleFileSelection(file: File) {
+    hideError();
+    const name = file.name.toLowerCase();
+    const validExtensions = ['.pdf', '.docx', '.txt'];
+    const isValid = validExtensions.some(ext => name.endsWith(ext));
+
+    if (!isValid) {
+      showError("This file type isn't supported. Please upload a PDF, DOCX, or TXT resume.");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      showError("File size exceeds 10MB. Please upload a smaller resume file.");
+      return;
+    }
+
+    selectedFile = file;
+    selectedFileName.innerText = file.name;
+    selectedFileSize.innerText = formatFileSize(file.size);
+
+    contentIdle.classList.add('hidden');
+    contentSelected.classList.remove('hidden');
+
+    analyzeBtn.disabled = false;
+    skipJdBtn.disabled = false;
+  }
+
+  function showError(msg: string) {
+    if (uploaderError && uploaderErrorText) {
+      uploaderErrorText.innerText = msg;
+      uploaderError.classList.remove('hidden');
+    }
+  }
+
+  function hideError() {
+    if (uploaderError) {
+      uploaderError.classList.add('hidden');
+    }
+  }
+
+  function formatFileSize(bytes: number): string {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  // Analyze Triggers
+  if (analyzeBtn) {
+    analyzeBtn.addEventListener('click', () => runAnalysis(false));
+  }
+  if (skipJdBtn) {
+    skipJdBtn.addEventListener('click', () => runAnalysis(true));
+  }
+
+  async function runAnalysis(skipJd: boolean) {
+    if (!selectedFile) return;
+
+    // Show Progress UI
+    progressCard.classList.remove('hidden');
+    appInputSection.classList.add('hidden');
+    appResultsSection.classList.add('hidden');
+    window.scrollTo({ top: progressCard.offsetTop - 80, behavior: 'smooth' });
+
+    const jobDescription = skipJd ? '' : (jdTextarea?.value || '');
+
+    try {
+      updateProgressStep('stepRead', 'active', 'Reading resume file...');
+      await delay(200);
+
+      parsedResume = await parseResumeFile(selectedFile);
+
+      updateProgressStep('stepRead', 'completed', '✓ Reading resume file');
+      updateProgressStep('stepSections', 'active', 'Detecting sections...');
+      await delay(150);
+
+      updateProgressStep('stepSections', 'completed', '✓ Detecting sections & contact info');
+      updateProgressStep('stepFormat', 'active', 'Checking formatting...');
+      await delay(150);
+
+      updateProgressStep('stepFormat', 'completed', '✓ Checking ATS formatting risks');
+      updateProgressStep('stepKeywords', 'active', 'Extracting keywords...');
+      await delay(150);
+
+      updateProgressStep('stepKeywords', 'completed', '✓ Extracting skills & keywords');
+      updateProgressStep('stepJd', 'active', 'Comparing job description...');
+      await delay(150);
+
+      updateProgressStep('stepJd', 'completed', '✓ Job description compared');
+      updateProgressStep('stepScore', 'active', 'Calculating ATS score...');
+      await delay(200);
+
+      const analysisResult = analyzeResume(parsedResume, jobDescription);
+
+      updateProgressStep('stepScore', 'completed', '✓ ATS score calculated');
+      await delay(250);
+
+      // Save references for optional Cloudflare Workers AI analysis
+      currentAnalysisText = parsedResume.fullText || '';
+      currentJobDesc = jobDescription || '';
+      currentTargetRole = analysisResult.keywords.targetRole || '';
+
+      // Render Results
+      renderResults(analysisResult);
+
+      progressCard.classList.add('hidden');
+      appResultsSection.classList.remove('hidden');
+
+      window.scrollTo({ top: appResultsSection.offsetTop - 80, behavior: 'smooth' });
+    } catch (err: any) {
+      console.error('Analysis error:', err);
+      progressCard.classList.add('hidden');
+      appInputSection.classList.remove('hidden');
+      showError(err.message || 'An error occurred while parsing your resume file.');
+    }
+  }
+
+  // AI Insights State & Elements
+  let currentAnalysisText = '';
+  let currentJobDesc = '';
+  let currentTargetRole = '';
+  let isAiAnalyzing = false;
+
+  const getAiInsightsBtn = document.getElementById('getAiInsightsBtn') as HTMLButtonElement;
+  const aiLoadingBox = document.getElementById('aiLoadingBox') as HTMLElement;
+  const aiRateLimitBox = document.getElementById('aiRateLimitBox') as HTMLElement;
+  const aiErrorBox = document.getElementById('aiErrorBox') as HTMLElement;
+  const aiErrorTitle = document.getElementById('aiErrorTitle') as HTMLElement;
+  const aiErrorMsgText = document.getElementById('aiErrorMsgText') as HTMLElement;
+  const aiResultsWrapper = document.getElementById('aiResultsWrapper') as HTMLElement;
+  const aiQuotaCountText = document.getElementById('aiQuotaCountText') as HTMLElement;
+  const rateLimitMsgText = document.getElementById('rateLimitMsgText') as HTMLElement;
+
+  if (getAiInsightsBtn) {
+    getAiInsightsBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (isAiAnalyzing || !currentAnalysisText) return;
+
+      // 1. Immediately disable button & prevent double clicks
+      isAiAnalyzing = true;
+      getAiInsightsBtn.disabled = true;
+      getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Analyzing with Cloudflare AI...</span>';
+
+      aiLoadingBox?.classList.remove('hidden');
+      aiRateLimitBox?.classList.add('hidden');
+      aiErrorBox?.classList.add('hidden');
+      aiResultsWrapper?.classList.add('hidden');
+
+      try {
+        const response = await fetch('/api/analyze-resume', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            resumeText: currentAnalysisText,
+            jobDescription: currentJobDesc,
+            targetRole: currentTargetRole
+          })
+        });
+
+        const data = await response.json();
+        aiLoadingBox?.classList.add('hidden');
+
+        // 2. Handle 429 Rate Limit
+        if (response.status === 429) {
+          if (aiRateLimitBox) aiRateLimitBox.classList.remove('hidden');
+          if (rateLimitMsgText && data.message) rateLimitMsgText.innerText = data.message;
+          if (aiQuotaCountText) aiQuotaCountText.innerText = '0 free scans remaining today';
+          getAiInsightsBtn.disabled = true;
+          getAiInsightsBtn.innerHTML = '<span>Daily Scan Limit Reached (2/2)</span>';
+          isAiAnalyzing = false;
+          return;
+        }
+
+        // 3. Handle General Error Responses
+        if (!response.ok) {
+          if (aiErrorBox) {
+            if (aiErrorTitle) aiErrorTitle.innerText = data.error || 'Request Error';
+            if (aiErrorMsgText) aiErrorMsgText.innerText = data.message || 'An error occurred during AI analysis.';
+            aiErrorBox.classList.remove('hidden');
+          }
+          getAiInsightsBtn.disabled = false;
+          getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Try AI Analysis Again</span>';
+          isAiAnalyzing = false;
+          return;
+        }
+
+        // 4. Handle Fallback / AI Service Unavailable
+        if (!data.aiAvailable) {
+          if (aiErrorBox) {
+            if (aiErrorTitle) aiErrorTitle.innerText = 'AI Insights Temporarily Unavailable';
+            if (aiErrorMsgText) aiErrorMsgText.innerText = data.message || 'AI service is busy. Your local ATS report is fully active.';
+            aiErrorBox.classList.remove('hidden');
+          }
+          getAiInsightsBtn.disabled = false;
+          getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Try AI Analysis Again</span>';
+          isAiAnalyzing = false;
+          return;
+        }
+
+        // 5. Success - Render AI Insights
+        if (data.success && data.analysis) {
+          renderAiResults(data.analysis);
+          aiResultsWrapper?.classList.remove('hidden');
+
+          if (aiQuotaCountText) {
+            if (data.remaining === 0) {
+              aiQuotaCountText.innerText = '0 free scans remaining today';
+              getAiInsightsBtn.disabled = true;
+              getAiInsightsBtn.innerHTML = '<span>Daily Scan Limit Reached (2/2)</span>';
+            } else {
+              aiQuotaCountText.innerText = `${data.remaining} free AI scan remaining today`;
+              getAiInsightsBtn.disabled = false;
+              getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Re-run AI Analysis</span>';
+            }
+          }
+        }
+      } catch (err: any) {
+        console.error('AI analysis fetch error:', err);
+        aiLoadingBox?.classList.add('hidden');
+        if (aiErrorBox) {
+          if (aiErrorTitle) aiErrorTitle.innerText = 'Network Error';
+          if (aiErrorMsgText) aiErrorMsgText.innerText = 'Could not reach server endpoint. Local ATS report is unaffected.';
+          aiErrorBox.classList.remove('hidden');
+        }
+        getAiInsightsBtn.disabled = false;
+        getAiInsightsBtn.innerHTML = '<span class="btn-sparkle">✨</span><span>Get AI Resume Insights</span>';
+      } finally {
+        isAiAnalyzing = false;
+      }
+    });
+  }
+
+  function renderAiResults(analysis: any) {
+    const scoreNumEl = document.getElementById('aiSemanticMatchNum');
+    if (scoreNumEl) scoreNumEl.innerText = String(analysis.semanticMatch || 75);
+
+    const strengthsList = document.getElementById('aiStrengthsList');
+    if (strengthsList) {
+      strengthsList.innerHTML = (analysis.strengths || []).map((s: string) => `<li>${s}</li>`).join('') || '<li>Strong background detected.</li>';
+    }
+
+    const gapsList = document.getElementById('aiGapsList');
+    if (gapsList) {
+      gapsList.innerHTML = (analysis.gaps || []).map((g: string) => `<li>${g}</li>`).join('') || '<li>No critical gaps detected.</li>';
+    }
+
+    const summaryText = document.getElementById('aiSummaryText');
+    if (summaryText) {
+      summaryText.innerText = analysis.summaryFeedback || 'Summary communicates core alignment effectively.';
+    }
+
+    const bulletsList = document.getElementById('aiBulletsList');
+    if (bulletsList) {
+      bulletsList.innerHTML = (analysis.bulletFeedback || []).map((b: any) => `
+        <div class="bullet-item">
+          <div class="bullet-orig">"${b.original}"</div>
+          <div class="bullet-issue">Issue: ${b.issue}</div>
+          <div class="bullet-sug">Suggestion: ${b.suggestion}</div>
+        </div>
+      `).join('');
+    }
+
+    const recsList = document.getElementById('aiRecsList');
+    if (recsList) {
+      recsList.innerHTML = (analysis.recommendations || []).map((r: string) => `<li>${r}</li>`).join('');
+    }
+  }
+
+  function updateProgressStep(stepId: string, state: 'active' | 'completed', text: string) {
+    const el = document.getElementById(stepId);
+    if (!el) return;
+    el.className = `step ${state}`;
+    const textEl = el.querySelector('.step-text');
+    if (textEl) textEl.textContent = text;
+    const iconEl = el.querySelector('.step-icon');
+    if (iconEl) iconEl.textContent = state === 'completed' ? '✓' : '•';
+  }
+
+  function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // Render Full Dashboard Results
+  function renderResults(result: ATSAnalysisResult) {
+    // Reset AI container view when a new resume is parsed
+    aiLoadingBox?.classList.add('hidden');
+    aiRateLimitBox?.classList.add('hidden');
+    aiErrorBox?.classList.add('hidden');
+    aiResultsWrapper?.classList.add('hidden');
+    if (getAiInsightsBtn) {
+      getAiInsightsBtn.disabled = false;
+      getAiInsightsBtn.innerHTML = '<span>Get AI Resume Insights</span>';
+    }
+
+    // 1. Score Gauge & Main Score
+    const scoreValEl = document.getElementById('scoreValueNum');
+    const scoreGaugeFill = document.getElementById('scoreGaugeFill');
+    const scoreCategoryBadge = document.getElementById('scoreCategoryBadge');
+    const scoreExplanationText = document.getElementById('scoreExplanationText');
+    const fileMetaBadge = document.getElementById('fileMetaBadge');
+    const jdMetaBadge = document.getElementById('jdMetaBadge');
+
+    if (scoreValEl) scoreValEl.innerText = String(result.totalScore);
+    if (scoreCategoryBadge) {
+      scoreCategoryBadge.innerText = result.scoreCategory;
+      // Gauge styling
+      let strokeColor = '#38bdf8';
+      if (result.totalScore >= 90) strokeColor = '#10b981';
+      else if (result.totalScore >= 75) strokeColor = '#38bdf8';
+      else if (result.totalScore >= 60) strokeColor = '#f59e0b';
+      else strokeColor = '#ef4444';
+
+      scoreCategoryBadge.style.color = strokeColor;
+      scoreCategoryBadge.style.borderColor = strokeColor;
+      scoreCategoryBadge.style.background = `${strokeColor}1f`;
+
+      if (scoreGaugeFill) {
+        scoreGaugeFill.style.stroke = strokeColor;
+        const circumference = 326.72;
+        const offset = circumference - (result.totalScore / 100) * circumference;
+        scoreGaugeFill.style.strokeDashoffset = String(offset);
+      }
+    }
+
+    if (scoreExplanationText) scoreExplanationText.innerText = result.scoreExplanation;
+    if (fileMetaBadge) fileMetaBadge.innerText = `${result.fileName} (${formatFileSize(result.fileSize)})`;
+    if (jdMetaBadge) {
+      jdMetaBadge.innerText = result.hasJobDescription ? 'Targeted Job Match' : 'General ATS Analysis';
+    }
+
+    // 2. Score Breakdown
+    const breakdownContainer = document.getElementById('breakdownItemsContainer');
+    if (breakdownContainer) {
+      breakdownContainer.innerHTML = result.breakdown.map(item => `
+        <div class="breakdown-item">
+          <div class="item-top">
+            <div class="item-name">${item.category}</div>
+            <div class="item-score-wrap">
+              <span class="item-score">${item.score}/${item.maxScore}</span>
+              <span class="badge badge-${item.status.toLowerCase().replace(/\s+/g, '-')}">${item.status}</span>
+            </div>
+          </div>
+          <div class="bar-bg">
+            <div class="bar-fill" style="width: ${(item.score / item.maxScore) * 100}%;"></div>
+          </div>
+          <div class="item-explanation">${item.explanation}</div>
+        </div>
+      `).join('');
+    }
+
+    // 3. Keyword Match & Job Title
+    const matchPctEl = document.getElementById('keywordMatchPercentage');
+    const targetRoleTitle = document.getElementById('targetRoleTitle');
+    const roleAlignmentBadge = document.getElementById('roleAlignmentBadge');
+    const matchedCountEl = document.getElementById('matchedCount');
+    const matchedTagsEl = document.getElementById('matchedKeywordsTags');
+    const missingCountEl = document.getElementById('missingCount');
+    const missingTagsEl = document.getElementById('missingKeywordsTags');
+    const overusedGroup = document.getElementById('overusedKeywordsGroup');
+    const overusedTagsEl = document.getElementById('overusedKeywordsTags');
+
+    if (matchPctEl) matchPctEl.innerText = `${result.keywords.score}% Match`;
+    if (targetRoleTitle) targetRoleTitle.innerText = result.keywords.targetRole || 'General ATS Fit';
+    if (roleAlignmentBadge) roleAlignmentBadge.innerText = result.keywords.roleAlignment;
+
+    if (matchedCountEl) matchedCountEl.innerText = String(result.keywords.matchedKeywords.length);
+    if (matchedTagsEl) {
+      matchedTagsEl.innerHTML = result.keywords.matchedKeywords.length > 0
+        ? result.keywords.matchedKeywords.map(k => `<span class="tag tag-matched">✓ ${k}</span>`).join('')
+        : `<span class="text-dim">No specific matched keywords extracted.</span>`;
+    }
+
+    if (missingCountEl) missingCountEl.innerText = String(result.keywords.missingKeywords.length);
+    if (missingTagsEl) {
+      missingTagsEl.innerHTML = result.keywords.missingKeywords.length > 0
+        ? result.keywords.missingKeywords.map(k => `<span class="tag tag-missing">${k}</span>`).join('')
+        : `<span class="text-dim">No critical missing keywords detected.</span>`;
+    }
+
+    if (overusedGroup && overusedTagsEl) {
+      if (result.keywords.overusedKeywords.length > 0) {
+        overusedGroup.classList.remove('hidden');
+        overusedTagsEl.innerHTML = result.keywords.overusedKeywords.map(k => `<span class="tag tag-overused">${k}</span>`).join('');
+      } else {
+        overusedGroup.classList.add('hidden');
+      }
+    }
+
+    // 4. Contact Info & Sections
+    const contactContainer = document.getElementById('contactInfoContainer');
+    if (contactContainer) {
+      const c = result.contactInfo;
+      const items = [
+        { label: 'Name', val: c.name, req: true },
+        { label: 'Email', val: c.email, req: true },
+        { label: 'Phone', val: c.phone, req: false },
+        { label: 'Location', val: c.location, req: false },
+        { label: 'LinkedIn', val: c.linkedIn, req: false },
+        { label: 'GitHub', val: c.github, req: false },
+        { label: 'Portfolio', val: c.website || c.portfolio, req: false },
+      ];
+
+      contactContainer.innerHTML = items.map(i => `
+        <div class="info-row">
+          <span class="info-icon ${i.val ? 'icon-detected' : 'icon-missing'}">${i.val ? '✓' : '○'}</span>
+          <span class="info-label">${i.label}:</span>
+          <span class="info-value ${i.val ? 'found' : 'missing'}">${i.val || 'Not detected'}</span>
+        </div>
+      `).join('');
+    }
+
+    const sectionsContainer = document.getElementById('detectedSectionsContainer');
+    if (sectionsContainer) {
+      sectionsContainer.innerHTML = result.sections.map(s => `
+        <div class="info-row">
+          <span class="info-icon">${s.found ? '✓' : s.isOptional ? '•' : '✕'}</span>
+          <span class="info-label">${s.name}:</span>
+          <span class="info-value ${s.found ? 'found' : 'missing'}">${s.found ? 'Detected' : s.isOptional ? 'Optional (Not found)' : 'Missing'}</span>
+        </div>
+      `).join('');
+    }
+
+    // 5. Formatting Issues
+    const formattingContainer = document.getElementById('formattingIssuesContainer');
+    if (formattingContainer) {
+      formattingContainer.innerHTML = result.formatting.map(issue => `
+        <div class="issue-item issue-${issue.type}">
+          <div class="issue-title-wrap">
+            <span class="issue-badge">${issue.type.toUpperCase()}</span>
+            <span class="issue-title">${issue.title}</span>
+          </div>
+          <p class="issue-desc">${issue.description}</p>
+          <p class="issue-impact">${issue.impact}</p>
+        </div>
+      `).join('');
+    }
+
+    // 6. Image PDF Warning
+    const imageWarningCard = document.getElementById('imagePdfWarning');
+    if (imageWarningCard) {
+      if (result.isImageBased) imageWarningCard.classList.remove('hidden');
+      else imageWarningCard.classList.add('hidden');
+    }
+
+    // 7. Recommendations
+    const recContainer = document.getElementById('recommendationsListContainer');
+    if (recContainer) {
+      recContainer.innerHTML = result.recommendations.map((rec, idx) => `
+        <div class="rec-item rec-${rec.priority}">
+          <div class="rec-header">
+            <span class="rec-number">${idx + 1}</span>
+            <div class="rec-title-wrap">
+              <span class="rec-priority priority-${rec.priority}">${rec.priority.toUpperCase()} PRIORITY</span>
+              <h4 class="rec-title">${rec.title}</h4>
+            </div>
+          </div>
+          <p class="rec-desc">${rec.description}</p>
+        </div>
+      `).join('');
+    }
+
+    // 8. Extracted Text Preview
+    const extractedTextPre = document.getElementById('extractedTextPre');
+    if (extractedTextPre) {
+      extractedTextPre.innerText = result.extractedText || 'No text extracted.';
+    }
+  }
+
+  // Reset Functionality (Section 28)
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      selectedFile = null;
+      parsedResume = null;
+      currentAnalysisText = '';
+      currentJobDesc = '';
+      currentTargetRole = '';
+      if (fileInput) fileInput.value = '';
+      if (jdTextarea) jdTextarea.value = '';
+
+      contentSelected.classList.add('hidden');
+      contentIdle.classList.remove('hidden');
+      analyzeBtn.disabled = true;
+      skipJdBtn.disabled = true;
+      hideError();
+
+      appResultsSection.classList.add('hidden');
+      appInputSection.classList.remove('hidden');
+
+      window.scrollTo({ top: appInputSection.offsetTop - 80, behavior: 'smooth' });
+    });
+  }
+
+  // Print Functionality (Section 29)
+  if (printReportBtn) {
+    printReportBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
+</script>
+
+<style is:global>
+  /* Breakdown Item Styles */
+  .breakdown-item {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+  }
+
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .item-name {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .item-score-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .item-score {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+  }
+
+  .badge {
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge-excellent { background: rgba(5, 150, 105, 0.1); color: #047857; }
+  .badge-good { background: rgba(2, 132, 199, 0.1); color: #0284c7; }
+  .badge-needs-improvement { background: rgba(217, 119, 6, 0.1); color: #b45309; }
+  .badge-poor { background: rgba(220, 38, 38, 0.1); color: #b91c1c; }
+
+  .bar-bg {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    border-radius: var(--radius-full);
+    transition: width 0.8s ease-out;
+  }
+
+  .item-explanation {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Tag Styles */
+  .tag {
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .tag-matched { background: rgba(5, 150, 105, 0.08); color: #047857; border: 1px solid rgba(5, 150, 105, 0.2); }
+  .tag-missing { background: rgba(217, 119, 6, 0.08); color: #b45309; border: 1px solid rgba(217, 119, 6, 0.2); }
+  .tag-overused { background: rgba(220, 38, 38, 0.08); color: #b91c1c; border: 1px solid rgba(220, 38, 38, 0.2); }
+
+  /* Info Row Styles */
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .info-icon { font-weight: 700; width: 18px; text-align: center; }
+  .icon-detected { color: #059669; }
+  .icon-missing { color: var(--color-text-dim); }
+  .info-label { color: var(--color-text-muted); font-weight: 500; }
+  .info-value.found { color: var(--color-text); font-weight: 600; }
+  .info-value.missing { color: var(--color-text-dim); }
+
+  /* Issue Item Styles */
+  .issue-item {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+  }
+
+  .issue-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .issue-badge {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .issue-error .issue-badge { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
+  .issue-warning .issue-badge { background: rgba(217, 119, 6, 0.1); color: #d97706; }
+  .issue-info .issue-badge { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+
+  .issue-title { font-weight: 600; color: var(--color-text); font-size: 0.9375rem; }
+  .issue-desc { color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 0.375rem; }
+  .issue-impact { color: var(--color-primary); font-size: 0.8125rem; }
+
+  /* Recommendation Item Styles */
+  .rec-item {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+
+  .rec-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .rec-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+    border: 1px solid var(--color-border);
+  }
+
+  .rec-priority {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+
+  .priority-high { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
+  .priority-medium { background: rgba(217, 119, 6, 0.1); color: #d97706; }
+  .priority-low { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+
+  .rec-title { font-size: 1rem; font-weight: 600; color: var(--color-text); }
+  .rec-desc { color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.5; padding-left: 2.625rem; }
+
+  .text-dim { color: var(--color-text-dim); font-size: 0.8125rem; }
+</style>

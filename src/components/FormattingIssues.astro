@@ -1,0 +1,44 @@
+---
+---
+
+<div class="formatting-card" id="formattingSection">
+  <div class="card-header">
+    <h3 class="card-title">Formatting & Layout Analysis</h3>
+    <p class="card-subtitle">Heuristic check for bullet points, special characters, and parsing safety</p>
+  </div>
+
+  <div class="issues-list" id="formattingIssuesContainer">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<style>
+  .formatting-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .card-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .issues-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+</style>

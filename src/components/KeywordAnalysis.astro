@@ -1,0 +1,187 @@
+---
+---
+
+<div class="keyword-card" id="keywordSection">
+  <div class="card-header">
+    <div class="title-wrap">
+      <h3 class="card-title">Keyword Analysis & Job Alignment</h3>
+      <p class="card-subtitle">Skills, tools, and technical terms extracted from your resume</p>
+    </div>
+    <div class="match-badge" id="keywordMatchPercentage">86% Match</div>
+  </div>
+
+  <div class="role-alignment-box" id="targetRoleBox">
+    <div class="role-info">
+      <span class="role-label">Target Role Detected:</span>
+      <span class="role-title" id="targetRoleTitle">Frontend Developer</span>
+    </div>
+    <div class="role-status">
+      <span class="alignment-label">Resume Alignment:</span>
+      <span class="alignment-badge" id="roleAlignmentBadge">Good</span>
+    </div>
+  </div>
+
+  <div class="keyword-groups">
+    <div class="group">
+      <h4 class="group-title text-success">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Matched Keywords (<span id="matchedCount">0</span>)</span>
+      </h4>
+      <div class="tags-container" id="matchedKeywordsTags">
+        <!-- Tags populated by JS -->
+      </div>
+    </div>
+
+    <div class="group">
+      <h4 class="group-title text-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>Missing Keywords (<span id="missingCount">0</span>)</span>
+      </h4>
+      <div class="tags-container" id="missingKeywordsTags">
+        <!-- Tags populated by JS -->
+      </div>
+      <p class="keyword-disclaimer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align: middle; margin-right: 4px; color: var(--color-warning);"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>
+        <strong>Note:</strong> Only add missing skills that you actually possess. Avoid keyword stuffing.
+      </p>
+    </div>
+
+    <div class="group hidden" id="overusedKeywordsGroup">
+      <h4 class="group-title text-info">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span>Possibly Overused Terms</span>
+      </h4>
+      <div class="tags-container" id="overusedKeywordsTags">
+        <!-- Tags populated by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .keyword-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .card-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .match-badge {
+    padding: 0.375rem 0.875rem;
+    background: rgba(5, 150, 105, 0.08);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+    color: #059669;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-full);
+  }
+
+  .role-alignment-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 0.875rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .role-info, .role-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .role-label, .alignment-label {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .role-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .alignment-badge {
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .keyword-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .group-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .text-success { color: var(--color-success); }
+  .text-warning { color: var(--color-warning); }
+  .text-info { color: var(--color-info); }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .keyword-disclaimer {
+    font-size: 0.8125rem;
+    color: var(--color-text-dim);
+    margin-top: 0.625rem;
+  }
+
+  .group.hidden {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .role-alignment-box {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>

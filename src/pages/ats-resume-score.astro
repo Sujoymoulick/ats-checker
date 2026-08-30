@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ATSCheckerApp from '../components/ATSCheckerApp.astro';
+import FAQ from '../components/FAQ.astro';
+---
+
+<Layout 
+  title="GigpilotAIScore – ATS Resume Score Guide"
+  description="Learn how ATS resume scores are calculated out of 100 and test your resume for instant compatibility feedback."
+  activePath="/ats-resume-score"
+>
+  <section class="seo-hero">
+    <div class="seo-container">
+      <div class="privacy-pill" data-reveal="scale">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align: middle; margin-right: 4px;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        Deterministic Scoring Algorithm
+      </div>
+      <h1 class="seo-title" data-reveal="fade-up">GigpilotAIScore Guide</h1>
+      <p class="seo-intro" data-reveal="fade-up" style="--reveal-delay: 80ms;">
+        What makes a good ATS resume score? Our deterministic ATS scoring engine evaluates your resume out of 100 based on contact information, section structure, keyword matching, job alignment, formatting safety, and readability.
+      </p>
+
+      <div class="checker-wrapper" data-reveal="scale" style="--reveal-delay: 150ms;">
+        <ATSCheckerApp />
+      </div>
+    </div>
+  </section>
+
+  <section class="seo-content-section">
+    <div class="seo-container">
+      <article class="prose-box">
+        <h2 data-reveal="fade-up">Understanding ATS Score Ranges</h2>
+        <p data-reveal="fade-up">
+          Our scoring engine classifies resume compatibility into 5 clear tiers:
+        </p>
+
+        <div class="score-tiers-grid" data-reveal-group data-reveal-type="scale" data-reveal-stagger="80">
+          <div class="tier-card tier-excellent">
+            <div class="tier-range">90–100</div>
+            <h3>Excellent ATS Compatibility</h3>
+            <p>Your resume features clear section headings, complete contact details, strong action verbs, clean formatting, and excellent keyword alignment.</p>
+          </div>
+
+          <div class="tier-card tier-good">
+            <div class="tier-range">75–89</div>
+            <h3>Good ATS Compatibility</h3>
+            <p>Your resume is generally ATS-friendly. Minor improvements in keyword density or formatting will maximize your score.</p>
+          </div>
+
+          <div class="tier-card tier-improvement">
+            <div class="tier-range">60–74</div>
+            <h3>Needs Improvement</h3>
+            <p>Moderate compatibility. Addressing missing section headings or incorporating target job skills will help avoid parsing drops.</p>
+          </div>
+
+          <div class="tier-card tier-issues">
+            <div class="tier-range">40–59</div>
+            <h3>Several ATS Issues</h3>
+            <p>Multiple parsing risks detected, such as missing contact details, poor layout structure, or low keyword overlap.</p>
+          </div>
+
+          <div class="tier-card tier-major">
+            <div class="tier-range">0–39</div>
+            <h3>Major ATS Problems</h3>
+            <p>Major issues detected. Your resume file may be an image-based PDF or missing essential sections.</p>
+          </div>
+        </div>
+
+        <h2 data-reveal="fade-up">Scoring Weights Breakdown (100 Points Total)</h2>
+        <ul class="weights-list" data-reveal-group data-reveal-type="fade-up" data-reveal-stagger="60">
+          <li data-reveal-item><strong>Contact Information (10 points):</strong> Name, email, phone, and profile links.</li>
+          <li data-reveal-item><strong>Resume Sections (15 points):</strong> Work Experience, Education, Skills, and Summary headers.</li>
+          <li data-reveal-item><strong>Keyword Optimization (20 points):</strong> Technical skills and industry terminology.</li>
+          <li data-reveal-item><strong>Job Description Match (20 points):</strong> Overlap percentage against target job posting.</li>
+          <li data-reveal-item><strong>ATS Formatting Safety (15 points):</strong> Clean text parsing without graphic or column risks.</li>
+          <li data-reveal-item><strong>Skills & Experience (10 points):</strong> Action verbs and measurable metric statements.</li>
+          <li data-reveal-item><strong>Readability (5 points):</strong> Word count density and sentence flow.</li>
+          <li data-reveal-item><strong>Resume Completeness (5 points):</strong> Document structure and section presence.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <FAQ />
+</Layout>
+
+<style>
+  .seo-hero {
+    padding: 3.5rem 1.5rem 2rem 1.5rem;
+  }
+
+  .seo-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .privacy-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .seo-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .seo-intro {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .seo-content-section {
+    padding: 4rem 1.5rem;
+    background: #f1f5f9;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose-box h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 2rem 0 1rem 0;
+  }
+
+  .prose-box p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .score-tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0 2.5rem 0;
+  }
+
+  .tier-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tier-range {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.375rem;
+  }
+
+  .tier-excellent .tier-range { color: #059669; }
+  .tier-good .tier-range { color: #0284c7; }
+  .tier-improvement .tier-range { color: #d97706; }
+  .tier-issues .tier-range { color: #dc2626; }
+  .tier-major .tier-range { color: #dc2626; }
+
+  .tier-card h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .tier-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+
+  .weights-list {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+  }
+</style>

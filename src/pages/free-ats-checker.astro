@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ATSCheckerApp from '../components/ATSCheckerApp.astro';
+import FAQ from '../components/FAQ.astro';
+---
+
+<Layout 
+  title="GigpilotAIScore – Instant Resume Analysis & Score"
+  description="Use our 100% free ATS checker to scan your resume for keywords, formatting red flags, and job description fit. No signup or account required."
+  activePath="/free-ats-checker"
+>
+  <section class="seo-hero">
+    <div class="seo-container">
+      <div class="privacy-pill" data-reveal="scale">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align: middle; margin-right: 4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        Instant Client-Side Parsing
+      </div>
+      <h1 class="seo-title" data-reveal="fade-up">GigpilotAIScore</h1>
+      <p class="seo-intro" data-reveal="fade-up" style="--reveal-delay: 80ms;">
+        Scan your resume for free with zero paywalls or account creation. Our client-side ATS checker extracts text directly in your browser, evaluates ATS formatting risks, checks keyword matching, and delivers a transparent score.
+      </p>
+
+      <div class="checker-wrapper" data-reveal="scale" style="--reveal-delay: 150ms;">
+        <ATSCheckerApp />
+      </div>
+    </div>
+  </section>
+
+  <section class="seo-content-section">
+    <div class="seo-container">
+      <article class="prose-box">
+        <h2 data-reveal="fade-up">Why Use GigpilotAIScore?</h2>
+        <p data-reveal="fade-up">
+          Many online resume checkers require paid subscriptions or force you to upload your personal resume data to cloud servers. Our tool is built on a 100% client-side architecture:
+        </p>
+
+        <div class="comparison-table-wrap" data-reveal="scale">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>GigpilotAIScore</th>
+                <th>Other Online Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cost</td>
+                <td><span class="text-success">100% Free</span></td>
+                <td>Paid subscription / Paywalls</td>
+              </tr>
+              <tr>
+                <td>Data Privacy</td>
+                <td><span class="text-success">Stays in your browser</span></td>
+                <td>Uploaded to external cloud servers</td>
+              </tr>
+              <tr>
+                <td>Account Required</td>
+                <td><span class="text-success">No signup needed</span></td>
+                <td>Requires email or account</td>
+              </tr>
+              <tr>
+                <td>Job Matching</td>
+                <td><span class="text-success">Unlimited free JD matches</span></td>
+                <td>Restricted credits</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 data-reveal="fade-up">Key Benefits of Testing Your Resume</h2>
+        <ul data-reveal-group data-reveal-type="fade-up" data-reveal-stagger="70">
+          <li data-reveal-item><strong>Identify missing keywords:</strong> Instantly discover critical skills from job postings that are missing from your resume.</li>
+          <li data-reveal-item><strong>Catch unreadable text:</strong> Detect image-based scanned PDFs that prevent ATS software from reading your experience.</li>
+          <li data-reveal-item><strong>Improve action verbs & metrics:</strong> Ensure your bullet points highlight achievements with strong verbs and measurable results.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <FAQ />
+</Layout>
+
+<style>
+  .seo-hero {
+    padding: 3.5rem 1.5rem 2rem 1.5rem;
+  }
+
+  .seo-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .privacy-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .seo-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .seo-intro {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .seo-content-section {
+    padding: 4rem 1.5rem;
+    background: #f1f5f9;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose-box h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 2rem 0 1rem 0;
+  }
+
+  .prose-box p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .comparison-table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0 2.5rem 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .comparison-table th, .comparison-table td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9375rem;
+  }
+
+  .comparison-table th {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .comparison-table td {
+    color: var(--color-text-muted);
+  }
+
+  .text-success {
+    color: var(--color-success);
+    font-weight: 600;
+  }
+
+  .prose-box ul {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+  }
+</style>

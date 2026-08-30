@@ -1,0 +1,44 @@
+---
+---
+
+<div class="breakdown-card" id="breakdownSection">
+  <div class="card-header">
+    <h3 class="card-title">Score Breakdown</h3>
+    <p class="card-subtitle">Evaluation across 8 core ATS scoring categories</p>
+  </div>
+
+  <div class="breakdown-list" id="breakdownItemsContainer">
+    <!-- Populated by JavaScript -->
+  </div>
+</div>
+
+<style>
+  .breakdown-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .card-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+</style>
