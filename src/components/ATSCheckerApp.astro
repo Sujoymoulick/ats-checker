@@ -9,6 +9,7 @@ import ResumeSections from './ResumeSections.astro';
 import FormattingIssues from './FormattingIssues.astro';
 import ResumeWarnings from './ResumeWarnings.astro';
 import Recommendations from './Recommendations.astro';
+import AIPromptGenerator from './AIPromptGenerator.astro';
 import ResumePreview from './ResumePreview.astro';
 ---
 
@@ -24,6 +25,22 @@ import ResumePreview from './ResumePreview.astro';
 
   <!-- Results Dashboard -->
   <div class="app-results-section hidden" id="appResultsSection">
+    <!-- Print-Only Header for PDF Audit Export -->
+    <div class="print-audit-header print-only">
+      <div class="print-header-content">
+        <div>
+          <h1 class="print-title">GigpilotAIScore</h1>
+          <p class="print-subtitle">Official ATS Compatibility & Screening Audit Report</p>
+        </div>
+        <div class="print-meta-box">
+          <div id="printMetaDate">Date: N/A</div>
+          <div id="printMetaFile">File: N/A</div>
+          <div id="printMetaTarget">Analysis: ATS Compatibility Scan</div>
+        </div>
+      </div>
+      <hr class="print-hr" />
+    </div>
+
     <ResumeWarnings />
     <ATSScore />
     <ScoreBreakdown />
@@ -31,6 +48,7 @@ import ResumePreview from './ResumePreview.astro';
     <ResumeSections />
     <FormattingIssues />
     <Recommendations />
+    <AIPromptGenerator />
     <ResumePreview />
   </div>
 </div>
@@ -38,10 +56,14 @@ import ResumePreview from './ResumePreview.astro';
 <script>
   import { parseResumeFile } from '../lib/ats/parser';
   import { analyzeResume } from '../lib/ats/analyzer';
+  import { generateAIPrompt, type PromptMode } from '../lib/ats/promptGenerator';
+  import { generateMarkdownAuditReport } from '../lib/ats/markdownReportGenerator';
   import type { ATSAnalysisResult } from '../lib/ats/types';
 
   let selectedFile: File | null = null;
   let parsedResume: any = null;
+  let currentAnalysisResult: ATSAnalysisResult | null = null;
+  let currentPromptMode: PromptMode = 'full';
 
   // DOM Elements
   const dropzone = document.getElementById('resumeDropzone') as HTMLElement;
@@ -135,14 +157,14 @@ import ResumePreview from './ResumePreview.astro';
     }
 
     selectedFile = file;
-    selectedFileName.innerText = file.name;
-    selectedFileSize.innerText = formatFileSize(file.size);
+    if (selectedFileName) selectedFileName.innerText = file.name;
+    if (selectedFileSize) selectedFileSize.innerText = formatFileSize(file.size);
 
-    contentIdle.classList.add('hidden');
-    contentSelected.classList.remove('hidden');
+    if (contentIdle) contentIdle.classList.add('hidden');
+    if (contentSelected) contentSelected.classList.remove('hidden');
 
-    analyzeBtn.disabled = false;
-    skipJdBtn.disabled = false;
+    if (analyzeBtn) analyzeBtn.disabled = false;
+    if (skipJdBtn) skipJdBtn.disabled = false;
   }
 
   function showError(msg: string) {
@@ -176,10 +198,10 @@ import ResumePreview from './ResumePreview.astro';
     if (!selectedFile) return;
 
     // Show Progress UI
-    progressCard.classList.remove('hidden');
-    appInputSection.classList.add('hidden');
-    appResultsSection.classList.add('hidden');
-    window.scrollTo({ top: progressCard.offsetTop - 80, behavior: 'smooth' });
+    if (progressCard) progressCard.classList.remove('hidden');
+    if (appInputSection) appInputSection.classList.add('hidden');
+    if (appResultsSection) appResultsSection.classList.add('hidden');
+    if (progressCard) window.scrollTo({ top: progressCard.offsetTop - 80, behavior: 'smooth' });
 
     const jobDescription = skipJd ? '' : (jdTextarea?.value || '');
 
@@ -217,14 +239,14 @@ import ResumePreview from './ResumePreview.astro';
       // Render Results
       renderResults(analysisResult);
 
-      progressCard.classList.add('hidden');
-      appResultsSection.classList.remove('hidden');
+      if (progressCard) progressCard.classList.add('hidden');
+      if (appResultsSection) appResultsSection.classList.remove('hidden');
 
-      window.scrollTo({ top: appResultsSection.offsetTop - 80, behavior: 'smooth' });
+      if (appResultsSection) window.scrollTo({ top: appResultsSection.offsetTop - 80, behavior: 'smooth' });
     } catch (err: any) {
       console.error('Analysis error:', err);
-      progressCard.classList.add('hidden');
-      appInputSection.classList.remove('hidden');
+      if (progressCard) progressCard.classList.add('hidden');
+      if (appInputSection) appInputSection.classList.remove('hidden');
       showError(err.message || 'An error occurred while parsing your resume file.');
     }
   }
@@ -245,6 +267,8 @@ import ResumePreview from './ResumePreview.astro';
 
   // Render Full Dashboard Results
   function renderResults(result: ATSAnalysisResult) {
+    currentAnalysisResult = result;
+
     // 1. Score Gauge & Main Score
     const scoreValEl = document.getElementById('scoreValueNum');
     const scoreGaugeFill = document.getElementById('scoreGaugeFill');
@@ -412,46 +436,232 @@ import ResumePreview from './ResumePreview.astro';
       `).join('');
     }
 
-    // 8. Extracted Text Preview
+    // 8. AI Prompt Generator Display
+    updateAIPromptDisplay();
+
+    // 9. Extracted Text Preview
     const extractedTextPre = document.getElementById('extractedTextPre');
     if (extractedTextPre) {
       extractedTextPre.innerText = result.extractedText || 'No text extracted.';
     }
   }
 
-  // Reset Functionality (Section 28)
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      selectedFile = null;
-      parsedResume = null;
-      currentAnalysisText = '';
-      currentJobDesc = '';
-      currentTargetRole = '';
-      if (fileInput) fileInput.value = '';
-      if (jdTextarea) jdTextarea.value = '';
+  // AI Prompt Generator Controls
+  function updateAIPromptDisplay() {
+    if (!currentAnalysisResult) return;
+    const promptText = generateAIPrompt(currentAnalysisResult, currentPromptMode);
+    const aiPromptTextEl = document.getElementById('aiPromptText');
+    const promptCharCountEl = document.getElementById('promptCharCount');
 
-      contentSelected.classList.add('hidden');
-      contentIdle.classList.remove('hidden');
-      analyzeBtn.disabled = true;
-      skipJdBtn.disabled = true;
-      hideError();
+    if (aiPromptTextEl) {
+      aiPromptTextEl.textContent = promptText;
+    }
+    if (promptCharCountEl) {
+      promptCharCountEl.textContent = `${promptText.length.toLocaleString()} characters`;
+    }
+  }
 
-      appResultsSection.classList.add('hidden');
-      appInputSection.classList.remove('hidden');
+  // Prompt Mode Switcher
+  const modeTabs = document.querySelectorAll('.prompt-mode-tabs .tab-btn');
+  modeTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const mode = target.getAttribute('data-mode') as PromptMode;
+      if (mode) {
+        currentPromptMode = mode;
+        modeTabs.forEach(t => t.classList.remove('active'));
+        target.classList.add('active');
+        updateAIPromptDisplay();
+      }
+    });
+  });
 
-      window.scrollTo({ top: appInputSection.offsetTop - 80, behavior: 'smooth' });
+  // Copy AI Prompt
+  const copyPromptBtn = document.getElementById('copyPromptBtn');
+  const copyToast = document.getElementById('copyToast');
+
+  if (copyPromptBtn) {
+    copyPromptBtn.addEventListener('click', async () => {
+      const promptTextEl = document.getElementById('aiPromptText');
+      if (!promptTextEl) return;
+      const textToCopy = promptTextEl.textContent || '';
+      if (!textToCopy) return;
+
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        if (copyToast) {
+          copyToast.classList.remove('hidden');
+          setTimeout(() => {
+            copyToast.classList.add('hidden');
+          }, 3000);
+        }
+      } catch (err) {
+        console.error('Failed to copy prompt:', err);
+      }
     });
   }
 
-  // Print Functionality (Section 29)
-  if (printReportBtn) {
-    printReportBtn.addEventListener('click', () => {
+  // Reset Application Functionality
+  function resetProgressSteps() {
+    const steps = [
+      { id: 'stepRead', text: 'Reading resume file' },
+      { id: 'stepSections', text: 'Detecting sections & contact info' },
+      { id: 'stepFormat', text: 'Checking ATS formatting risks' },
+      { id: 'stepKeywords', text: 'Extracting skills & keywords' },
+      { id: 'stepJd', text: 'Comparing target job description' },
+      { id: 'stepScore', text: 'Calculating ATS score & report' },
+    ];
+
+    steps.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (!el) return;
+      el.className = 'step';
+      const textEl = el.querySelector('.step-text');
+      if (textEl) textEl.textContent = s.text;
+      const iconEl = el.querySelector('.step-icon');
+      if (iconEl) iconEl.textContent = '•';
+    });
+  }
+
+  function resetApp() {
+    selectedFile = null;
+    parsedResume = null;
+    currentAnalysisResult = null;
+    currentPromptMode = 'full';
+
+    if (fileInput) fileInput.value = '';
+    if (jdTextarea) jdTextarea.value = '';
+
+    if (selectedFileName) selectedFileName.innerText = '';
+    if (selectedFileSize) selectedFileSize.innerText = '';
+
+    if (contentSelected) contentSelected.classList.add('hidden');
+    if (contentIdle) contentIdle.classList.remove('hidden');
+
+    if (analyzeBtn) analyzeBtn.disabled = true;
+    if (skipJdBtn) skipJdBtn.disabled = true;
+
+    hideError();
+    resetProgressSteps();
+
+    // Reset AI Prompt tabs
+    modeTabs.forEach(t => {
+      if (t.getAttribute('data-mode') === 'full') {
+        t.classList.add('active');
+      } else {
+        t.classList.remove('active');
+      }
+    });
+
+    if (appResultsSection) appResultsSection.classList.add('hidden');
+    if (appInputSection) appInputSection.classList.remove('hidden');
+
+    if (appInputSection) {
+      window.scrollTo({ top: appInputSection.offsetTop - 80, behavior: 'smooth' });
+    }
+  }
+
+  // Attach reset listener to reset buttons
+  const resetButtons = document.querySelectorAll('.btn-reset, #resetBtn');
+  resetButtons.forEach(btn => {
+    btn.addEventListener('click', resetApp);
+  });
+
+  // Print / Save as Audit PDF Functionality
+  const printButtons = document.querySelectorAll('.btn-print, #printReportBtn');
+  printButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const printDateEl = document.getElementById('printMetaDate');
+      const printFileEl = document.getElementById('printMetaFile');
+      const printTargetEl = document.getElementById('printMetaTarget');
+
+      const currentDate = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      if (printDateEl) printDateEl.textContent = `Date: ${currentDate}`;
+      if (printFileEl && currentAnalysisResult) {
+        printFileEl.textContent = `File: ${currentAnalysisResult.fileName}`;
+      } else if (printFileEl && selectedFile) {
+        printFileEl.textContent = `File: ${selectedFile.name}`;
+      }
+
+      if (printTargetEl && currentAnalysisResult) {
+        printTargetEl.textContent = currentAnalysisResult.hasJobDescription
+          ? `Target Role: ${currentAnalysisResult.keywords.targetRole || 'Job Match'}`
+          : 'Analysis Type: General ATS Scan';
+      }
+
       window.print();
     });
-  }
+  });
+
+  // Download Audit Report (.md) Functionality
+  const downloadMdButtons = document.querySelectorAll('.btn-download-md, #downloadMdBtn');
+  downloadMdButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!currentAnalysisResult) return;
+      const mdContent = generateMarkdownAuditReport(currentAnalysisResult);
+      const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+
+      const safeFileName = (currentAnalysisResult.fileName || 'resume')
+        .replace(/\.[^/.]+$/, '')
+        .replace(/[^a-zA-Z0-9_-]/g, '_');
+
+      link.href = url;
+      link.download = `${safeFileName}_ATS_Audit_Report.md`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    });
+  });
 </script>
 
 <style is:global>
+  /* Print Header Styles */
+  .print-audit-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .print-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .print-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .print-subtitle {
+    font-size: 0.9375rem;
+    color: #0284c7;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .print-meta-box {
+    text-align: right;
+    font-size: 0.8125rem;
+    color: #475569;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .print-hr {
+    border: none;
+    border-top: 2px solid #0284c7;
+    margin: 1rem 0 1.5rem 0;
+  }
+
   /* Breakdown Item Styles */
   .breakdown-item {
     background: var(--color-bg);

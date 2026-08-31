@@ -86,7 +86,10 @@ import Header from '../Header.astro';
 
         <div class="editor-tools">
           <button id="toggleWrapBtn" class="tool-btn" title="Toggle Word Wrap">Wrap: On</button>
-          <button id="toggleThemeBtn" class="tool-btn" title="Toggle Dark/Light Editor Theme">☀️ Light</button>
+          <button id="toggleThemeBtn" class="tool-btn" title="Toggle Dark/Light Editor Theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            <span>Light</span>
+          </button>
           
           <div class="font-size-controls">
             <button id="fontDecBtn" class="tool-btn font-btn" title="Decrease Font Size">-</button>
@@ -94,7 +97,10 @@ import Header from '../Header.astro';
             <button id="fontIncBtn" class="tool-btn font-btn" title="Increase Font Size">+</button>
           </div>
 
-          <button id="openSearchBtn" class="tool-btn" title="Search & Replace (Ctrl+F)">🔍 Find</button>
+          <button id="openSearchBtn" class="tool-btn" title="Search & Replace (Ctrl+F)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Find</span>
+          </button>
         </div>
       </div>
 
@@ -169,8 +175,14 @@ import Header from '../Header.astro';
           <button id="zoomFitWidthBtn" class="control-btn" title="Fit to Width">Fit Width</button>
           <button id="zoomFitPageBtn" class="control-btn" title="Fit Page">Fit Page</button>
 
-          <button id="openNativePdfBtn" class="control-btn" title="Open PDF in native browser viewer">↗ Open PDF</button>
-          <button id="fullscreenBtn" class="control-btn" title="Fullscreen Preview">⛶ Fullscreen</button>
+          <button id="openNativePdfBtn" class="control-btn" title="Open PDF in native browser viewer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Open PDF</span>
+          </button>
+          <button id="fullscreenBtn" class="control-btn" title="Fullscreen Preview">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <span>Fullscreen</span>
+          </button>
         </div>
       </div>
 
@@ -599,10 +611,10 @@ import Header from '../Header.astro';
       isDarkTheme = !isDarkTheme;
       if (isDarkTheme) {
         editorContainer.className = 'editor-container dark-theme';
-        toggleThemeBtn.textContent = '🌙 Dark';
+        toggleThemeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg> <span>Dark</span>`;
       } else {
         editorContainer.className = 'editor-container light-theme';
-        toggleThemeBtn.textContent = '☀️ Light';
+        toggleThemeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg> <span>Light</span>`;
       }
     });
 
@@ -687,10 +699,10 @@ import Header from '../Header.astro';
         currentCompiledPdfUrl = URL.createObjectURL(pdfBlob);
 
         if (result.errors && result.errors.length > 0) {
-          setCompileStatus('warning', `⚠️ Compiled (${result.errors.length} warnings)`);
+          setCompileStatus('warning', `Compiled (${result.errors.length} warnings)`);
           showErrors(result.errors);
         } else {
-          setCompileStatus('success', '✓ Compiled successfully');
+          setCompileStatus('success', 'Compiled successfully');
           errorPanel.classList.add('hidden');
         }
 
@@ -699,12 +711,12 @@ import Header from '../Header.astro';
         await loadAndRenderPdf(currentCompiledPdfUrl);
       } catch (valErr: any) {
         console.error('PDF validation failed:', valErr);
-        setCompileStatus('error', '✕ Invalid PDF binary');
+        setCompileStatus('error', 'Invalid PDF binary');
         previewLoading.classList.add('hidden');
         showPdfError(valErr);
       }
     } else {
-      setCompileStatus('error', '✕ Compilation failed');
+      setCompileStatus('error', 'Compilation failed');
       previewLoading.classList.add('hidden');
       showErrors(result.errors || []);
     }
@@ -1026,17 +1038,17 @@ import Header from '../Header.astro';
 
     if (report.isATSSafe) {
       atsSafetyBadge.className = 'ats-status-badge safe';
-      atsSafetyBadge.innerHTML = '<span class="status-icon">✓</span><span>ATS Safe Structure</span>';
+      atsSafetyBadge.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>ATS Safe Structure</span>';
     } else {
       atsSafetyBadge.className = 'ats-status-badge warning';
-      atsSafetyBadge.innerHTML = '<span class="status-icon">⚠</span><span>ATS Risk Flagged</span>';
+      atsSafetyBadge.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span>ATS Risk Flagged</span>';
     }
 
     atsSummaryText.textContent = `${report.checks.filter(c => c.passed).length} / ${report.checks.length} ATS checks passed • ${links.length} links validated`;
 
     atsChecksGrid.innerHTML = report.checks.map(c => `
       <div class="ats-check-card ${c.passed ? 'passed' : 'failed'}">
-        <span class="check-icon">${c.passed ? '✓' : '❌'}</span>
+        <span class="check-icon">${c.passed ? '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'}</span>
         <div class="check-info">
           <span class="check-title">${c.label}</span>
           <span class="check-desc">${c.details}</span>
