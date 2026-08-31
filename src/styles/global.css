@@ -91,37 +91,165 @@ button, input, textarea, select {
   font-size: inherit;
 }
 
-/* Print Stylesheet for Report Download/Export */
+.print-only {
+  display: none !important;
+}
+
+/* Print Stylesheet for Audit PDF Download/Export */
 @media print {
-  body {
-    background: #ffffff !important;
-    color: #0f172a !important;
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
   }
 
-  header, footer, .no-print, button, input, .upload-section {
-    display: none !important;
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Force all scroll-reveal animated elements to be 100% visible during print */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  /* Keep structural parent containers visible so children render in PDF */
+  main,
+  section.hero-section,
+  section.seo-hero,
+  .hero-container,
+  .seo-container,
+  .hero-app-wrap,
+  .checker-wrapper,
+  .ats-checker-app {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Unhide the audit results dashboard section */
+  .app-results-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .print-only {
     display: block !important;
   }
 
-  .report-container {
-    box-shadow: none !important;
-    border: none !important;
-    background: transparent !important;
-    color: #000000 !important;
+  /* Hide non-report page elements */
+  header,
+  footer,
+  nav,
+  .site-header,
+  .site-footer,
+  .hero-badge,
+  .hero-title,
+  .hero-subtitle,
+  .hero-trust-list,
+  .privacy-pill,
+  .seo-title,
+  .seo-intro,
+  .app-input-section,
+  #appInputSection,
+  #analysisProgress,
+  .progress-card,
+  .features-section,
+  .how-it-works-section,
+  .seo-guide-section,
+  .seo-content-section,
+  .seo-article,
+  .prose-box,
+  .faq-section,
+  .faq-accordion,
+  .faq-item,
+  #faq,
+  .no-print,
+  button,
+  input,
+  textarea,
+  select,
+  .btn-reset,
+  .btn-print,
+  .btn-copy-prompt,
+  .ai-links-group,
+  .prompt-mode-tabs,
+  .quick-copy-group,
+  .copy-toast {
+    display: none !important;
   }
 
-  .card, .score-card, .breakdown-card, .section-card {
+  /* Styling report cards for clean multi-page PDF rendering */
+  .score-card,
+  .breakdown-card,
+  .keyword-card,
+  .sections-card,
+  .formatting-card,
+  .recommendations-card,
+  .ai-prompt-card,
+  .preview-card {
     background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
     color: #0f172a !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
-  .text-muted, .text-dim {
-    color: #475569 !important;
+  .bar-bg {
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  .bar-fill {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .tag {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure prompt box text prints fully without scrollbars */
+  .prompt-content-wrapper {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .prompt-code {
+    white-space: pre-wrap !important;
+    font-size: 9.5pt !important;
+    line-height: 1.45 !important;
+    color: #0f172a !important;
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 0.75rem !important;
+    border-radius: 6px !important;
   }
 }
 

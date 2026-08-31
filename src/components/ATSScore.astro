@@ -44,6 +44,15 @@
   </div>
 
   <div class="score-actions no-print">
+    <button type="button" class="btn-download-md" id="downloadMdBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span>Download Audit Report (.md)</span>
+    </button>
+
     <button type="button" class="btn-reset" id="resetBtn">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
@@ -57,7 +66,7 @@
         <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
         <rect x="6" y="14" width="12" height="8"></rect>
       </svg>
-      <span>Print / Save as PDF</span>
+      <span>Print Report</span>
     </button>
   </div>
 </div>
@@ -183,7 +192,7 @@
     flex-wrap: wrap;
   }
 
-  .btn-reset, .btn-print {
+  .btn-download-md, .btn-reset, .btn-print {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -193,6 +202,19 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+  }
+
+  .btn-download-md {
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2);
+  }
+
+  .btn-download-md:hover {
+    background: var(--color-primary-hover, #0284c7);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
   }
 
   .btn-reset {
@@ -214,6 +236,8 @@
 
   .btn-print:hover {
     color: var(--color-text);
+    border-color: var(--color-primary);
+  }
     border-color: var(--color-primary);
   }
 
