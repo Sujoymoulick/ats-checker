@@ -157,6 +157,58 @@ export function detectTargetRole(jobDescription: string): string | null {
   return null;
 }
 
+export function detectRoleFromResume(resumeText: string): string | null {
+  const lines = resumeText.split('\n').map(l => l.trim()).filter(Boolean);
+
+  const commonRoles = [
+    'Senior Software Engineer', 'Software Engineer', 'Full Stack Engineer', 'Full Stack Developer',
+    'Frontend Developer', 'Front-End Developer', 'Backend Developer', 'Back-End Developer',
+    'Mobile Developer', 'iOS Developer', 'Android Developer',
+    'Data Scientist', 'Data Analyst', 'Data Engineer', 'Machine Learning Engineer', 'AI Engineer',
+    'Senior Product Manager', 'Product Manager', 'Associate Product Manager',
+    'Engineering Manager', 'Technical Program Manager', 'Project Manager', 'Scrum Master',
+    'Senior UX/UI Designer', 'UX/UI Designer', 'Product Designer', 'UI Designer', 'UX Designer',
+    'DevOps Engineer', 'Cloud Engineer', 'Site Reliability Engineer', 'Solutions Architect',
+    'Financial Analyst', 'Senior Financial Analyst', 'Business Analyst', 'Accountant',
+    'Digital Marketing Manager', 'Marketing Manager', 'Content Strategist', 'SEO Specialist',
+    'Sales Manager', 'Enterprise Account Executive', 'Account Executive', 'Business Development',
+    'Operations Manager', 'QA Engineer', 'Automation Tester'
+  ];
+
+  // 1. Check top 8 lines (header title / headline)
+  for (const line of lines.slice(0, 8)) {
+    const cleanLine = line.replace(/^[•\-\*\–\—\d.\)|#\s]+/, '').trim();
+    for (const role of commonRoles) {
+      if (new RegExp(`^${escapeRegExp(role)}$`, 'i').test(cleanLine) ||
+          new RegExp(`\\b${escapeRegExp(role)}\\b`, 'i').test(cleanLine)) {
+        return role;
+      }
+    }
+  }
+
+  // 2. Check full text for predominant role
+  for (const role of commonRoles) {
+    if (new RegExp(`\\b${escapeRegExp(role)}\\b`, 'i').test(resumeText)) {
+      return role;
+    }
+  }
+
+  return null;
+}
+
+// Recommended core skills per domain to identify missing keywords in general analysis
+const DOMAIN_CORE_SKILLS: Record<string, string[]> = {
+  'software': ['Git', 'REST APIs', 'CI/CD', 'Docker', 'Unit Testing', 'TypeScript', 'SQL'],
+  'frontend': ['JavaScript', 'TypeScript', 'React', 'HTML5', 'CSS3', 'Responsive Design', 'Git'],
+  'backend': ['Node.js', 'Python', 'PostgreSQL', 'REST APIs', 'Docker', 'Microservices', 'Redis'],
+  'data': ['Python', 'SQL', 'Pandas', 'Data Analysis', 'Tableau', 'Machine Learning'],
+  'product': ['Product Strategy', 'Agile', 'Scrum', 'Jira', 'User Stories', 'A/B Testing', 'Stakeholder Management'],
+  'design': ['Figma', 'UI Design', 'UX Design', 'Wireframing', 'Prototyping', 'User Research', 'Design Systems'],
+  'devops': ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Terraform', 'Linux', 'Monitoring'],
+  'marketing': ['SEO', 'SEM', 'Digital Marketing', 'Google Analytics', 'Content Strategy', 'CRM'],
+  'finance': ['Financial Analysis', 'Financial Modeling', 'Excel', 'Budgeting', 'Risk Management']
+};
+
 export function analyzeKeywords(resumeText: string, jobDescriptionText?: string): KeywordMatchResult {
   const resumeExtracted = extractKeywords(resumeText);
 
@@ -164,6 +216,7 @@ export function analyzeKeywords(resumeText: string, jobDescriptionText?: string)
     const resumeSkillsDisplay: string[] = [];
     const classifiedKeywords: ClassifiedKeyword[] = [];
     const seenClean = new Set<string>();
+    const matchedCategories = new Set<KeywordCategory>();
 
     for (const skill of COMMON_SKILLS) {
       const clean = cleanTerm(skill);
@@ -172,6 +225,7 @@ export function analyzeKeywords(resumeText: string, jobDescriptionText?: string)
         resumeSkillsDisplay.push(skill);
         const count = resumeExtracted.frequency.get(clean) || 1;
         const category = classifyTerm(skill);
+        matchedCategories.add(category);
         classifiedKeywords.push({
           keyword: skill,
           category,
@@ -190,23 +244,67 @@ export function analyzeKeywords(resumeText: string, jobDescriptionText?: string)
       }
     }
 
-    const rawScore = Math.min(100, Math.round((resumeSkillsDisplay.length / 8) * 100));
-    const stuffingPenalty = Math.min(15, overusedKeywords.length * 5);
-    const finalScore = Math.max(40, Math.min(100, rawScore - stuffingPenalty));
+    // Detect role directly from resume
+    const detectedRole = detectRoleFromResume(resumeText);
+
+    // Identify domain and find recommended missing skills
+    const missingKeywords: string[] = [];
+    if (detectedRole) {
+      const lowerRole = detectedRole.toLowerCase();
+      let matchedDomainKey = 'software';
+      if (lowerRole.includes('front')) matchedDomainKey = 'frontend';
+      else if (lowerRole.includes('back')) matchedDomainKey = 'backend';
+      else if (lowerRole.includes('data')) matchedDomainKey = 'data';
+      else if (lowerRole.includes('product')) matchedDomainKey = 'product';
+      else if (lowerRole.includes('design') || lowerRole.includes('ux') || lowerRole.includes('ui')) matchedDomainKey = 'design';
+      else if (lowerRole.includes('devops') || lowerRole.includes('cloud')) matchedDomainKey = 'devops';
+      else if (lowerRole.includes('market')) matchedDomainKey = 'marketing';
+      else if (lowerRole.includes('financ')) matchedDomainKey = 'finance';
+
+      const recommendedDomainSkills = DOMAIN_CORE_SKILLS[matchedDomainKey] || DOMAIN_CORE_SKILLS['software'];
+      for (const reqSkill of recommendedDomainSkills) {
+        if (!resumeExtracted.keywords.has(cleanTerm(reqSkill))) {
+          missingKeywords.push(reqSkill);
+        }
+      }
+    }
+
+    // Dynamic, granular scoring:
+    // 1. Skill breadth (up to 65% based on reaching 12-14 relevant skills)
+    const countComponent = Math.min(65, (resumeSkillsDisplay.length / 12) * 65);
+    // 2. Category diversity (languages, frameworks, tools, databases, soft skills - up to 35%)
+    const categoryComponent = Math.min(35, (matchedCategories.size / 4) * 35);
+    // 3. Penalty for keyword stuffing
+    const stuffingPenalty = Math.min(20, overusedKeywords.length * 5);
+
+    let finalScore = Math.round(countComponent + categoryComponent - stuffingPenalty);
+    finalScore = Math.max(20, Math.min(100, finalScore));
+
+    let roleAlignment: 'Strong' | 'Good' | 'Fair' | 'Weak' = 'Good';
+    if (detectedRole) {
+      if (resumeSkillsDisplay.length >= 10 && missingKeywords.length <= 2) roleAlignment = 'Strong';
+      else if (resumeSkillsDisplay.length >= 6) roleAlignment = 'Good';
+      else if (resumeSkillsDisplay.length >= 3) roleAlignment = 'Fair';
+      else roleAlignment = 'Weak';
+    } else {
+      if (resumeSkillsDisplay.length >= 10) roleAlignment = 'Good';
+      else if (resumeSkillsDisplay.length >= 5) roleAlignment = 'Fair';
+      else roleAlignment = 'Weak';
+    }
 
     return {
       score: finalScore,
       matchedKeywords: resumeSkillsDisplay.slice(0, 30),
-      missingKeywords: [],
+      missingKeywords: missingKeywords.slice(0, 6),
       overusedKeywords: overusedKeywords.slice(0, 5),
-      targetRole: null,
-      roleAlignment: 'Good',
+      targetRole: detectedRole,
+      roleAlignment,
       classifiedKeywords: classifiedKeywords.slice(0, 30)
     };
   }
 
   const jdExtracted = extractKeywords(jobDescriptionText);
-  const targetRole = detectTargetRole(jobDescriptionText);
+  const targetRole = detectTargetRole(jobDescriptionText) || detectRoleFromResume(resumeText);
 
   const matchedKeywords: string[] = [];
   const missingKeywords: string[] = [];

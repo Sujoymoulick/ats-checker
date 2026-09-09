@@ -32,25 +32,28 @@ export function calculateATSScore(
   parsingWarning?: string | null;
 } {
   let contactScore = 0;
-  if (contactInfo.name) contactScore += 0.6;
-  if (contactInfo.email) contactScore += 0.6;
+  if (contactInfo.name) contactScore += 0.5;
+  if (contactInfo.email) contactScore += 0.5;
   if (contactInfo.phone) contactScore += 0.4;
-  if (contactInfo.linkedIn || contactInfo.github || contactInfo.website || contactInfo.portfolio) contactScore += 0.4;
+  if (contactInfo.location) contactScore += 0.3;
+  if (contactInfo.linkedIn || contactInfo.github || contactInfo.website || contactInfo.portfolio) contactScore += 0.3;
   contactScore = Math.min(ATS_SCORING_WEIGHTS.contactInfo, Number(contactScore.toFixed(1)));
 
   const foundSectionKeys = new Set(sections.filter(s => s.found).map(s => s.key || s.name.toLowerCase()));
   let completenessScore = 5;
   if (!foundSectionKeys.has('experience')) completenessScore -= 2;
-  if (!foundSectionKeys.has('education')) completenessScore -= 1;
-  if (!foundSectionKeys.has('skills')) completenessScore -= 1;
+  if (!foundSectionKeys.has('education')) completenessScore -= 1.5;
+  if (!foundSectionKeys.has('skills')) completenessScore -= 1.5;
   if (readability.wordCount < 150) completenessScore -= 1;
+  else if (readability.wordCount < 250) completenessScore -= 0.5;
+  if (experience.bulletCount < 3) completenessScore -= 0.5;
   completenessScore = Math.max(0, completenessScore);
 
   let sectionScore = 0;
   if (foundSectionKeys.has('experience')) sectionScore += 3.5;
   if (foundSectionKeys.has('education')) sectionScore += 2.5;
   if (foundSectionKeys.has('skills')) sectionScore += 2.5;
-  if (foundSectionKeys.has('summary') || foundSectionKeys.has('projects') || foundSectionKeys.has('certifications')) sectionScore += 1.5;
+  if (foundSectionKeys.has('summary') || foundSectionKeys.has('projects') || foundSectionKeys.has('certifications') || foundSectionKeys.has('achievements')) sectionScore += 1.5;
   sectionScore = Math.min(ATS_SCORING_WEIGHTS.resumeStructure, Number(sectionScore.toFixed(1)));
 
   const keywordOptScore = Math.round((keywords.score / 100) * ATS_SCORING_WEIGHTS.keywordRelevance);
@@ -61,13 +64,16 @@ export function calculateATSScore(
     const ratio = totalJdKeywords > 0 ? keywords.matchedKeywords.length / totalJdKeywords : keywords.score / 100;
     skillsMatchScore = Math.round(ratio * ATS_SCORING_WEIGHTS.skillsMatch);
   } else {
-    skillsMatchScore = Math.min(ATS_SCORING_WEIGHTS.skillsMatch, Math.round((keywords.matchedKeywords.length / 8) * ATS_SCORING_WEIGHTS.skillsMatch));
+    const skillCount = keywords.matchedKeywords.length;
+    const ratio = Math.min(1.0, skillCount / 12);
+    skillsMatchScore = Math.round(ratio * ATS_SCORING_WEIGHTS.skillsMatch);
   }
 
   let expRelevanceScore = 0;
-  const verbComponent = (experience.actionVerbScore / 100) * 10;
-  const alignmentBonus = keywords.roleAlignment === 'Strong' ? 5 : keywords.roleAlignment === 'Good' ? 4 : keywords.roleAlignment === 'Fair' ? 3 : 2;
-  expRelevanceScore = Math.min(ATS_SCORING_WEIGHTS.experienceRelevance, Math.round(verbComponent + alignmentBonus));
+  const verbComponent = (experience.actionVerbScore / 100) * 8;
+  const bulletVolume = Math.min(3, (experience.bulletCount / 6) * 3);
+  const alignmentBonus = keywords.roleAlignment === 'Strong' ? 4 : keywords.roleAlignment === 'Good' ? 3 : keywords.roleAlignment === 'Fair' ? 2 : 1;
+  expRelevanceScore = Math.min(ATS_SCORING_WEIGHTS.experienceRelevance, Math.round(verbComponent + bulletVolume + alignmentBonus));
 
   const achievementScore = Math.round((experience.achievementScore / 100) * ATS_SCORING_WEIGHTS.achievementQuality);
 
