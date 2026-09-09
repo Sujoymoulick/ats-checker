@@ -1,0 +1,74 @@
+{
+  "resumeId": "data-engineer",
+  "targetRole": "Senior Data Platform Engineer",
+  "category": "technology",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Rachel Goldman\nSenior Data Platform Engineer\nNew York, NY | rachel.goldman@datamail.io | +1 212-555-0155 | linkedin.com/in/rachelgoldman-data | github.com/rachelgoldman-etl\n\nPROFESSIONAL SUMMARY\nSenior Data Engineer with 7+ years of experience designing robust data lakes, real-time streaming architectures, and enterprise analytics pipelines using Snowflake, dbt, Apache Spark, and Apache Airflow. Specialized in building modular data models, ELT/ETL automation, data governance, and database performance tuning. Engineered scalable data pipelines processing 15TB+ daily data while decreasing warehouse compute spend by 40%.\n\nWORK EXPERIENCE\nSenior Data Engineer | DataSphere Analytics | New York, NY | 2021 - Present\n- Architected enterprise modern data stack using Snowflake, dbt Core, Apache Airflow, and AWS S3, serving analytics to 400+ business stakeholders.\n- Redesigned 250+ legacy SQL queries into modular dbt dimensional models (Kimball methodology), decreasing pipeline runtime by 55% and saving $180K annually in Snowflake compute credits.\n- Built real-time streaming data ingestion pipeline with Apache Kafka and Spark Streaming, reducing dashboard data latency from 24 hours to 45 seconds.\n- Implemented Great Expectations data quality validation framework, catching 99.4% of data anomalies prior to executive reporting consumption.\n- Established automated CI/CD for dbt models with GitHub Actions and SQLFluff linter, eliminating data schema drift across production environments.\n\nData Engineer | OmniRetail Insights | Jersey City, NJ | 2018 - 2021\n- Developed batch ETL pipelines in Python and Apache Spark on AWS EMR, ingesting 8TB daily point-of-sale data across 1,200 retail stores.\n- Managed and optimized Amazon Redshift and PostgreSQL data warehouse clusters, implementing sorting and distribution keys to improve query speed by 48%.\n- Built automated data reconciliation workflows that reconciled $80M in daily financial transactions with zero discrepancy.\n- Collaborated with Data Science teams to build automated feature ingestion pipelines for customer churn and lifetime value (LTV) models.\n\nEDUCATION\nBachelor of Science in Computer Science & Applied Mathematics | Columbia University | 2014 - 2018\n\nTECHNICAL SKILLS\n- Data Warehouses & Lakes: Snowflake, Google BigQuery, Amazon Redshift, Delta Lake, AWS S3\n- Processing & Streaming: Apache Spark, PySpark, Apache Kafka, Kafka Streams, Flink, dbt (Data Build Tool)\n- Orchestration & Automation: Apache Airflow, Dagster, Prefect, GitHub Actions, Docker, Terraform\n- Languages & Databases: Python, SQL (Advanced), Scala, PostgreSQL, MySQL, Redis, MongoDB\n- Data Governance & Quality: Great Expectations, Monte Carlo, DataHub, Schema Registry, Git\n\nCERTIFICATIONS\n- Snowflake Certified SnowPro Core (2023)\n- dbt Certified Developer (2022)\n- AWS Certified Data Analytics - Specialty (2021)",
+  "jobDescriptionText": "Seeking a Senior Data Engineer to architect our enterprise data warehouse. Requirements:\n- 5+ years data engineering experience with Snowflake, dbt, and Python/SQL.\n- Strong experience with Apache Airflow orchestration and Apache Spark data processing.\n- Expertise in data modeling (dimensional/Kimball), data quality testing, and AWS data stacks.\n- SnowPro or AWS Data Analytics certification preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Snowflake",
+    "dbt",
+    "Python",
+    "SQL",
+    "Apache Spark",
+    "Apache Airflow",
+    "Apache Kafka",
+    "AWS",
+    "BigQuery",
+    "Redshift",
+    "Docker",
+    "Great Expectations",
+    "Git",
+    "Terraform"
+  ],
+  "keywords": [
+    "Snowflake",
+    "dbt",
+    "Apache Airflow",
+    "Apache Spark",
+    "Python",
+    "SQL",
+    "Kafka",
+    "Data Modeling",
+    "ETL",
+    "ELT",
+    "Data Warehouse",
+    "AWS S3",
+    "Great Expectations"
+  ],
+  "achievementSignals": [
+    "15TB+ daily data",
+    "$180K annual Snowflake savings",
+    "55% runtime reduction",
+    "latency from 24h to 45s",
+    "99.4% data anomaly catch rate",
+    "8TB daily data across 1,200 stores",
+    "$80M daily reconciliation"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

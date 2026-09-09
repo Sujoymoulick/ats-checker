@@ -1,0 +1,75 @@
+{
+  "resumeId": "mobile-engineer",
+  "targetRole": "Senior Mobile Application Engineer (iOS & Android)",
+  "category": "technology",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Carlos Morales\nSenior Mobile Application Engineer\nSan Diego, CA | carlos.morales@mobiledev.io | +1 619-555-0163 | linkedin.com/in/carlosmorales-mobile | github.com/carlosmorales-apps\n\nPROFESSIONAL SUMMARY\nSenior Mobile Engineer with 6+ years of experience designing and shipping high-performance iOS and Android applications using React Native, Swift, Kotlin, and TypeScript. Expert in cross-platform mobile architecture, offline-first data synchronization, performance profiling, and CI/CD mobile release automation. Shipped 8 flagship mobile apps with a combined 4.8+ App Store rating and over 5M total downloads.\n\nWORK EXPERIENCE\nSenior Mobile Software Engineer | FitPulse Health | San Diego, CA | 2021 - Present\n- Led mobile engineering team in developing cross-platform React Native fitness app with 2M+ active users and 4.9 App Store rating.\n- Implemented native bridge modules in Swift and Kotlin for Bluetooth Low Energy (BLE) health device telemetry, reducing data sync latency by 50%.\n- Optimized app launch time from 2.8s to 0.9s and reduced memory footprint by 35% using Hermes engine and re-render optimizations.\n- Built automated mobile CI/CD pipeline using Fastlane and GitHub Actions, reducing release cycle time from 10 days to 24 hours.\n- Integrated Apple HealthKit, Google Fit, and in-app subscription monetization with RevenueCat, driving $4.2M in annual recurring revenue.\n\nMobile App Developer | UrbanGo Mobility | Los Angeles, CA | 2018 - 2021\n- Developed native iOS application features using Swift, SwiftUI, and Combine, maintaining 99.8% crash-free session rate across 1.5M users.\n- Created real-time GPS navigation and ride-hailing tracking using Mapbox SDK and WebSockets with sub-second driver updates.\n- Refactored state management to Redux Toolkit and SQLite persistence, enabling full offline functionality for mobile riders.\n- Collaborated with UX designers to implement fluid custom gestures, micro-interactions, and dark mode support.\n\nEDUCATION\nBachelor of Science in Computer Science | San Diego State University | 2014 - 2018\n\nTECHNICAL SKILLS\n- Mobile Platforms & Frameworks: React Native, iOS (Swift, SwiftUI), Android (Kotlin, Jetpack Compose), TypeScript, JavaScript\n- Mobile Tools & SDKs: Xcode, Android Studio, Fastlane, CocoaPods, Gradle, Expo, Mapbox, Bluetooth LE, HealthKit, Firebase\n- State & Data Management: Redux Toolkit, React Query, Zustand, SQLite, WatermelonDB, Realm, GraphQL, REST APIs\n- Testing & Quality: Jest, React Native Testing Library, Detox, Appium, Sentry, Datadog Mobile RUM, Crashlytics\n- Architecture: MVVM, Clean Architecture, Offline-First Sync, Modular Component Systems, Git\n\nCERTIFICATIONS\n- Meta Certified React Native Specialist (2022)\n- Apple Certified iOS App Developer (2020)",
+  "jobDescriptionText": "Seeking a Senior Mobile Engineer to build our next-generation consumer apps. Requirements:\n- 5+ years of mobile engineering experience with React Native, Swift, or Kotlin.\n- Proven experience shipping consumer mobile applications on Apple App Store and Google Play.\n- Experience with Bluetooth LE, real-time data sync, state management, and mobile CI/CD (Fastlane).\n- Strong knowledge of mobile performance optimization, crash monitoring, and offline persistence.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "React Native",
+    "Swift",
+    "Kotlin",
+    "TypeScript",
+    "iOS",
+    "Android",
+    "SwiftUI",
+    "Jetpack Compose",
+    "Fastlane",
+    "Redux",
+    "SQLite",
+    "Firebase",
+    "GraphQL",
+    "REST APIs",
+    "Git"
+  ],
+  "keywords": [
+    "React Native",
+    "Swift",
+    "Kotlin",
+    "iOS",
+    "Android",
+    "SwiftUI",
+    "Fastlane",
+    "HealthKit",
+    "Bluetooth LE",
+    "Redux Toolkit",
+    "Offline-First",
+    "App Store",
+    "Mobile Architecture"
+  ],
+  "achievementSignals": [
+    "2M+ active users",
+    "4.9 App Store rating",
+    "50% sync latency reduction",
+    "launch time from 2.8s to 0.9s",
+    "35% memory reduction",
+    "$4.2M ARR",
+    "99.8% crash-free rate"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

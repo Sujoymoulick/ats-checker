@@ -20,7 +20,8 @@ export function calculateATSScore(
   readability: ReadabilityAnalysis,
   hasJobDescription: boolean,
   isImageBased: boolean,
-  extractedTextLength: number
+  extractedTextLength: number,
+  ragInsights?: import('./rag/types.ts').RAGAnalysisInsights
 ): {
   totalScore: number;
   confidence: number;
@@ -321,6 +322,30 @@ export function calculateATSScore(
       description: 'Avoid multi-column tables, long symbol dividers, or embedded text boxes that can confuse ATS parsers.',
       category: 'Formatting'
     });
+  }
+
+  // RAG Domain Knowledge & Archetype Recommendations
+  if (ragInsights) {
+    if (!hasJobDescription && ragInsights.domainCompetenciesMissing.length > 0) {
+      const topMissing = ragInsights.domainCompetenciesMissing.slice(0, 4).join(', ');
+      recommendations.push({
+        id: 'rec-rag-competencies',
+        priority: 'high',
+        title: `Align with ${ragInsights.matchedArchetype.role} Standards`,
+        description: `Top ATS-friendly ${ragInsights.domainProfile.displayTitle} resumes feature competencies like [${topMissing}]. Consider incorporating these if aligned with your experience.`,
+        category: 'Keywords'
+      });
+    }
+
+    if (ragInsights.benchmarkComparison.metricDensityPercentile < 50) {
+      recommendations.push({
+        id: 'rec-rag-metrics',
+        priority: 'medium',
+        title: `Increase Metric Density to Match Benchmark (${Math.round(ragInsights.domainProfile.targetMetricDensity * 100)}% Target)`,
+        description: `Compared to gold-standard ${ragInsights.domainProfile.displayTitle} benchmarks, your quantified metric density is at the ${ragInsights.benchmarkComparison.metricDensityPercentile}th percentile. Add more measurable outcomes (%, $, time saved).`,
+        category: 'Experience'
+      });
+    }
   }
 
   return {

@@ -1,0 +1,74 @@
+{
+  "resumeId": "qa-automation-engineer",
+  "targetRole": "Lead QA Automation Engineer",
+  "category": "technology",
+  "experienceLevel": "lead",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Priya Sharma\nLead QA Automation & Quality Architect\nDenver, CO | priya.sharma@testpro.io | +1 303-555-0188 | linkedin.com/in/priyasharma-qa | github.com/priyasharma-automation\n\nPROFESSIONAL SUMMARY\nResults-driven Lead QA Automation Engineer with 8+ years of experience designing robust test automation frameworks for web, mobile, and API microservices. Expert in Playwright, Cypress, Selenium, TypeScript, Jest, and Postman within Agile CI/CD environments. Proven track record of increasing automated test coverage from 35% to 92% and slashing regression test execution cycles from 4 days to 45 minutes.\n\nWORK EXPERIENCE\nLead QA Automation Engineer | Apex Cloud Enterprise | Denver, CO | 2021 - Present\n- Designed and implemented unified end-to-end test automation framework using TypeScript, Playwright, and Docker, executing 1,800+ automated tests across Chrome, Firefox, and WebKit.\n- Reduced full regression test suite execution time by 82% (from 4 hours to 45 minutes) by orchestrating parallel test execution across GitHub Actions runners.\n- Built comprehensive REST and GraphQL API testing suite using Supertest and Jest, achieving 96% API endpoint coverage and catching 35+ critical defects pre-release.\n- Integrated automated performance and load testing using k6 and Grafana, identifying database bottlenecks prior to Black Friday traffic surge of 50,000 concurrent users.\n- Led quality assurance strategy across 6 engineering squads, establishing quality gates, code coverage thresholds, and defect triage workflows.\n\nSenior QA Automation Engineer | PeakWave Media | Boulder, CO | 2017 - 2021\n- Created modular UI test automation framework in Cypress and JavaScript, increasing test coverage across core user journeys from 30% to 88%.\n- Integrated automated tests into Jenkins CI/CD pipeline, preventing broken builds and reducing production bug escape rate by 60%.\n- Conducted mobile app automated testing on real device clouds using Appium, BrowserStack, and Sauce Labs for iOS and Android.\n- Authored detailed test plans, risk matrices, and test summary reports in Jira and Xray Test Management.\n\nEDUCATION\nBachelor of Science in Computer Science | University of Colorado Boulder | 2013 - 2017\n\nTECHNICAL SKILLS\n- Automation Frameworks: Playwright, Cypress, Selenium WebDriver, Appium, Puppeteer\n- Languages & Tools: TypeScript, JavaScript, Python, Java, SQL, Git, Docker\n- API & Performance Testing: Postman, Newman, REST Assured, Supertest, k6, JMeter, Charles Proxy\n- CI/CD & Test Management: GitHub Actions, Jenkins, GitLab CI, Jira, Xray, Zephyr, TestRail\n- Methodologies: BDD (Cucumber), TDD, Shift-Left Testing, Agile, Scrum, Regression Testing\n\nCERTIFICATIONS\n- ISTQB Certified Tester Advanced Level - Test Automation Engineer (2022)\n- ISTQB Certified Tester Foundation Level (CTFL) (2018)",
+  "jobDescriptionText": "Seeking a Lead QA Automation Engineer to drive quality engineering. Requirements:\n- 7+ years QA experience with extensive automated testing in Playwright, Cypress, or Selenium.\n- Strong proficiency in TypeScript, JavaScript, and API automated testing.\n- Hands-on experience integrating test suites with CI/CD pipelines (GitHub Actions/Jenkins).\n- Leadership experience designing test frameworks and mentoring QA teams.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Playwright",
+    "Cypress",
+    "Selenium",
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "API Testing",
+    "Postman",
+    "k6",
+    "Jest",
+    "GitHub Actions",
+    "Jenkins",
+    "Docker",
+    "SQL",
+    "Git"
+  ],
+  "keywords": [
+    "Playwright",
+    "Cypress",
+    "Selenium",
+    "TypeScript",
+    "API Testing",
+    "Postman",
+    "k6",
+    "GitHub Actions",
+    "Regression Testing",
+    "BDD",
+    "Test Automation",
+    "CI/CD",
+    "ISTQB"
+  ],
+  "achievementSignals": [
+    "1,800+ automated tests",
+    "execution time by 82% (4h to 45m)",
+    "96% API endpoint coverage",
+    "50,000 concurrent users",
+    "test coverage from 30% to 88%",
+    "60% reduction in bug escape rate"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

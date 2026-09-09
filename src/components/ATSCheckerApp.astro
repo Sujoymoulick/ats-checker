@@ -363,6 +363,23 @@ import ResumePreview from './ResumePreview.astro';
       }
     }
 
+    // 3b. RAG Benchmark Archetype Rendering
+    const ragArchetypeName = document.getElementById('ragArchetypeName');
+    const ragFitBadge = document.getElementById('ragFitBadge');
+    const ragSkillPercentile = document.getElementById('ragSkillPercentile');
+    const ragMetricPercentile = document.getElementById('ragMetricPercentile');
+    const ragVerbPercentile = document.getElementById('ragVerbPercentile');
+
+    if (result.ragInsights) {
+      if (ragArchetypeName) ragArchetypeName.innerText = result.ragInsights.matchedArchetype.role;
+      if (ragFitBadge) {
+        ragFitBadge.innerText = `${result.ragInsights.matchedArchetype.similarityScore}% Fit (${result.ragInsights.benchmarkComparison.overallBenchmarkFit})`;
+      }
+      if (ragSkillPercentile) ragSkillPercentile.innerText = `${result.ragInsights.benchmarkComparison.skillBreadthPercentile}th percentile`;
+      if (ragMetricPercentile) ragMetricPercentile.innerText = `${result.ragInsights.benchmarkComparison.metricDensityPercentile}th percentile`;
+      if (ragVerbPercentile) ragVerbPercentile.innerText = `${result.ragInsights.benchmarkComparison.actionVerbPercentile}th percentile`;
+    }
+
     // 4. Contact Info & Sections
     const contactContainer = document.getElementById('contactInfoContainer');
     if (contactContainer) {

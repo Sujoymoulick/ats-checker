@@ -1,0 +1,70 @@
+{
+  "resumeId": "content-seo-specialist",
+  "targetRole": "Lead SEO Strategist & Content Operations Manager",
+  "category": "marketing",
+  "experienceLevel": "lead",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Hannah Abbott\nLead SEO Strategist & Content Operations Manager\nChicago, IL | hannah.abbott@seomail.com | +1 312-555-0186 | linkedin.com/in/hannahabbott-seo\n\nPROFESSIONAL SUMMARY\nData-driven Lead SEO Strategist and Content Operations Manager with 7+ years of experience scaling organic traffic, content marketing engines, and technical SEO architecture for high-growth tech and e-commerce brands. Expert in keyword research, content clustering, technical SEO auditing, on-page optimization, and editorial workflow management. Scaled organic search traffic from 250K to 2.4M monthly visits and generated $5.6M in organic revenue.\n\nWORK EXPERIENCE\nLead SEO & Content Strategist | GrowthPulse Media | Chicago, IL | 2021 - Present\n- Spearheaded organic search growth strategy across 3 web properties, growing monthly organic visits from 250K to 2.4M (860% growth) in 24 months.\n- Managed an editorial team of 8 in-house content writers and 15 freelance contributors, publishing 60+ high-ranking articles per month.\n- Conducted comprehensive technical SEO audits using Screaming Frog and Google Search Console, fixing 1,200+ crawl errors, redirect loops, and Core Web Vitals issues.\n- Designed topic cluster architecture and programmatic SEO templates that captured 450+ page-one Google search rankings for high-intent keywords.\n- Implemented schema markup (Structured Data, JSON-LD) across 5,000+ product and blog pages, increasing SERP rich snippet click-through rate by 34%.\n\nSenior SEO Specialist | BrandCraft Digital | Evanston, IL | 2018 - 2021\n- Executed full-funnel keyword research and competitive gap analysis using Ahrefs and Semrush for 12 enterprise e-commerce clients.\n- Built high-authority digital PR and backlink acquisition campaigns, acquiring 350+ editorial backlinks from domains with DR 70+.\n- Collaborated with UX and Web Engineering teams to improve site speed and mobile responsiveness, increasing average time on page by 45%.\n- Tracked organic KPIs and revenue attribution in Google Analytics 4 (GA4) and Looker Studio, presenting monthly performance insights to executives.\n\nEDUCATION\nBachelor of Arts in Journalism & Digital Media | Northwestern University | 2014 - 2018\n\nTECHNICAL SKILLS\n- SEO Strategy & Research: Technical SEO Audits, Keyword Research, Search Intent Mapping, Competitor Analysis, Topic Clusters, Schema Markup (JSON-LD)\n- SEO & Analytics Tools: Ahrefs, Semrush, Screaming Frog, Google Search Console, Google Analytics 4 (GA4), Looker Studio, Moz\n- Content Management & Ops: WordPress, Webflow, Contentful, HubSpot, Clearscope, SurferSEO, Editorial Calendars, Asana\n- Technical Knowledge: HTML, CSS, JavaScript basics, XML Sitemaps, Robots.txt, Canonical Tags, Core Web Vitals\n\nCERTIFICATIONS\n- Google Analytics 4 Certification (2023)\n- Semrush Technical SEO Certification (2022)\n- HubSpot Inbound Marketing Certification (2021)",
+  "jobDescriptionText": "Seeking a Lead SEO & Content Strategist to drive organic growth. Requirements:\n- 5+ years experience in technical SEO, keyword research, and organic content marketing.\n- Proficiency with Ahrefs, Semrush, Screaming Frog, and Google Search Console.\n- Demonstrated success scaling organic website traffic and editorial content teams.\n- Deep understanding of technical SEO, schema markup, and GA4 tracking.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "SEO",
+    "Content Strategy",
+    "Ahrefs",
+    "Semrush",
+    "Screaming Frog",
+    "Google Search Console",
+    "Google Analytics 4",
+    "Technical SEO",
+    "Keyword Research",
+    "Schema Markup",
+    "WordPress",
+    "Looker Studio"
+  ],
+  "keywords": [
+    "SEO",
+    "Content Marketing",
+    "Ahrefs",
+    "Semrush",
+    "Google Search Console",
+    "GA4",
+    "Technical SEO",
+    "Keyword Research",
+    "Schema Markup",
+    "Topic Clusters",
+    "Core Web Vitals"
+  ],
+  "achievementSignals": [
+    "from 250K to 2.4M monthly visits (860% growth)",
+    "$5.6M organic revenue",
+    "team of 8 writers and 15 contributors",
+    "fixed 1,200+ crawl errors",
+    "450+ page-one rankings",
+    "34% CTR increase",
+    "350+ editorial backlinks (DR 70+)"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

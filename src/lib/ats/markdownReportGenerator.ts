@@ -39,6 +39,12 @@ export function generateMarkdownAuditReport(result: ATSAnalysisResult): string {
   md += `\n---\n\n## 🎯 Keyword Alignment & Match\n`;
   md += `- **Match Score:** ${result.keywords.score}% Match\n`;
   md += `- **Role Alignment:** ${result.keywords.roleAlignment}\n`;
+  if (result.ragInsights) {
+    md += `- **RAG Benchmark Archetype:** ${result.ragInsights.matchedArchetype.role} (${result.ragInsights.matchedArchetype.similarityScore}% Fit)\n`;
+    md += `- **Skill Breadth Percentile:** ${result.ragInsights.benchmarkComparison.skillBreadthPercentile}th percentile\n`;
+    md += `- **Metric Density Percentile:** ${result.ragInsights.benchmarkComparison.metricDensityPercentile}th percentile\n`;
+    md += `- **Action Verb Percentile:** ${result.ragInsights.benchmarkComparison.actionVerbPercentile}th percentile\n`;
+  }
   md += `- **Matched Keywords (${result.keywords.matchedKeywords.length}):** ${result.keywords.matchedKeywords.length > 0 ? result.keywords.matchedKeywords.join(', ') : 'None extracted'}\n`;
   md += `- **Missing Keywords (${result.keywords.missingKeywords.length}):** ${result.keywords.missingKeywords.length > 0 ? result.keywords.missingKeywords.join(', ') : 'None'}\n`;
   if (result.keywords.overusedKeywords && result.keywords.overusedKeywords.length > 0) {

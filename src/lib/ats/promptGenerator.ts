@@ -1,4 +1,5 @@
-import type { ATSAnalysisResult } from './types';
+import type { ATSAnalysisResult } from './types.ts';
+import { generateRAGAugmentedPrompt } from './rag/augmentedPrompt.ts';
 
 export type PromptMode = 'full' | 'keywords' | 'bullets' | 'summary';
 
@@ -6,6 +7,10 @@ export function generateAIPrompt(
   result: ATSAnalysisResult,
   mode: PromptMode = 'full'
 ): string {
+  if (result.ragInsights) {
+    return generateRAGAugmentedPrompt(result, result.ragInsights, mode);
+  }
+
   const targetRole = result.keywords.targetRole || 'Target Role Professional';
   const missingKeywords = result.keywords.missingKeywords || [];
   const formattingIssues = (result.formatting || []).map(f => f.title);

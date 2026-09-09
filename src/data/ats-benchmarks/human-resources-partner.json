@@ -1,0 +1,69 @@
+{
+  "resumeId": "human-resources-partner",
+  "targetRole": "Senior Human Resources Business Partner (HRBP)",
+  "category": "human_resources",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Victoria Sterling\nSenior Human Resources Business Partner (HRBP)\nDallas, TX | victoria.sterling@hrmail.com | +1 214-555-0168 | linkedin.com/in/victoriasterling-hr\n\nPROFESSIONAL SUMMARY\nStrategic Senior HR Business Partner with 8+ years of experience aligning human capital strategies with executive business objectives in high-growth technology and financial organizations. Expert in organizational design, talent management, employee relations, succession planning, compensation structuring, and performance management. Proven track record of reducing employee turnover from 21% to 11% and driving an 88% positive employee engagement score across 850 employees.\n\nWORK EXPERIENCE\nSenior HR Business Partner | Summit Financial Technologies | Dallas, TX | 2021 - Present\n- Acted as strategic HRBP for Engineering and Product organizations supporting 850 employees and 45 people managers across 4 locations.\n- Designed and executed enterprise talent retention strategy, reducing annualized voluntary turnover from 21% to 11% and saving $2.4M in recruitment costs.\n- Spearheaded semi-annual performance review cycles and calibrated compensation adjustments using Workday HRIS and market benchmarking data (Radford).\n- Managed complex employee relations investigations, ensuring full compliance with federal and state employment laws (FLSA, EEOC, ADA, FMLA).\n- Led organizational design and team restructuring during corporate merger, integrating 200+ employees with zero business disruption.\n\nHR Business Partner | InnovateCorp Solutions | Fort Worth, TX | 2017 - 2021\n- Partnered with senior leadership to design career development frameworks, competency matrices, and succession plans for 400 staff members.\n- Implemented company-wide Employee Engagement Survey via Culture Amp, increasing employee participation to 92% and improving overall satisfaction by 18 points.\n- Facilitated leadership development workshops on performance coaching, psychological safety, and constructive feedback for 60+ managers.\n- Overhauled onboarding experience, boosting 90-day new hire satisfaction to 96% and decreasing time-to-productivity by 30%.\n\nEDUCATION\nBachelor of Business Administration in Human Resource Management | Texas A&M University | 2013 - 2017\n\nTECHNICAL SKILLS\n- HR Strategy & Core: Organizational Design, Talent Management, Employee Relations, Succession Planning, Compensation & Benefits, DEI Strategy\n- HRIS & Tools: Workday, Culture Amp, Lattice, BambooHR, ADP Workforce Now, Greenhouse, LinkedIn Talent Insights\n- Compliance & Law: EEOC, FLSA, FMLA, ADA, Title VII, Performance Improvement Plans (PIPs), Conflict Resolution\n- Analytics & Reporting: HR Analytics, Turnover Analysis, eNPS, Compensation Benchmarking (Radford/Mercer), Workforce Planning\n\nCERTIFICATIONS\n- Senior Professional in Human Resources (SPHR) - HRCI (2022)\n- SHRM Senior Certified Professional (SHRM-SCP) (2021)",
+  "jobDescriptionText": "Seeking a Senior HR Business Partner to support our business units. Requirements:\n- 6+ years experience as an HRBP in technology or corporate environments.\n- Expertise in organizational design, employee relations, talent management, and HRIS (Workday/Lattice).\n- Deep knowledge of employment law and compensation benchmarking.\n- SPHR or SHRM-SCP certification preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Talent Management",
+    "Employee Relations",
+    "Organizational Design",
+    "Workday",
+    "Performance Management",
+    "Compensation",
+    "SHRM-SCP",
+    "SPHR",
+    "Culture Amp",
+    "Onboarding",
+    "HR Analytics"
+  ],
+  "keywords": [
+    "HRBP",
+    "Human Resources Business Partner",
+    "Talent Management",
+    "Employee Relations",
+    "Organizational Design",
+    "Workday",
+    "Compensation",
+    "SHRM-SCP",
+    "SPHR",
+    "EEOC",
+    "Culture Amp"
+  ],
+  "achievementSignals": [
+    "850 employees and 45 managers",
+    "turnover from 21% to 11%",
+    "$2.4M recruitment savings",
+    "200+ employees integrated",
+    "92% survey participation (+18 points)",
+    "96% new hire satisfaction",
+    "30% faster time-to-productivity"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

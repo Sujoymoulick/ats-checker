@@ -1,0 +1,69 @@
+{
+  "resumeId": "supply-chain-specialist",
+  "targetRole": "Senior Supply Chain & Logistics Specialist",
+  "category": "operations",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Travis Whitaker\nSenior Supply Chain & Logistics Operations Manager\nDallas, TX | travis.whitaker@supplychainmail.com | +1 214-555-0145 | linkedin.com/in/traviswhitaker-scm\n\nPROFESSIONAL SUMMARY\nStrategic Senior Supply Chain and Logistics Manager with 8+ years of experience optimizing global procurement, inventory planning, warehousing operations, and carrier logistics for multinational manufacturing and retail brands. Expert in SAP S/4HANA ERP, demand forecasting, vendor contract negotiation, and Lean Six Sigma process improvement. Successfully reduced supply chain lead times by 35% and saved $4.5M in freight and inventory carrying costs.\n\nWORK EXPERIENCE\nSenior Supply Chain Operations Manager | Apex Logistics Global | Dallas, TX | 2021 - Present\n- Managed global procurement and freight logistics budget of $45M across 60+ Tier-1 suppliers in North America, Asia, and Europe.\n- Implemented statistical demand forecasting and inventory replenishment models in SAP ERP, cutting excess inventory by 28% while improving on-time order fulfillment to 98.6%.\n- Negotiated ocean, air, and domestic intermodal carrier contracts, reducing annual freight shipping expenditures by $2.8M (14% cost reduction).\n- Led Lean Six Sigma warehouse automation initiative across 3 distribution fulfillment centers, increasing pick-and-pack throughput by 42%.\n- Established rigorous Supplier Scorecard KPIs, improving vendor on-time delivery (OTD) compliance from 78% to 95%.\n\nSupply Chain Specialist | OmniManufacturing Corp | Houston, TX | 2017 - 2021\n- Supervised end-to-end purchasing and materials requirement planning (MRP) for a $20M manufacturing assembly facility.\n- Managed relationships with third-party logistics (3PL) providers and customs brokers to expedite international import/export clearances.\n- Conducted root-cause investigations for shipment exceptions, reducing freight damage and shortage claims by 52%.\n- Developed real-time inventory visibility dashboards in Power BI and Excel, eliminating stockouts for critical SKU lines.\n\nEDUCATION\nBachelor of Science in Supply Chain & Logistics Management | Texas A&M University | 2013 - 2017\n\nTECHNICAL SKILLS\n- Supply Chain Strategy: Global Procurement, Demand Planning & Forecasting, Inventory Optimization, Warehouse Management (WMS), Logistics & Freight Management, Lean Six Sigma\n- Software & ERP: SAP S/4HANA, Oracle SCM, NetSuite, Blue Yonder, Manhattan Associates, Power BI, Advanced Excel (Solver, Pivot Tables)\n- Metrics & Compliance: Vendor Scorecards, On-Time In-Full (OTIF), Days Sales of Inventory (DSI), Incoterms 2020, Customs & Trade Compliance\n\nCERTIFICATIONS\n- Certified Supply Chain Professional (CSCP) - APICS/ASCM (2022)\n- Certified in Production and Inventory Management (CPIM) (2019)\n- Lean Six Sigma Green Belt (2020)",
+  "jobDescriptionText": "Seeking a Senior Supply Chain Operations Manager to lead logistics and procurement. Requirements:\n- 6+ years experience in supply chain, logistics, or global procurement.\n- Proficiency in SAP S/4HANA or Oracle SCM, demand forecasting, and inventory planning.\n- Proven track record of carrier contract negotiation and operational cost reduction.\n- CSCP, CPIM, or Six Sigma certification preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Supply Chain",
+    "Logistics",
+    "Procurement",
+    "SAP S/4HANA",
+    "Inventory Management",
+    "Demand Forecasting",
+    "Freight Negotiation",
+    "Lean Six Sigma",
+    "Power BI",
+    "Vendor Management",
+    "CSCP"
+  ],
+  "keywords": [
+    "Supply Chain",
+    "Logistics",
+    "Procurement",
+    "SAP ERP",
+    "Demand Planning",
+    "Inventory Optimization",
+    "Freight",
+    "Carrier Negotiation",
+    "Six Sigma",
+    "CSCP",
+    "Vendor Scorecards"
+  ],
+  "achievementSignals": [
+    "$45M global freight budget",
+    "excess inventory cut by 28%",
+    "98.6% on-time fulfillment",
+    "$2.8M freight savings",
+    "42% throughput increase",
+    "vendor OTD from 78% to 95%",
+    "52% shortage reduction"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

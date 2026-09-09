@@ -104,20 +104,6 @@ export function extractKeywords(text: string): { keywords: Set<string>; displayM
       }
       frequency.set(clean1, (frequency.get(clean1) || 0) + 1);
     }
-
-    if (i < words.length - 1) {
-      const w2 = words[i + 1];
-      const clean2 = cleanTerm(w2);
-      if (!STOP_WORDS.has(clean1) && !STOP_WORDS.has(clean2)) {
-        const biGram = `${clean1} ${clean2}`;
-        const cleanBiGram = cleanTerm(biGram);
-        if (cleanBiGram.length > 5) {
-          keywords.add(cleanBiGram);
-          displayMap.set(cleanBiGram, `${capitalizeWord(w1)} ${capitalizeWord(w2)}`);
-          frequency.set(cleanBiGram, (frequency.get(cleanBiGram) || 0) + 1);
-        }
-      }
-    }
   }
 
   return { keywords, displayMap, frequency, dictionarySkills };
@@ -141,7 +127,10 @@ export function detectTargetRole(jobDescription: string): string | null {
     'Financial Analyst', 'Senior Product Manager', 'Product Manager',
     'Engineering Manager', 'B2B Sales Manager', 'Sales Manager',
     'Enterprise Account Executive', 'Senior UX/UI Designer', 'UX/UI Designer',
-    'Operations Manager', 'DevOps Engineer', 'Solutions Architect'
+    'Operations Manager', 'DevOps Engineer', 'Solutions Architect',
+    'HR Business Partner', 'Technical Recruiter', 'Customer Success Manager',
+    'SEO Specialist', 'Executive Assistant', 'Supply Chain Manager',
+    'Clinical Data Manager', 'Legal Counsel', 'AI Solutions Architect'
   ];
 
   for (const role of commonRoles) {
@@ -162,8 +151,8 @@ export function detectRoleFromResume(resumeText: string): string | null {
 
   const commonRoles = [
     'Senior Software Engineer', 'Software Engineer', 'Full Stack Engineer', 'Full Stack Developer',
-    'Frontend Developer', 'Front-End Developer', 'Backend Developer', 'Back-End Developer',
-    'Mobile Developer', 'iOS Developer', 'Android Developer',
+    'Frontend Developer', 'Front-End Developer', 'Backend Developer', 'Back-End Developer', 'Backend Architect',
+    'Mobile Developer', 'iOS Developer', 'Android Developer', 'Mobile Engineer',
     'Data Scientist', 'Data Analyst', 'Data Engineer', 'Machine Learning Engineer', 'AI Engineer',
     'Senior Product Manager', 'Product Manager', 'Associate Product Manager',
     'Engineering Manager', 'Technical Program Manager', 'Project Manager', 'Scrum Master',
@@ -172,7 +161,9 @@ export function detectRoleFromResume(resumeText: string): string | null {
     'Financial Analyst', 'Senior Financial Analyst', 'Business Analyst', 'Accountant',
     'Digital Marketing Manager', 'Marketing Manager', 'Content Strategist', 'SEO Specialist',
     'Sales Manager', 'Enterprise Account Executive', 'Account Executive', 'Business Development',
-    'Operations Manager', 'QA Engineer', 'Automation Tester'
+    'Customer Success Manager', 'HR Business Partner', 'Technical Recruiter', 'Executive Assistant',
+    'Supply Chain Manager', 'Supply Chain Specialist', 'Clinical Data Manager', 'Legal Counsel',
+    'AI Solutions Architect', 'Operations Manager', 'QA Engineer', 'Automation Tester', 'Cybersecurity Analyst'
   ];
 
   // 1. Check top 8 lines (header title / headline)
@@ -206,7 +197,15 @@ const DOMAIN_CORE_SKILLS: Record<string, string[]> = {
   'design': ['Figma', 'UI Design', 'UX Design', 'Wireframing', 'Prototyping', 'User Research', 'Design Systems'],
   'devops': ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Terraform', 'Linux', 'Monitoring'],
   'marketing': ['SEO', 'SEM', 'Digital Marketing', 'Google Analytics', 'Content Strategy', 'CRM'],
-  'finance': ['Financial Analysis', 'Financial Modeling', 'Excel', 'Budgeting', 'Risk Management']
+  'finance': ['Financial Analysis', 'Financial Modeling', 'Excel', 'Budgeting', 'Risk Management'],
+  'hr': ['Talent Management', 'Employee Relations', 'Workday', 'Compensation', 'Performance Management'],
+  'recruiting': ['Technical Recruiting', 'Greenhouse', 'LinkedIn Recruiter', 'Sourcing', 'Boolean Search'],
+  'customer_success': ['Customer Success', 'Gainsight', 'Salesforce', 'Net Revenue Retention', 'QBR'],
+  'supply_chain': ['Supply Chain', 'Logistics', 'Procurement', 'SAP ERP', 'Demand Forecasting'],
+  'legal': ['Commercial Contracts', 'SaaS Agreements', 'GDPR', 'CCPA', 'Ironclad', 'Intellectual Property'],
+  'admin': ['Executive Support', 'Calendar Management', 'Travel Logistics', 'Concur', 'Confidentiality'],
+  'clinical': ['Clinical Data Management', 'Medidata Rave', 'CDISC', 'SDTM', 'GCP', 'FDA Compliance'],
+  'security': ['SIEM', 'Splunk', 'CrowdStrike', 'EDR', 'Incident Response', 'NIST', 'SOC 2']
 };
 
 export function analyzeKeywords(resumeText: string, jobDescriptionText?: string): KeywordMatchResult {
@@ -310,12 +309,20 @@ export function analyzeKeywords(resumeText: string, jobDescriptionText?: string)
   const missingKeywords: string[] = [];
   const overusedKeywords: string[] = [];
   const classifiedKeywords: ClassifiedKeyword[] = [];
-
   const jdPriorityKeywords = new Set<string>();
 
-  // Only add recognized dictionary skills explicitly matched in JD
+  // Add recognized dictionary skills explicitly matched in JD
   for (const cleanSkill of jdExtracted.dictionarySkills) {
     jdPriorityKeywords.add(cleanSkill);
+  }
+
+  // Fallback to top JD terms if dictionary skills is small
+  if (jdPriorityKeywords.size < 4) {
+    for (const k of jdExtracted.keywords) {
+      if (k.length > 3 && !STOP_WORDS.has(k)) {
+        jdPriorityKeywords.add(k);
+      }
+    }
   }
 
   for (const cleanKey of jdPriorityKeywords) {

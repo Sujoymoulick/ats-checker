@@ -1,0 +1,67 @@
+{
+  "resumeId": "technical-recruiter",
+  "targetRole": "Senior Technical Talent Acquisition Recruiter",
+  "category": "human_resources",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Brandon Cole\nSenior Technical Recruiter & Talent Acquisition Lead\nAustin, TX | brandon.cole@recruitermail.com | +1 512-555-0178 | linkedin.com/in/brandoncole-talent\n\nPROFESSIONAL SUMMARY\nHigh-performing Senior Technical Recruiter with 7+ years of experience executing full-cycle recruitment for fast-scaling technology companies. Expert in sourcing niche engineering talent (Software, DevOps, Machine Learning, Product), building diversity talent pipelines, Boolean search, and managing candidate experience through Greenhouse ATS and LinkedIn Recruiter. Successfully closed 75+ technical hires per year with an 89% offer acceptance rate.\n\nWORK EXPERIENCE\nLead Technical Recruiter | CloudScale AI | Austin, TX | 2021 - Present\n- Managed full-cycle technical recruiting across Software Engineering, Machine Learning, and Cloud Infrastructure, closing 82 technical hires annually.\n- Reduced average time-to-hire from 54 days to 31 days while improving hiring manager satisfaction score to 96%.\n- Built proactive outbound sourcing pipelines using LinkedIn Recruiter, GitHub, and Boolean queries, achieving a 42% cold outreach response rate.\n- Maintained an 89% candidate offer acceptance rate through transparent compensation alignment, equity education, and tailored closing strategies.\n- Spearheaded structured interview training for 50+ interviewers, standardizing evaluation rubrics and mitigating unconscious bias.\n\nTechnical Recruiter | Apex Search Group | Dallas, TX | 2018 - 2021\n- Sourced and placed 65+ senior backend, frontend, and mobile engineers for top venture-backed Series B to pre-IPO startups.\n- Managed end-to-end recruitment lifecycle using Greenhouse ATS, Gem, and GoodTime, ensuring seamless scheduling and prompt candidate feedback.\n- Increased pipeline diversity by 35% through partnership with Women in Tech and AfroTech community sourcing channels.\n- Analyzed recruitment funnel metrics (conversion ratios, sourcing channel efficiency) to optimize talent acquisition budget.\n\nEDUCATION\nBachelor of Arts in Communications & Human Relations | University of North Texas | 2014 - 2018\n\nTECHNICAL SKILLS\n- Sourcing & Recruitment: Full-Cycle Recruiting, Boolean Search, Outbound Sourcing, Pipeline Building, Offer Negotiation, Diversity & Inclusion Hiring\n- ATS & Recruiting Tools: Greenhouse, Lever, Workday, LinkedIn Recruiter, Gem, HireEZ, Ashby, GoodTime, Codility, HackerRank\n- Roles Recruited: Backend (Java/Go/Python), Frontend (React/TypeScript), DevOps (Kubernetes/AWS), ML Engineers, Product Managers\n- Analytics & Operations: Funnel Conversion Metrics, Time-to-Fill, Cost-per-Hire, Candidate Experience (NPS)\n\nCERTIFICATIONS\n- Certified Diversity and Inclusion Recruiter (CDR) (2022)\n- LinkedIn Certified Professional - Recruiter (2020)",
+  "jobDescriptionText": "Seeking a Senior Technical Recruiter to drive engineering hiring. Requirements:\n- 5+ years experience in technical recruiting for software engineering and AI teams.\n- Mastery of Greenhouse or Lever ATS, LinkedIn Recruiter, and proactive sourcing.\n- Proven track record of high offer acceptance rates and low time-to-hire.\n- Strong knowledge of tech stacks (Fullstack, DevOps, Cloud, Data).",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Technical Recruiting",
+    "Sourcing",
+    "Greenhouse",
+    "Lever",
+    "LinkedIn Recruiter",
+    "Boolean Search",
+    "Offer Negotiation",
+    "Full-Cycle Recruiting",
+    "Diversity Hiring",
+    "Gem",
+    "HackerRank"
+  ],
+  "keywords": [
+    "Technical Recruiter",
+    "Talent Acquisition",
+    "Greenhouse",
+    "LinkedIn Recruiter",
+    "Boolean Search",
+    "Full-Cycle Recruiting",
+    "Time-to-Hire",
+    "Offer Acceptance",
+    "Engineering Hiring"
+  ],
+  "achievementSignals": [
+    "82 technical hires annually",
+    "time-to-hire from 54 to 31 days",
+    "96% hiring manager satisfaction",
+    "42% outreach response rate",
+    "89% offer acceptance rate",
+    "65+ senior engineering placements",
+    "35% diversity increase"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

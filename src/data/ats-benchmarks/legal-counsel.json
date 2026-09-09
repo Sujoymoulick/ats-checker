@@ -1,0 +1,70 @@
+{
+  "resumeId": "legal-counsel",
+  "targetRole": "Senior Corporate & Commercial Legal Counsel",
+  "category": "legal",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Julianna Mercer, Esq.\nSenior Corporate & Commercial Legal Counsel\nSan Francisco, CA | julianna.mercer@lawmail.io | +1 415-555-0158 | linkedin.com/in/juliannamercer-law\n\nPROFESSIONAL SUMMARY\nStrategic and business-minded Senior Corporate Legal Counsel with 8+ years of experience negotiating complex commercial SaaS agreements, vendor contracts, intellectual property licensing, and global privacy compliance (GDPR, CCPA) for enterprise technology corporations. Expert at balancing legal risk mitigation with corporate revenue goals, accelerating deal closing cycles by 40%, and managing outside counsel budgets.\n\nWORK EXPERIENCE\nSenior Commercial Legal Counsel | Apex Cloud Technologies | San Francisco, CA | 2021 - Present\n- Drafted, reviewed, and negotiated 300+ enterprise SaaS customer agreements, Master Service Agreements (MSAs), Service Level Agreements (SLAs), and Statements of Work (SOWs) representing $65M+ in annual contract value.\n- Partnered with Enterprise Sales teams to reduce standard contract negotiation cycles from 4 weeks to 8 business days (70% cycle time reduction).\n- Oversaw global privacy compliance program, creating standard Data Processing Agreements (DPAs) and implementing GDPR, CCPA, and CPRA privacy governance.\n- Advised Product and Engineering leadership on intellectual property protection, open-source software licensing compliance, and trademark filings.\n- Managed outside litigation and intellectual property counsel, reducing legal department external expenditures by 25% ($320K annual savings).\n\nCorporate Legal Counsel | Innovate Ventures Legal | San Jose, CA | 2017 - 2021\n- Negotiated procurement contracts, non-disclosure agreements (NDAs), strategic partnership agreements, and marketing master agreements.\n- Conducted legal due diligence and contract harmonization for 3 strategic technology acquisitions totaling $85M.\n- Established self-service automated legal contract templates in Ironclad and DocuSign, empowering sales reps to execute standard agreements without legal bottleneck.\n- Delivered annual corporate compliance and anti-harassment training to 500+ employees.\n\nEDUCATION\nJuris Doctor (J.D.) | University of California, Berkeley School of Law | 2014 - 2017\n- Member, Berkeley Technology Law Journal\nBachelor of Arts in Political Science | Stanford University | 2010 - 2014\n\nTECHNICAL SKILLS\n- Legal Specialties: Commercial Contracts, Enterprise SaaS MSAs, Data Privacy (GDPR, CCPA, CPRA), Intellectual Property, M&A Due Diligence, Corporate Governance, Risk Management\n- Contract Management Tools: Ironclad, DocuSign CLM, Salesforce, ContractWorks, Jira, Microsoft 365, LexisNexis\n- Bar Admission: State Bar of California (Active & in Good Standing, Admitted 2017)\n\nCERTIFICATIONS\n- Certified Information Privacy Professional / Europe (CIPP/E) - IAPP (2022)\n- Certified Information Privacy Professional / United States (CIPP/US) (2021)",
+  "jobDescriptionText": "Seeking a Senior Commercial Legal Counsel to support technology transactions. Requirements:\n- 6+ years legal experience in a law firm or in-house tech legal department.\n- Strong track record negotiating enterprise SaaS MSAs, DPAs, SLAs, and commercial contracts.\n- Deep expertise in data privacy regulations (GDPR, CCPA) and IP licensing.\n- Active state bar license in good standing (California preferred).",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Commercial Contracts",
+    "SaaS Agreements",
+    "MSAs",
+    "GDPR",
+    "CCPA",
+    "Ironclad",
+    "DocuSign",
+    "Intellectual Property",
+    "Corporate Governance",
+    "Privacy",
+    "CIPP/E",
+    "Legal Risk"
+  ],
+  "keywords": [
+    "Legal Counsel",
+    "SaaS Agreements",
+    "Commercial Contracts",
+    "MSA",
+    "SLA",
+    "GDPR",
+    "CCPA",
+    "Data Privacy",
+    "Ironclad",
+    "Intellectual Property",
+    "Contract Negotiation",
+    "CIPP/E"
+  ],
+  "achievementSignals": [
+    "300+ enterprise agreements ($65M+ value)",
+    "negotiation from 4 weeks to 8 days",
+    "3 technology acquisitions ($85M)",
+    "25% external legal savings ($320K)",
+    "500+ employees trained",
+    "automated self-service templates"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}
