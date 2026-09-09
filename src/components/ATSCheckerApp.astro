@@ -833,4 +833,49 @@ import ResumePreview from './ResumePreview.astro';
   .rec-desc { color: var(--color-text-muted); font-size: 0.875rem; line-height: 1.5; padding-left: 2.625rem; }
 
   .text-dim { color: var(--color-text-dim); font-size: 0.8125rem; }
+
+  @media (max-width: 640px) {
+    .print-header-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .print-meta-box {
+      text-align: left;
+    }
+
+    .breakdown-item, .issue-item, .rec-item {
+      padding: 1rem;
+    }
+
+    .item-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
+
+    .rec-desc {
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .info-row {
+      flex-wrap: wrap;
+      word-break: break-word;
+    }
+
+    .info-value {
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      max-width: 100%;
+      word-break: break-word;
+    }
+  }
 </style>
