@@ -20,7 +20,8 @@ export function calculateATSScore(
   readability: ReadabilityAnalysis,
   hasJobDescription: boolean,
   isImageBased: boolean,
-  extractedTextLength: number
+  extractedTextLength: number,
+  ragInsights?: import('./rag/types.ts').RAGAnalysisInsights
 ): {
   totalScore: number;
   confidence: number;
@@ -32,25 +33,28 @@ export function calculateATSScore(
   parsingWarning?: string | null;
 } {
   let contactScore = 0;
-  if (contactInfo.name) contactScore += 0.6;
-  if (contactInfo.email) contactScore += 0.6;
+  if (contactInfo.name) contactScore += 0.5;
+  if (contactInfo.email) contactScore += 0.5;
   if (contactInfo.phone) contactScore += 0.4;
-  if (contactInfo.linkedIn || contactInfo.github || contactInfo.website || contactInfo.portfolio) contactScore += 0.4;
+  if (contactInfo.location) contactScore += 0.3;
+  if (contactInfo.linkedIn || contactInfo.github || contactInfo.website || contactInfo.portfolio) contactScore += 0.3;
   contactScore = Math.min(ATS_SCORING_WEIGHTS.contactInfo, Number(contactScore.toFixed(1)));
 
   const foundSectionKeys = new Set(sections.filter(s => s.found).map(s => s.key || s.name.toLowerCase()));
   let completenessScore = 5;
   if (!foundSectionKeys.has('experience')) completenessScore -= 2;
-  if (!foundSectionKeys.has('education')) completenessScore -= 1;
-  if (!foundSectionKeys.has('skills')) completenessScore -= 1;
+  if (!foundSectionKeys.has('education')) completenessScore -= 1.5;
+  if (!foundSectionKeys.has('skills')) completenessScore -= 1.5;
   if (readability.wordCount < 150) completenessScore -= 1;
+  else if (readability.wordCount < 250) completenessScore -= 0.5;
+  if (experience.bulletCount < 3) completenessScore -= 0.5;
   completenessScore = Math.max(0, completenessScore);
 
   let sectionScore = 0;
   if (foundSectionKeys.has('experience')) sectionScore += 3.5;
   if (foundSectionKeys.has('education')) sectionScore += 2.5;
   if (foundSectionKeys.has('skills')) sectionScore += 2.5;
-  if (foundSectionKeys.has('summary') || foundSectionKeys.has('projects') || foundSectionKeys.has('certifications')) sectionScore += 1.5;
+  if (foundSectionKeys.has('summary') || foundSectionKeys.has('projects') || foundSectionKeys.has('certifications') || foundSectionKeys.has('achievements')) sectionScore += 1.5;
   sectionScore = Math.min(ATS_SCORING_WEIGHTS.resumeStructure, Number(sectionScore.toFixed(1)));
 
   const keywordOptScore = Math.round((keywords.score / 100) * ATS_SCORING_WEIGHTS.keywordRelevance);
@@ -61,13 +65,16 @@ export function calculateATSScore(
     const ratio = totalJdKeywords > 0 ? keywords.matchedKeywords.length / totalJdKeywords : keywords.score / 100;
     skillsMatchScore = Math.round(ratio * ATS_SCORING_WEIGHTS.skillsMatch);
   } else {
-    skillsMatchScore = Math.min(ATS_SCORING_WEIGHTS.skillsMatch, Math.round((keywords.matchedKeywords.length / 8) * ATS_SCORING_WEIGHTS.skillsMatch));
+    const skillCount = keywords.matchedKeywords.length;
+    const ratio = Math.min(1.0, skillCount / 12);
+    skillsMatchScore = Math.round(ratio * ATS_SCORING_WEIGHTS.skillsMatch);
   }
 
   let expRelevanceScore = 0;
-  const verbComponent = (experience.actionVerbScore / 100) * 10;
-  const alignmentBonus = keywords.roleAlignment === 'Strong' ? 5 : keywords.roleAlignment === 'Good' ? 4 : keywords.roleAlignment === 'Fair' ? 3 : 2;
-  expRelevanceScore = Math.min(ATS_SCORING_WEIGHTS.experienceRelevance, Math.round(verbComponent + alignmentBonus));
+  const verbComponent = (experience.actionVerbScore / 100) * 8;
+  const bulletVolume = Math.min(3, (experience.bulletCount / 6) * 3);
+  const alignmentBonus = keywords.roleAlignment === 'Strong' ? 4 : keywords.roleAlignment === 'Good' ? 3 : keywords.roleAlignment === 'Fair' ? 2 : 1;
+  expRelevanceScore = Math.min(ATS_SCORING_WEIGHTS.experienceRelevance, Math.round(verbComponent + bulletVolume + alignmentBonus));
 
   const achievementScore = Math.round((experience.achievementScore / 100) * ATS_SCORING_WEIGHTS.achievementQuality);
 
@@ -315,6 +322,30 @@ export function calculateATSScore(
       description: 'Avoid multi-column tables, long symbol dividers, or embedded text boxes that can confuse ATS parsers.',
       category: 'Formatting'
     });
+  }
+
+  // RAG Domain Knowledge & Archetype Recommendations
+  if (ragInsights) {
+    if (!hasJobDescription && ragInsights.domainCompetenciesMissing.length > 0) {
+      const topMissing = ragInsights.domainCompetenciesMissing.slice(0, 4).join(', ');
+      recommendations.push({
+        id: 'rec-rag-competencies',
+        priority: 'high',
+        title: `Align with ${ragInsights.matchedArchetype.role} Standards`,
+        description: `Top ATS-friendly ${ragInsights.domainProfile.displayTitle} resumes feature competencies like [${topMissing}]. Consider incorporating these if aligned with your experience.`,
+        category: 'Keywords'
+      });
+    }
+
+    if (ragInsights.benchmarkComparison.metricDensityPercentile < 50) {
+      recommendations.push({
+        id: 'rec-rag-metrics',
+        priority: 'medium',
+        title: `Increase Metric Density to Match Benchmark (${Math.round(ragInsights.domainProfile.targetMetricDensity * 100)}% Target)`,
+        description: `Compared to gold-standard ${ragInsights.domainProfile.displayTitle} benchmarks, your quantified metric density is at the ${ragInsights.benchmarkComparison.metricDensityPercentile}th percentile. Add more measurable outcomes (%, $, time saved).`,
+        category: 'Experience'
+      });
+    }
   }
 
   return {

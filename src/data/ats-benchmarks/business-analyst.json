@@ -1,0 +1,75 @@
+{
+  "resumeId": "business-analyst",
+  "targetRole": "Senior Business Analyst",
+  "category": "business",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Samantha Brooks\nSenior Business Systems Analyst\nAtlanta, GA | samantha.brooks@bizmail.com | +1 404-555-0138 | linkedin.com/in/samanthabrooks-ba\n\nPROFESSIONAL SUMMARY\nAccomplished Senior Business Analyst with 7+ years of experience bridging business strategy and technology solutions across enterprise financial services and healthcare sectors. Expert in requirements elicitation, business process modeling (BPMN), gap analysis, SQL data analysis, and Tableau dashboarding. Proven track record of delivering 14 high-impact digital transformation projects, eliminating process bottlenecks, and driving $3.8M in operational cost savings.\n\nWORK EXPERIENCE\nSenior Business Analyst | Delta Financial Group | Atlanta, GA | 2021 - Present\n- Led requirements gathering and business process engineering for $12M loan origination software migration, reducing loan approval turnaround time from 9 days to 24 hours.\n- Authored 180+ detailed Business Requirement Documents (BRDs), Functional Specification Documents (FSDs), and Jira user stories with rigorous acceptance criteria.\n- Engineered 15+ automated Tableau and Power BI executive dashboards connecting to SQL Server and Snowflake, providing real-time KPI visibility to C-suite stakeholders.\n- Facilitated weekly Agile backlog refinement, sprint planning, and User Acceptance Testing (UAT) sessions with 45+ business stakeholders across 6 departments.\n- Identified and eliminated workflow redundancies through BPMN process mapping, saving $1.4M in annual operating costs.\n\nBusiness Analyst | HealthTech Innovations | Alpharetta, GA | 2017 - 2021\n- Conducted comprehensive gap analysis and feasibility studies for electronic health records (EHR) interoperability project complying with HIPAA and HL7 standards.\n- Designed end-to-end UAT test plans, test cases, and traceability matrices, coordinating testing with 60+ clinical end users and resolving 120+ functional defects.\n- Extracted, cleaned, and analyzed patient workflow data using SQL queries and Excel pivot tables, improving clinic operational throughput by 26%.\n- Trained 250+ internal end users on newly deployed CRM and billing systems through interactive webinars and customized training documentation.\n\nEDUCATION\nBachelor of Business Administration in Information Systems | University of Georgia | 2013 - 2017\n\nTECHNICAL SKILLS\n- Requirements & Process: BRD, FSD, User Stories, BPMN 2.0, Lucidchart, Visio, Gap Analysis, Root Cause Analysis, UAT Management\n- Analytics & Reporting: SQL (PostgreSQL, MS SQL), Tableau, Power BI, Advanced Excel (VLOOKUP, Macros), Snowflake\n- Agile & Tools: Jira, Confluence, Trello, Azure DevOps, Asana, Miro, Salesforce CRM\n- Compliance & Domains: HIPAA, SOX, Financial Regulations, Healthcare Interoperability, SDLC\n\nCERTIFICATIONS\n- Certified Business Analysis Professional (CBAP) - IIBA (2022)\n- PMI Professional in Business Analysis (PMI-PBA) (2020)\n- Professional Scrum Product Owner I (PSPO I) (2021)",
+  "jobDescriptionText": "Seeking a Senior Business Analyst to drive business systems optimization. Requirements:\n- 5+ years experience as a Business Analyst, Systems Analyst, or Product Analyst.\n- Strong skills in writing BRDs, user stories, BPMN process modeling, and Jira.\n- Proficiency in SQL, Tableau/Power BI dashboarding, and UAT coordination.\n- CBAP or PMI-PBA certification strongly preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Business Analysis",
+    "Requirements Elicitation",
+    "BPMN",
+    "SQL",
+    "Tableau",
+    "Power BI",
+    "Jira",
+    "Confluence",
+    "UAT",
+    "Agile",
+    "Excel",
+    "User Stories",
+    "Gap Analysis",
+    "CBAP"
+  ],
+  "keywords": [
+    "Business Analyst",
+    "Requirements Gathering",
+    "BRD",
+    "FSD",
+    "User Stories",
+    "BPMN",
+    "SQL",
+    "Tableau",
+    "Power BI",
+    "UAT",
+    "Agile",
+    "Jira",
+    "CBAP",
+    "Gap Analysis"
+  ],
+  "achievementSignals": [
+    "from 9 days to 24 hours",
+    "$3.8M cost savings",
+    "180+ detailed BRDs and user stories",
+    "15+ automated dashboards",
+    "$1.4M annual operating savings",
+    "26% throughput improvement",
+    "250+ internal users trained"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

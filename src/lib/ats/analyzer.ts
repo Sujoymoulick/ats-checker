@@ -5,6 +5,7 @@ import { analyzeFormatting } from './formatting.ts';
 import { analyzeExperience } from './experience.ts';
 import { analyzeReadability } from './readability.ts';
 import { calculateATSScore } from './scoring.ts';
+import { retrieveRAGKnowledge } from './rag/retriever.ts';
 
 export function analyzeResume(parsed: ResumeParseResult, jobDescription?: string): ATSAnalysisResult {
   const hasJobDescription = Boolean(jobDescription && jobDescription.trim().length > 20);
@@ -16,6 +17,14 @@ export function analyzeResume(parsed: ResumeParseResult, jobDescription?: string
   const experience = analyzeExperience(parsed.lines, parsed.text);
   const readability = analyzeReadability(parsed.text, parsed.words);
 
+  // Execute RAG Hybrid Knowledge Retrieval
+  const ragInsights = retrieveRAGKnowledge(parsed.text, parsed.lines, jobDescription);
+
+  // If no explicit JD and target role was not set, leverage top RAG matched archetype
+  if (!keywords.targetRole && ragInsights?.matchedArchetype) {
+    keywords.targetRole = ragInsights.matchedArchetype.role;
+  }
+
   const scoreResult = calculateATSScore(
     contactInfo,
     sections,
@@ -25,7 +34,8 @@ export function analyzeResume(parsed: ResumeParseResult, jobDescription?: string
     readability,
     hasJobDescription,
     parsed.isImageBased,
-    parsed.text.trim().length
+    parsed.text.trim().length,
+    ragInsights
   );
 
   return {
@@ -48,6 +58,8 @@ export function analyzeResume(parsed: ResumeParseResult, jobDescription?: string
     fileType: parsed.fileType,
     fileSize: parsed.fileSize,
     hasJobDescription,
-    parsingWarning: scoreResult.parsingWarning
+    parsingWarning: scoreResult.parsingWarning,
+    ragInsights
   };
 }
+

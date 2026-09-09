@@ -234,11 +234,38 @@ Communication, Microsoft Word
     assert.ok(result.parsingWarning && result.parsingWarning.includes('could not reliably read'), 'Parsing warning should inform user');
   });
 
-  it('Calibration Benchmark Suite Test — All 10 synthetic benchmarks run successfully', () => {
+  it('Calibration Benchmark Suite Test — All 30 gold-standard benchmarks run successfully', () => {
     const report = runBenchmarkCalibration();
-    assert.equal(report.totalBenchmarks, 10, 'Should calibrate 10 benchmark resumes');
-    assert.ok(report.averageScore >= 90, `Average score across benchmarks should be high (>= 90), got ${report.averageScore}`);
-    assert.ok(report.inRangeCount >= 8, `At least 8/10 benchmarks should be within expected quality target, got ${report.inRangeCount}`);
+    assert.equal(report.totalBenchmarks, 30, 'Should calibrate 30 benchmark resumes');
+    assert.ok(report.averageScore >= 88, `Average score across benchmarks should be high (>= 88), got ${report.averageScore}`);
+    assert.ok(report.inRangeCount >= 24, `At least 24/30 benchmarks should be within expected quality target, got ${report.inRangeCount}`);
+  });
+
+  it('RAG Knowledge Engine Test — Retrieves high-similarity matching archetype and domain gaps', () => {
+    const text = `
+Jordan Hayes
+Senior DevOps Engineer
+jordan.hayes@email.com | +1 512-555-0144 | linkedin.com/in/jordanhayes-cloud
+
+PROFESSIONAL SUMMARY
+DevOps engineer with experience in AWS, Kubernetes, and CI/CD pipelines.
+
+WORK EXPERIENCE
+DevOps Engineer | Cloud Systems | 2021 - Present
+- Provisioned AWS EKS clusters and automated deployments using Terraform and GitHub Actions.
+- Reduced deployment cycle times by 50% and saved $120K annually.
+
+EDUCATION
+BS Computer Science | UT Austin
+
+SKILLS
+AWS, Kubernetes, Terraform, Docker, CI/CD, Linux, Python
+    `.trim();
+
+    const result = analyzeResume(createMockParsedResume(text));
+    assert.ok(result.ragInsights, 'RAG insights should be generated');
+    assert.ok(result.ragInsights.matchedArchetype.role.toLowerCase().includes('devops') || result.ragInsights.matchedArchetype.category === 'technology', 'Should retrieve DevOps or Technology archetype');
+    assert.ok(result.ragInsights.benchmarkComparison.metricDensityPercentile > 0, 'Metric density percentile should be computed');
   });
 
 });

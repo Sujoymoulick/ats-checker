@@ -1,0 +1,72 @@
+{
+  "resumeId": "clinical-data-manager",
+  "targetRole": "Lead Clinical Data Manager",
+  "category": "healthcare",
+  "experienceLevel": "lead",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Dr. Sarah Al-Mansoor\nLead Clinical Data Manager\nRaleigh-Durham, NC | sarah.almansoor@clinmail.com | +1 919-555-0173 | linkedin.com/in/sarahalmansoor-cdm\n\nPROFESSIONAL SUMMARY\nMeticulous Lead Clinical Data Manager with 8+ years of experience leading clinical trial data management for Phase I-IV pharmaceutical and medical device trials (Oncology, Immunology, Neurology). Expert in Electronic Data Capture (EDC) systems (Medidata Rave, Oracle InForm), CDISC standards (SDTM, CDASH), Data Management Plans (DMPs), edit check programming, and FDA/EMA regulatory submissions. Proven track record of delivering 100% on-time database locks.\n\nWORK EXPERIENCE\nLead Clinical Data Manager | BioPharma Solutions International | Research Triangle Park, NC | 2020 - Present\n- Directed end-to-end clinical data management activities for 6 global Phase II/III oncology and immunotherapy clinical trials across 85 investigator sites.\n- Designed Electronic Case Report Forms (eCRFs) and Data Management Plans (DMPs) in Medidata Rave in strict adherence to CDASH and GCP guidelines.\n- Authored and tested 350+ complex edit check specifications, reducing clinical query generation rate by 40% and accelerating site query resolution.\n- Spearheaded 12 successful interim and final database locks ahead of projected regulatory deadlines with zero critical protocol audit findings.\n- Oversaw external vendor data integrations (Central Laboratories, ECG, Pharmacokinetics, Biomarkers), validating 100% of external data transfers.\n- Mentored 5 clinical data managers and conducted internal quality reviews to ensure FDA 21 CFR Part 11 and ICH-GCP compliance.\n\nSenior Clinical Data Associate | Apex Clinical Research CRO | Durham, NC | 2016 - 2020\n- Managed day-to-day data cleaning, discrepancy resolution, and medical coding (MedDRA and WHO Drug) for Phase I/II vaccine trials with 1,200 subjects.\n- Collaborated with Biostatistics and Clinical Operations teams to generate weekly data metric tracking reports using SAS and JReview.\n- Led User Acceptance Testing (UAT) for Medidata Rave EDC study builds, logging and resolving 80+ pre-go-live validation defects.\n- Authored Clinical Data Management SOPs and Work Instructions, standardizing data handling workflows across the department.\n\nEDUCATION\nMaster of Science in Clinical Research & Biostatistics | Duke University | 2014 - 2016\nBachelor of Science in Biology | University of North Carolina at Chapel Hill | 2010 - 2014\n\nTECHNICAL SKILLS\n- Clinical Data Management: eCRF Design, Data Management Plans (DMP), Database Lock, Edit Check Programming, Data Cleaning, Medical Coding (MedDRA, WHO Drug), Query Management\n- EDC & Clinical Systems: Medidata Rave, Oracle InForm, Veeva Vault CDMS, JReview, SAS (Base), Electronic Data Capture\n- Standards & Regulations: CDISC (SDTM, CDASH), FDA 21 CFR Part 11, ICH-GCP, HIPAA, EMA Regulations, GCP Compliance\n\nCERTIFICATIONS\n- Certified Clinical Data Manager (CCDM) - Society for Clinical Data Management (2021)\n- Good Clinical Practice (ICH-GCP) Certification (2023)",
+  "jobDescriptionText": "Seeking a Lead Clinical Data Manager to oversee clinical trials. Requirements:\n- 6+ years experience in clinical data management within CRO or biopharma organizations.\n- Mastery of Medidata Rave, eCRF design, edit check validation, and database locks.\n- Expertise in CDISC standards (SDTM, CDASH), MedDRA/WHO Drug coding, and GCP/FDA guidelines.\n- CCDM certification preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Clinical Data Management",
+    "Medidata Rave",
+    "EDC",
+    "CDISC",
+    "SDTM",
+    "CDASH",
+    "Database Lock",
+    "GCP",
+    "FDA 21 CFR Part 11",
+    "MedDRA",
+    "SAS",
+    "Data Cleaning",
+    "CCDM"
+  ],
+  "keywords": [
+    "Clinical Data Manager",
+    "Medidata Rave",
+    "CDISC",
+    "SDTM",
+    "CDASH",
+    "Database Lock",
+    "eCRF",
+    "GCP",
+    "FDA Compliance",
+    "Edit Checks",
+    "MedDRA",
+    "CCDM"
+  ],
+  "achievementSignals": [
+    "6 global Phase II/III clinical trials across 85 sites",
+    "350+ complex edit checks",
+    "40% query reduction",
+    "12 successful database locks",
+    "100% on-time delivery",
+    "1,200 trial subjects",
+    "zero audit findings"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

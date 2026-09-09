@@ -110,4 +110,5 @@ export interface ATSAnalysisResult {
   fileSize: number;
   hasJobDescription: boolean;
   parsingWarning?: string | null;
+  ragInsights?: import('./rag/types.ts').RAGAnalysisInsights;
 }

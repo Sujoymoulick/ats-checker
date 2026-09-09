@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy dist",
+    "deploy": "astro build && wrangler deploy",
     "test": "node --test --experimental-strip-types src/lib/ats/sections.test.ts src/lib/ats/contactExtractor.test.ts src/lib/ats/benchmark.test.ts src/lib/latex/pdfGenerator.test.ts"
   },
   "dependencies": {

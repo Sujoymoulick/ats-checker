@@ -15,12 +15,12 @@ export function analyzeExperience(lines: string[], text: string): ExperienceAnal
       return false;
     }
 
-    if (trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('*') || trimmed.startsWith('–') || trimmed.startsWith('—') || /^\d+[\.\)]/.test(trimmed)) {
+    if (trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('*') || trimmed.startsWith('–') || trimmed.startsWith('—') || trimmed.startsWith('▪') || trimmed.startsWith('►') || trimmed.startsWith('✓') || /^\(?\d+[\.\)]/.test(trimmed)) {
       return true;
     }
 
     const firstWord = cleanLine.split(/\s+/)[0]?.toLowerCase() || '';
-    if (actionVerbSet.has(firstWord) && !trimmed.includes('|')) {
+    if (actionVerbSet.has(firstWord) && !trimmed.includes('|') && trimmed.length > 20) {
       return true;
     }
 
@@ -32,10 +32,10 @@ export function analyzeExperience(lines: string[], text: string): ExperienceAnal
   let quantifiableCount = 0;
   const weakBullets: string[] = [];
 
-  const metricRegex = /(?:\d+(?:\.\d+)?%\b|\$\d+(?:\.\d+)?[kKmMbB]?\b|\b\d+(?:\.\d+)?[kKmMbB]\b|\b\d+\+\b|\b\d+\s*(?:users|clients|customers|projects|team|members|engineers|developers|features|tickets|hours|percent|hrs|dau|mau|arr|roas|staff|quarters|years|transactions|retention)\b)/i;
+  const metricRegex = /(?:\d+(?:\.\d+)?%\b|[\$€£₹]\s*\d+(?:,\d{3})*(?:\.\d+)?[kKmMbB]?\b|\b\d+(?:\.\d+)?[kKmMbB]\b|\b\d+(?:\.\d+)?x\b|\b\d+\+\b|\b\d+(?:,\d{3})*\s*(?:users|clients|customers|projects|team|members|engineers|developers|features|tickets|hours|percent|hrs|dau|mau|arr|roas|staff|quarters|years|transactions|retention|qps|rps|tps|ms|requests|downloads|subscribers|followers)\b)/i;
 
   for (const line of bulletLines) {
-    const cleanLine = line.replace(/^[•\-\*\–\—\d.\)]+\s*/, '').trim();
+    const cleanLine = line.replace(/^[•\-\*\–\—\▪\►\✓\d.\)]+\s*/, '').trim();
     const firstWord = cleanLine.split(/\s+/)[0]?.toLowerCase() || '';
 
     if (actionVerbSet.has(firstWord)) {
@@ -58,7 +58,7 @@ export function analyzeExperience(lines: string[], text: string): ExperienceAnal
   }
 
   if (quantifiableCount === 0) {
-    const matches = text.match(/(?:\d+(?:\.\d+)?%\b|\$\d+(?:\.\d+)?[kKmMbB]?\b|\b\d+(?:\.\d+)?[kKmMbB]\b)/gi);
+    const matches = text.match(/(?:\d+(?:\.\d+)?%\b|[\$€£₹]\s*\d+(?:,\d{3})*(?:\.\d+)?[kKmMbB]?\b|\b\d+(?:\.\d+)?[kKmMbB]\b|\b\d+(?:\.\d+)?x\b)/gi);
     if (matches) {
       quantifiableCount = matches.length;
     }

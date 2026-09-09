@@ -1,0 +1,70 @@
+{
+  "resumeId": "technical-program-manager",
+  "targetRole": "Principal Technical Program Manager",
+  "category": "management",
+  "experienceLevel": "lead",
+  "expectedScore": [
+    80,
+    96
+  ],
+  "rawText": "Arthur Pendelton\nPrincipal Technical Program Manager (TPM)\nSan Jose, CA | arthur.pendelton@tpmmail.com | +1 408-555-0199 | linkedin.com/in/arthurpendelton-tpm\n\nPROFESSIONAL SUMMARY\nResults-driven Principal Technical Program Manager with 10+ years of experience leading multi-million-dollar cross-functional engineering initiatives, global cloud migrations, and distributed infrastructure programs. Expert at aligning C-suite strategy with technical execution, identifying critical path dependencies, mitigating technical risks, and managing stakeholder communication across 200+ engineers in fast-paced enterprise environments.\n\nWORK EXPERIENCE\nPrincipal Technical Program Manager | HyperScale Cloud Corp | San Jose, CA | 2020 - Present\n- Led cross-functional cloud modernization program spanning 18 engineering teams, migrating 450+ microservices to AWS and saving $4.2M annually in data center operational costs.\n- Defined technical roadmap, dependency mapping, and risk mitigation strategies for enterprise zero-trust security rollout across 25,000 corporate endpoints.\n- Orchestrated executive steering committee updates, KPI tracking, and technical governance for a $28M strategic portfolio, delivering 95% of milestones on schedule.\n- Established standardized TPM operational frameworks, technical specification templates, and Jira roadmapping practices across 6 global product divisions.\n- Resolved high-impact cross-team blockers and architectural conflicts, accelerating enterprise release cadence by 45%.\n\nSenior Technical Program Manager | NextGen Networks | Sunnyvale, CA | 2016 - 2020\n- Managed global optical networking infrastructure upgrade program valued at $15M across 14 international data centers ahead of schedule.\n- Partnered with Hardware, Firmware, and Software engineering leads to align sprint roadmaps, hardware fabrication timelines, and customer betas.\n- Reduced project change request turnaround time by 50% through automated risk management and change-control board (CCB) workflows in Confluence.\n- Mentored and coached 8 junior and mid-level Technical Program Managers across the organizational unit.\n\nEDUCATION\nMaster of Science in Electrical Engineering & Computer Science | Stanford University | 2014 - 2016\nBachelor of Science in Computer Engineering | University of California, Davis | 2010 - 2014\n\nTECHNICAL SKILLS\n- Program & Project Leadership: Program Lifecycle Management, Critical Path Analysis, Roadmap Planning, Risk Management, Stakeholder Engagement, Agile/Scrum/Waterfall\n- Technical Domains: Cloud Architecture (AWS, Azure), Microservices, Distributed Systems, Data Center Infrastructure, API Integrations, InfoSec Compliance\n- Tools & Software: Jira, Confluence, Asana, SmartSheet, MS Project, Tableau, GitHub, Figma, Miro\n- Governance & Methodologies: SDLC Governance, RACI Matrix, OKR Setting, Budgeting ($20M+), Vendor Management\n\nCERTIFICATIONS\n- Project Management Professional (PMP) - PMI (2018)\n- PMI Agile Certified Practitioner (PMI-ACP) (2020)\n- AWS Certified Cloud Practitioner (2021)",
+  "jobDescriptionText": "Seeking a Principal Technical Program Manager to drive complex cloud infrastructure programs. Requirements:\n- 8+ years experience as a Technical Program Manager in cloud or distributed software environments.\n- Proven experience driving multi-million-dollar programs with cross-functional engineering teams.\n- Strong technical background in cloud computing, risk mitigation, and dependency mapping.\n- PMP or PMI-ACP certification preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Program Management",
+    "Cloud Migration",
+    "Roadmap Planning",
+    "Risk Management",
+    "AWS",
+    "Jira",
+    "Confluence",
+    "Stakeholder Management",
+    "Agile",
+    "PMP",
+    "Critical Path",
+    "Budgeting",
+    "SDLC"
+  ],
+  "keywords": [
+    "Technical Program Manager",
+    "TPM",
+    "Cloud Modernization",
+    "Roadmap",
+    "Risk Mitigation",
+    "AWS",
+    "PMP",
+    "Critical Path Analysis",
+    "Stakeholder Management",
+    "Jira",
+    "SDLC"
+  ],
+  "achievementSignals": [
+    "18 engineering teams, 450+ microservices",
+    "$4.2M annual data center savings",
+    "25,000 corporate endpoints",
+    "$28M strategic portfolio with 95% on-time delivery",
+    "45% release cadence acceleration",
+    "$15M across 14 data centers"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

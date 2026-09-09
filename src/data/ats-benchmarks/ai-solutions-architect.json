@@ -1,0 +1,71 @@
+{
+  "resumeId": "ai-solutions-architect",
+  "targetRole": "Principal AI Solutions Architect",
+  "category": "technology",
+  "experienceLevel": "lead",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Dr. Evelyn Thorne\nPrincipal AI Solutions Architect & Enterprise Generative AI Lead\nSan Francisco, CA | evelyn.thorne@aiarch.io | +1 415-555-0196 | linkedin.com/in/evelynthorne-ai | github.com/evelynthorne-solutions\n\nPROFESSIONAL SUMMARY\nVisionary Principal AI Solutions Architect with 10+ years of experience architecting enterprise Generative AI platforms, Retrieval-Augmented Generation (RAG) systems, agentic workflow frameworks, and large-scale cloud ML infrastructure. Proven track record leading technical pre-sales and enterprise customer deployments across Fortune 100 enterprises, driving $24M in new AI contract revenue and cutting LLM token processing costs by 65%.\n\nWORK EXPERIENCE\nPrincipal AI Solutions Architect | CognitiveScale Enterprise | San Francisco, CA | 2021 - Present\n- Architected and delivered 20+ enterprise-grade Generative AI and RAG solutions for Fortune 500 financial and healthcare clients using Azure OpenAI, AWS Bedrock, LangChain, and Qdrant.\n- Engineered multi-agent autonomous system using AutoGen and semantic routing, automating 75% of customer support workflows and saving $3.2M in annual operational expenses.\n- Implemented hybrid vector search, context compression, and caching strategies, reducing LLM token consumption by 65% and cutting query response latency from 3.5s to 600ms.\n- Partnered with enterprise sales leadership as chief technical advisor, presenting AI architectural blueprints to CTOs and closing $24M in enterprise software contracts.\n- Established enterprise AI Governance and LLM Security framework addressing prompt injection, data leakage, and compliance with EU AI Act and NIST AI RMF.\n\nSenior Solutions Architect (AI & Cloud) | CloudVanguard Systems | Palo Alto, CA | 2017 - 2021\n- Led cloud migration and ML platform deployment on AWS and GCP for 15 enterprise clients, deploying automated ML pipelines on SageMaker and Kubeflow.\n- Designed high-throughput distributed computer vision inference pipelines processing 2M+ daily images on GPU clusters with 99.95% SLA.\n- Delivered technical workshops, whitepapers, and keynotes at major AI industry conferences (AWS re:Invent, GTC, NeurIPS).\n- Mentored a high-performing team of 10 Solutions Architects and AI Engineers.\n\nEDUCATION\nPh.D. in Computer Science (Artificial Intelligence) | Stanford University | 2013 - 2017\nBachelor of Science in Electrical Engineering & Computer Science | UC Berkeley | 2009 - 2013\n\nTECHNICAL SKILLS\n- AI & Generative AI: Large Language Models (LLMs), RAG Architectures, Vector Databases (Pinecone, Qdrant, Milvus, Weaviate), LangChain, LlamaIndex, AutoGen, Prompt Engineering, Fine-Tuning\n- Cloud & Infrastructure: AWS (SageMaker, Bedrock, EKS), Microsoft Azure (Azure OpenAI, AKS), GCP (Vertex AI), Docker, Kubernetes, Terraform, Triton Inference Server\n- Governance & Security: AI Safety, Red Teaming, Prompt Injection Defense, Guardrails AI, NIST AI RMF, EU AI Act, SOC 2, HIPAA\n- Architecture: Enterprise Architecture, Solution Blueprints, Pre-Sales Consulting, Technical Leadership, System Scalability\n\nCERTIFICATIONS\n- AWS Certified Solutions Architect - Professional (2022)\n- Microsoft Certified: Azure Solutions Architect Expert (2023)\n- AWS Certified Machine Learning - Specialty (2021)",
+  "jobDescriptionText": "Seeking a Principal AI Solutions Architect to lead enterprise AI transformation. Requirements:\n- 8+ years experience as a Solutions Architect or Lead AI Engineer in enterprise environments.\n- Deep expertise in Generative AI, LLMs, RAG architectures, Vector Databases, and Azure OpenAI/AWS Bedrock.\n- Proven pre-sales track record presenting to executive leaders (CTO/CIO) and closing enterprise deals.\n- AWS or Azure Solutions Architect Professional certification required.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Generative AI",
+    "RAG",
+    "LLMs",
+    "Azure OpenAI",
+    "AWS Bedrock",
+    "LangChain",
+    "Vector DBs",
+    "Solutions Architecture",
+    "Kubernetes",
+    "Docker",
+    "Python",
+    "Pre-Sales",
+    "AI Governance"
+  ],
+  "keywords": [
+    "AI Solutions Architect",
+    "Generative AI",
+    "RAG",
+    "LLMs",
+    "Vector Databases",
+    "LangChain",
+    "AWS Bedrock",
+    "Azure OpenAI",
+    "Enterprise Architecture",
+    "AI Safety",
+    "Solutions Architecture"
+  ],
+  "achievementSignals": [
+    "20+ enterprise RAG deployments",
+    "$24M new AI revenue",
+    "75% support workflow automation",
+    "$3.2M annual savings",
+    "65% token cost reduction",
+    "latency from 3.5s to 600ms",
+    "2M+ daily images on GPUs"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

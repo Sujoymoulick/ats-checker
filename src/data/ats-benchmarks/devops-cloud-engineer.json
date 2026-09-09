@@ -1,0 +1,80 @@
+{
+  "resumeId": "devops-cloud-engineer",
+  "targetRole": "Senior DevOps & Cloud Platform Engineer",
+  "category": "technology",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Jordan Hayes\nSenior DevOps & Cloud Platform Engineer\nAustin, TX | jordan.hayes@email.com | +1 512-555-0144 | linkedin.com/in/jordanhayes-cloud | github.com/jordanhayes-devops\n\nPROFESSIONAL SUMMARY\nSenior DevOps and Cloud Infrastructure Engineer with 7+ years of experience designing resilient AWS and GCP cloud environments, automated CI/CD deployment pipelines, and Kubernetes infrastructure at enterprise scale. Proven expertise in Infrastructure as Code (Terraform), GitOps, site reliability engineering, and cutting multi-region cloud spend while maintaining 99.99% system availability.\n\nWORK EXPERIENCE\nSenior Cloud DevOps Engineer | Nexus Cloud Systems | Austin, TX | 2021 - Present\n- Architected multi-region AWS infrastructure using Terraform and Terragrunt across 45+ microservices, reducing provisioning time from 3 days to 15 minutes.\n- Led production migration of monolithic workload to Amazon EKS (Kubernetes) and Helm, boosting cluster resource utilization by 40% and cutting AWS compute spend by $320K annually.\n- Built enterprise GitOps deployment pipeline with ArgoCD, GitHub Actions, and Docker, reducing release cycle time from 2 hours to 6 minutes.\n- Implemented comprehensive observability stack using Prometheus, Grafana, Datadog, and OpenTelemetry, decreasing Mean Time to Resolution (MTTR) by 65%.\n- Instituted zero-trust cloud security protocols with HashiCorp Vault, AWS IAM, and Prisma Cloud, passing SOC 2 Type II compliance audit with zero findings.\n\nDevOps Engineer | AgileFlow Software | Dallas, TX | 2018 - 2021\n- Developed automated CI/CD pipelines in GitLab CI and Jenkins supporting 80+ software developers and 200+ daily builds.\n- Managed multi-tenant Linux server fleets, PostgreSQL database clusters, and Redis instances with Ansible and automated backup policies.\n- Orchestrated blue-green zero-downtime production deployments for high-traffic e-commerce platform processing $25M in monthly GMV.\n- Authored Python and Bash automation scripts for automated drift detection, security compliance, and SSL certificate rotation.\n\nEDUCATION\nBachelor of Science in Computer Information Systems | University of Texas at Austin | 2014 - 2018\n\nTECHNICAL SKILLS\n- Cloud Platforms: AWS (EKS, ECS, S3, RDS, IAM, CloudFront, Route53), GCP, Microsoft Azure\n- Infrastructure as Code: Terraform, Terragrunt, Ansible, CloudFormation, Packer\n- Containers & Orchestration: Kubernetes, Docker, Helm, ArgoCD, Istio Service Mesh\n- CI/CD & Automation: GitHub Actions, GitLab CI, Jenkins, GitOps, Bash, Python\n- Observability & Monitoring: Prometheus, Grafana, Datadog, ELK Stack, OpenTelemetry\n- Security & Networking: HashiCorp Vault, TLS/SSL, VPC Peering, OAuth, SOC 2, Linux Administration\n\nCERTIFICATIONS\n- AWS Certified DevOps Engineer - Professional (2023)\n- Certified Kubernetes Administrator (CKA) (2022)\n- HashiCorp Certified: Terraform Associate (2021)",
+  "jobDescriptionText": "We are seeking a Senior DevOps & Cloud Infrastructure Engineer to scale our AWS cloud platform. Requirements:\n- 5+ years experience in DevOps, Cloud Engineering, or SRE.\n- Strong expertise in Kubernetes (EKS), Terraform, Docker, and CI/CD pipelines (GitHub Actions/GitLab).\n- Hands-on experience with Prometheus, Grafana, or Datadog monitoring.\n- Knowledge of cloud security, Linux internals, and infrastructure automation in Python/Bash.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "AWS",
+    "GCP",
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "Ansible",
+    "Helm",
+    "ArgoCD",
+    "GitHub Actions",
+    "CI/CD",
+    "Prometheus",
+    "Grafana",
+    "Datadog",
+    "Python",
+    "Bash",
+    "Linux",
+    "GitOps"
+  ],
+  "keywords": [
+    "AWS",
+    "Kubernetes",
+    "EKS",
+    "Terraform",
+    "Docker",
+    "Helm",
+    "ArgoCD",
+    "CI/CD",
+    "GitHub Actions",
+    "Prometheus",
+    "Grafana",
+    "Datadog",
+    "GitOps",
+    "Linux",
+    "SOC 2",
+    "Python"
+  ],
+  "achievementSignals": [
+    "from 3 days to 15 minutes",
+    "40% resource utilization boost",
+    "$320K annual cloud savings",
+    "from 2 hours to 6 minutes",
+    "65% MTTR decrease",
+    "80+ developers",
+    "$25M monthly GMV"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

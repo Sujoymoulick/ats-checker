@@ -1,0 +1,74 @@
+{
+  "resumeId": "cybersecurity-analyst",
+  "targetRole": "Senior Cybersecurity & SOC Analyst",
+  "category": "technology",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Elena Rostova\nSenior Cybersecurity & Threat Intelligence Analyst\nWashington, DC | elena.rostova@secmail.com | +1 202-555-0182 | linkedin.com/in/elenarostova-cyber\n\nPROFESSIONAL SUMMARY\nSenior Cybersecurity Analyst with 6+ years of specialized experience in Security Operations Center (SOC) management, SIEM threat monitoring, incident response, and vulnerability management. Deep knowledge of NIST CSF, ISO 27001, MITRE ATT&CK framework, and advanced persistent threat (APT) detection. Proven track record of reducing mean time to detect (MTTD) by 70% and defending enterprise networks against ransomware and phishing attacks.\n\nWORK EXPERIENCE\nSenior Security Operations Analyst | CyberGuard Defense | Washington, DC | 2021 - Present\n- Monitored and triaged 1,500+ daily security alerts using Splunk SIEM, Microsoft Sentinel, and CrowdStrike Falcon EDR across 12,000 corporate endpoints.\n- Led incident response investigations for 45+ critical security events, containing active threats within an average of 18 minutes (70% MTTD reduction).\n- Engineered 65+ custom Splunk correlation searches and detection rules mapped to the MITRE ATT&CK framework, decreasing false positive alarms by 55%.\n- Conducted regular vulnerability assessments using Tenable Nessus and Qualys, prioritizing remediation for 400+ high and critical CVE vulnerabilities.\n- Authored and maintained enterprise Incident Response Playbooks and conducted quarterly tabletop exercises for executive leadership.\n\nCybersecurity Analyst | SecureNet Financial | Reston, VA | 2018 - 2021\n- Performed network traffic analysis and packet inspection using Wireshark, Snort, and Zeek, identifying and neutralizing 3 advanced malware campaigns.\n- Managed multi-factor authentication (MFA) and Identity and Access Management (IAM) policies in Okta and Azure Active Directory for 3,500 employees.\n- Executed simulated phishing campaigns and delivered cybersecurity awareness training, reducing employee click rates from 24% to 3.2%.\n- Collaborated with internal audit teams to ensure strict adherence to PCI-DSS, HIPAA, and SOC 2 Type II compliance standards.\n\nEDUCATION\nBachelor of Science in Cybersecurity & Information Assurance | George Mason University | 2014 - 2018\n\nTECHNICAL SKILLS\n- SIEM & EDR: Splunk, Microsoft Sentinel, CrowdStrike Falcon, Carbon Black, Elastic Security\n- Vulnerability Management: Tenable Nessus, Qualys, Rapid7 InsightVM, Burp Suite\n- Network & Traffic Analysis: Wireshark, Zeek, Snort, TCP/IP, DNS, VPN, Firewall Rules\n- Frameworks & Compliance: NIST CSF, ISO 27001, MITRE ATT&CK, PCI-DSS, SOC 2, HIPAA\n- Identity & Access: Okta, Azure Active Directory, IAM, MFA, SAML, Zero Trust Architecture\n- Scripting & Automation: Python, PowerShell, Bash, SOAR (Cortex XSOAR)\n\nCERTIFICATIONS\n- Certified Information Systems Security Professional (CISSP) (2023)\n- CompTIA Security+ (2019)\n- GIAC Certified Incident Handler (GCIH) (2022)",
+  "jobDescriptionText": "Seeking a Senior Cybersecurity Analyst for our SOC team. Requirements:\n- 5+ years experience in Security Operations (SOC), SIEM (Splunk/Sentinel), and Incident Response.\n- Hands-on experience with EDR solutions (CrowdStrike), vulnerability scanners (Nessus/Qualys), and MITRE ATT&CK.\n- Knowledge of compliance standards (NIST, ISO 27001, SOC 2) and threat hunting.\n- Security certifications such as CISSP, GCIH, or Security+ preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Splunk",
+    "CrowdStrike",
+    "SIEM",
+    "EDR",
+    "Incident Response",
+    "NIST",
+    "MITRE ATT&CK",
+    "Tenable Nessus",
+    "Qualys",
+    "Wireshark",
+    "Python",
+    "PowerShell",
+    "CISSP",
+    "IAM",
+    "SOC 2"
+  ],
+  "keywords": [
+    "Splunk",
+    "CrowdStrike",
+    "SIEM",
+    "EDR",
+    "Incident Response",
+    "NIST CSF",
+    "MITRE ATT&CK",
+    "Vulnerability Management",
+    "SOC 2",
+    "CISSP",
+    "Python",
+    "Threat Intelligence"
+  ],
+  "achievementSignals": [
+    "1,500+ daily security alerts",
+    "12,000 corporate endpoints",
+    "70% MTTD reduction",
+    "55% false positive reduction",
+    "400+ CVE vulnerabilities",
+    "3,500 employees",
+    "from 24% to 3.2%"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

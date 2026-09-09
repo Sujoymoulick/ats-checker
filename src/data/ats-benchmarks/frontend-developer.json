@@ -1,0 +1,76 @@
+{
+  "resumeId": "frontend-developer",
+  "targetRole": "Senior Frontend Engineer",
+  "category": "technology",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Maya Lin\nSenior Frontend Engineer\nSeattle, WA | maya.lin@devmail.com | +1 206-555-0193 | linkedin.com/in/mayalin-frontend | github.com/mayalin-ui\n\nPROFESSIONAL SUMMARY\nPassionate Senior Frontend Engineer with 7+ years of experience building modern, high-performance web applications using React, TypeScript, Next.js, and Tailwind CSS. Specializes in Core Web Vitals optimization, accessible UI design systems (WCAG 2.1 AA), state management, and GraphQL API integration. Spearheaded web platform redesign that increased mobile conversion rates by 38% and reduced Largest Contentful Paint (LCP) to under 1.2s.\n\nWORK EXPERIENCE\nSenior Frontend Engineer | PixelCraft Interactive | Seattle, WA | 2021 - Present\n- Architected enterprise component design system in React 18, TypeScript, and Storybook, adopted across 8 engineering teams and 14 production apps.\n- Optimized Core Web Vitals across e-commerce storefront, improving Largest Contentful Paint (LCP) from 3.4s to 1.1s and boosting Google search ranking by 22%.\n- Built dynamic dashboard with Next.js App Router, Server Components, and TanStack Query, improving initial page load speed by 52%.\n- Integrated Apollo GraphQL client and normalized client-side cache, reducing redundant network requests by 65%.\n- Mentored 5 junior frontend developers and established automated visual regression testing using Playwright and chromatic CI.\n\nFrontend Developer | Horizon Web Labs | Portland, OR | 2018 - 2021\n- Developed responsive Single Page Applications (SPAs) with React, Redux Toolkit, and Styled Components, serving 2.5M monthly active users.\n- Led accessibility (a11y) remediation initiative, bringing all web properties into full compliance with WCAG 2.1 AA standards.\n- Implemented micro-frontend architecture using Webpack Module Federation, enabling independent deployability for 4 product squads.\n- Authored comprehensive Jest and React Testing Library suites, increasing unit and integration test coverage from 50% to 94%.\n\nEDUCATION\nBachelor of Science in Software Engineering | University of Washington | 2014 - 2018\n\nTECHNICAL SKILLS\n- Languages & Core: TypeScript, JavaScript (ES6+), HTML5, CSS3, SCSS, JSON\n- Frameworks & Libraries: React, Next.js, Vue.js, Redux Toolkit, Zustand, TanStack Query\n- UI & Styling: Tailwind CSS, CSS Modules, Styled Components, Storybook, Material UI, Radix UI\n- Build Tools & Testing: Webpack, Vite, Turbopack, Jest, React Testing Library, Playwright, Cypress\n- Web Standards & Protocols: Core Web Vitals, Responsive Design, WCAG 2.1 AA Accessibility, GraphQL, REST APIs, Git\n\nCERTIFICATIONS\n- Meta Certified Front-End Developer (2022)\n- AWS Certified Cloud Practitioner (2021)",
+  "jobDescriptionText": "Seeking a Senior Frontend Engineer to build high-scale web interfaces. Requirements:\n- 5+ years of React and TypeScript frontend development experience.\n- Deep understanding of Next.js, responsive UI, Tailwind CSS, and state management.\n- Expertise in Core Web Vitals optimization, web accessibility (WCAG), and modern testing (Jest/Playwright).\n- Experience working with GraphQL/REST APIs and component design systems.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "GraphQL",
+    "Redux Toolkit",
+    "Zustand",
+    "Jest",
+    "Playwright",
+    "Storybook",
+    "Core Web Vitals",
+    "Git"
+  ],
+  "keywords": [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "Storybook",
+    "Core Web Vitals",
+    "LCP",
+    "GraphQL",
+    "Redux Toolkit",
+    "WCAG 2.1 AA",
+    "Playwright",
+    "Jest",
+    "Responsive Design",
+    "Git"
+  ],
+  "achievementSignals": [
+    "8 engineering teams and 14 production apps",
+    "LCP from 3.4s to 1.1s",
+    "38% mobile conversion increase",
+    "52% load speed improvement",
+    "65% redundant request reduction",
+    "2.5M monthly active users",
+    "94% test coverage"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

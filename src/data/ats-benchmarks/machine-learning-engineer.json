@@ -1,0 +1,76 @@
+{
+  "resumeId": "machine-learning-engineer",
+  "targetRole": "Senior Machine Learning & AI Engineer",
+  "category": "technology",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Dr. Nathan Reed\nSenior Machine Learning & AI Engineer\nBoston, MA | nathan.reed@aimail.io | +1 617-555-0177 | linkedin.com/in/nathanreed-ml | github.com/nathanreed-ai\n\nPROFESSIONAL SUMMARY\nSenior Machine Learning Engineer with 6+ years of experience designing and deploying production NLP, computer vision, and Large Language Model (LLM) architectures. Expert in PyTorch, Hugging Face, LangChain, Vector Databases (Pinecone, Qdrant), and MLOps on AWS and GCP. Proven track record of developing RAG systems and recommendation models that increased user conversion by 44% and reduced inference latency by 60%.\n\nWORK EXPERIENCE\nSenior Machine Learning Engineer | NeuralScale AI | Boston, MA | 2021 - Present\n- Architected enterprise Retrieval-Augmented Generation (RAG) pipeline utilizing Llama 3, PyTorch, Pinecone, and LangChain, querying 10M+ documents with 94% retrieval accuracy.\n- Optimized transformer model inference using TensorRT and vLLM on NVIDIA A100 GPUs, cutting p95 response latency from 1.8s to 320ms and compute cost by 45%.\n- Fine-tuned domain-specific BERT and Mistral models with LoRA and QLoRA for enterprise sentiment analysis, outperforming baseline GPT-3.5 by 18% F1 score.\n- Built end-to-end MLOps pipeline using MLflow, Kubeflow, and Triton Inference Server, enabling automated continuous training and zero-downtime model deployments.\n- Mentored 4 machine learning engineers and authored 3 internal machine learning safety and evaluation frameworks.\n\nMachine Learning Engineer | DataMind Technologies | Cambridge, MA | 2018 - 2021\n- Developed deep learning recommendation engine using PyTorch, LightGBM, and Redis, driving a 28% increase in platform click-through rate (CTR).\n- Built automated computer vision quality inspection system using YOLOv5 and OpenCV, processing 200 images/second with 99.1% defect detection accuracy.\n- Managed feature store and feature engineering pipelines with Feast, Apache Spark, and Snowflake for 500M+ historical data points.\n- Conducted extensive A/B testing and statistical hypothesis testing on live user cohorts to validate model uplift and business impact.\n\nEDUCATION\nPh.D. in Computer Science (Machine Learning Focus) | Massachusetts Institute of Technology | 2014 - 2018\nBachelor of Science in Mathematics & Computer Science | Carnegie Mellon University | 2010 - 2014\n\nTECHNICAL SKILLS\n- Machine Learning & Deep Learning: PyTorch, TensorFlow, Scikit-learn, Hugging Face Transformers, LightGBM, XGBoost\n- Generative AI & NLP: LLMs (Llama, Mistral, GPT-4), RAG Architectures, LangChain, LlamaIndex, Vector DBs (Pinecone, Qdrant, Milvus), Prompt Engineering, Fine-Tuning (LoRA)\n- MLOps & Deployment: MLflow, Kubeflow, Triton Inference Server, vLLM, TensorRT, Docker, Kubernetes, AWS SageMaker\n- Data Engineering & Tools: Python, SQL, Apache Spark, Snowflake, Feast Feature Store, Git, CUDA\n\nCERTIFICATIONS\n- AWS Certified Machine Learning - Specialty (2023)\n- Deep Learning Specialization - DeepLearning.AI (2020)",
+  "jobDescriptionText": "Seeking a Senior Machine Learning Engineer to scale our AI products. Requirements:\n- 5+ years experience building production ML models with PyTorch, TensorFlow, and Python.\n- Hands-on experience with LLMs, RAG systems, Vector Databases, and fine-tuning.\n- Strong MLOps background with model serving (vLLM/Triton), MLflow/Kubeflow, and AWS.\n- Advanced degree in Computer Science, Data Science, or Mathematics preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "PyTorch",
+    "TensorFlow",
+    "Python",
+    "LLMs",
+    "RAG",
+    "LangChain",
+    "Vector DBs",
+    "Pinecone",
+    "Hugging Face",
+    "MLflow",
+    "Kubeflow",
+    "AWS",
+    "SQL",
+    "Spark",
+    "Docker"
+  ],
+  "keywords": [
+    "PyTorch",
+    "LLMs",
+    "RAG",
+    "LangChain",
+    "Vector Databases",
+    "Pinecone",
+    "Hugging Face",
+    "TensorRT",
+    "vLLM",
+    "MLOps",
+    "MLflow",
+    "Kubeflow",
+    "AWS SageMaker",
+    "Python"
+  ],
+  "achievementSignals": [
+    "10M+ documents with 94% accuracy",
+    "latency from 1.8s to 320ms",
+    "45% compute cost reduction",
+    "18% F1 score improvement",
+    "28% CTR increase",
+    "200 images/second with 99.1% accuracy",
+    "500M+ data points"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

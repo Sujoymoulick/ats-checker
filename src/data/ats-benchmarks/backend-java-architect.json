@@ -1,0 +1,75 @@
+{
+  "resumeId": "backend-java-architect",
+  "targetRole": "Principal Backend Java Architect",
+  "category": "technology",
+  "experienceLevel": "lead",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "David Vance\nPrincipal Backend Software Architect\nChicago, IL | david.vance@archmail.com | +1 312-555-0149 | linkedin.com/in/davidvance-architect | github.com/davidvance-core\n\nPROFESSIONAL SUMMARY\nDistinguished Principal Backend Architect with 11+ years of experience engineering high-throughput, low-latency distributed systems using Java, Spring Boot, Apache Kafka, and PostgreSQL. Proven track record in designing resilient event-driven architectures processing 50,000+ transactions per second (TPS). Expert in domain-driven design (DDD), microservices decompilation, database sharding, and cloud scalability.\n\nWORK EXPERIENCE\nPrincipal Backend Architect | Apex Financial Technologies | Chicago, IL | 2020 - Present\n- Architected enterprise core banking transaction processing engine in Java 21, Spring Boot, and Kafka, handling 50,000+ TPS with sub-20ms p99 latency.\n- Led distributed systems re-architecture across 30+ development teams, decoupling legacy core into 65 scalable microservices on AWS EKS.\n- Designed distributed multi-region data replication strategy with PostgreSQL sharding and Redis caching, cutting database load by 58%.\n- Established technical governance, architectural review board (ARB), and coding standards for 140+ engineers across 4 global hubs.\n- Reduced infrastructure cloud hosting costs by $650K per year through container optimization, JVM memory tuning, and connection pooling.\n\nLead Backend Engineer | FinScale Systems | New York, NY | 2016 - 2020\n- Engineered real-time fraud detection pipeline using Java, Apache Flink, and Kafka Streams, intercepting $18M+ in fraudulent charges annually.\n- Built high-reliability gRPC and RESTful internal communication APIs with resilience patterns including circuit breakers (Resilience4j) and rate limiting.\n- Migrated 4TB database cluster from Oracle to Amazon Aurora PostgreSQL with zero data loss and under 10 minutes of planned maintenance.\n- Led 12 senior engineers, conducted technical interviews, and hired 25+ software developers.\n\nEDUCATION\nMaster of Science in Computer Science | University of Illinois Urbana-Champaign | 2014 - 2016\nBachelor of Science in Computer Science | Purdue University | 2010 - 2014\n\nTECHNICAL SKILLS\n- Languages & Runtimes: Java (8/11/17/21), Kotlin, SQL, Python, Go\n- Frameworks & Middleware: Spring Boot, Spring Cloud, Quarkus, Hibernate, Apache Kafka, Kafka Streams, RabbitMQ, gRPC\n- Databases & Storage: PostgreSQL, MySQL, Redis, DynamoDB, MongoDB, Elasticsearch, Liquibase\n- Distributed Systems & Architecture: Domain-Driven Design (DDD), Event-Driven Architecture, Microservices, CQRS, Sharding, Multi-Tenancy\n- Cloud & Infrastructure: AWS, Docker, Kubernetes, Terraform, Prometheus, Grafana, OpenTelemetry, Git\n\nCERTIFICATIONS\n- Oracle Certified Master: Java SE Enterprise Architect (2021)\n- Confluent Certified Developer for Apache Kafka (CCDAK) (2022)\n- AWS Certified Solutions Architect - Professional (2023)",
+  "jobDescriptionText": "We are seeking a Principal Backend Architect to lead our distributed platform engineering. Requirements:\n- 10+ years backend engineering experience with Java and Spring Boot.\n- Deep expertise in Apache Kafka, event-driven architectures, and high-throughput systems.\n- Proven experience designing PostgreSQL/distributed database architectures and microservices.\n- Strong leadership in architectural governance, mentoring engineering teams, and cloud scalability on AWS.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Java",
+    "Spring Boot",
+    "Apache Kafka",
+    "PostgreSQL",
+    "Microservices",
+    "Distributed Systems",
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Redis",
+    "gRPC",
+    "DDD",
+    "SQL",
+    "Git",
+    "Terraform"
+  ],
+  "keywords": [
+    "Java",
+    "Spring Boot",
+    "Kafka",
+    "PostgreSQL",
+    "Microservices",
+    "Distributed Systems",
+    "Domain-Driven Design",
+    "Redis",
+    "AWS",
+    "Kubernetes",
+    "gRPC",
+    "Event-Driven",
+    "Architecture"
+  ],
+  "achievementSignals": [
+    "50,000+ TPS with sub-20ms p99 latency",
+    "65 scalable microservices",
+    "58% database load reduction",
+    "140+ engineers",
+    "$650K annual hosting savings",
+    "$18M+ fraud interception",
+    "4TB database migration"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "resumeId": "executive-assistant",
+  "targetRole": "Senior Executive Assistant to C-Suite",
+  "category": "administration",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Katherine Miller\nSenior Executive Assistant to Chief Executive Officer & Board\nNew York, NY | katherine.miller@execmail.com | +1 212-555-0161 | linkedin.com/in/katherinemiller-ea\n\nPROFESSIONAL SUMMARY\nPoised and highly proactive Senior Executive Assistant with 8+ years of experience providing high-level operational and administrative support to C-level executives (CEO, CFO) and Board of Directors in global technology and investment firms. Exceptional track record in complex calendar management, international travel logistics, confidential board material preparation, event production, and project management.\n\nWORK EXPERIENCE\nSenior Executive Assistant to CEO | Vanguard Global Tech | New York, NY | 2021 - Present\n- Managed heavy, dynamic calendar and daily schedule for the Chief Executive Officer across multiple global time zones (US, Europe, Asia), optimizing executive productivity by 30%.\n- Coordinated end-to-end logistics for quarterly Board of Directors meetings, compiling 100+ page board decks, managing resolutions, and recording official meeting minutes.\n- Orchestrated seamless domestic and international travel itineraries, private charters, visa applications, and ground transportation for C-suite executive team.\n- Screened, prioritized, and drafted executive correspondence, email communications, and key talking points for town halls and press briefings.\n- Audited and processed monthly executive corporate expense reports totaling $150K+ in Concur, ensuring 100% adherence to corporate finance policies.\n\nExecutive Assistant to CFO & COO | Meridian Capital Partners | New York, NY | 2017 - 2021\n- Provided executive administrative support to the Chief Financial Officer and Chief Operating Officer in a fast-paced private equity firm.\n- Planned and executed annual corporate leadership summit for 300+ global attendees, negotiating vendor contracts and managing a $450K budget with $40K under-spend.\n- Prepared confidential financial presentation slide decks and executive briefing binders in Microsoft PowerPoint and Excel.\n- Managed sensitive non-disclosure agreements (NDAs) and investor relations documentation with utmost discretion and confidentiality.\n\nEDUCATION\nBachelor of Arts in Corporate Communications | Fordham University | 2013 - 2017\n\nTECHNICAL SKILLS\n- Executive Support: C-Suite Calendar Management, Board Meeting Minutes, Executive Travel Logistics, Event Planning, Correspondence Drafting, Discretion & Confidentiality\n- Productivity & Tools: Google Workspace, Microsoft Office 365 (PowerPoint, Excel, Word), Slack, Zoom, Concur Travel & Expense, DocuSign, Notion, Asana\n- Project & Event Management: Budget Oversight ($500K+), Vendor Contract Negotiation, Agenda Curation, Presentation Design\n\nCERTIFICATIONS\n- Certified Administrative Professional (CAP) - IAAP (2021)\n- Project Management Essentials Certified (PMEC) (2020)",
+  "jobDescriptionText": "Seeking a Senior Executive Assistant to support the CEO and executive leadership team. Requirements:\n- 6+ years experience supporting C-suite executives in high-growth or corporate environments.\n- Mastery of complex calendar coordination, international travel arrangements, and board meeting prep.\n- Exceptional written and verbal communication, discretion, and problem-solving skills.\n- Certified Administrative Professional (CAP) preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Executive Support",
+    "Calendar Management",
+    "Travel Logistics",
+    "Board Meetings",
+    "Concur",
+    "Expense Management",
+    "Event Planning",
+    "Discretion",
+    "Microsoft Office",
+    "Google Workspace",
+    "PowerPoint"
+  ],
+  "keywords": [
+    "Executive Assistant",
+    "C-Suite Support",
+    "Calendar Management",
+    "Board of Directors",
+    "Travel Arrangements",
+    "Concur",
+    "Expense Reporting",
+    "Meeting Minutes",
+    "Confidentiality"
+  ],
+  "achievementSignals": [
+    "30% productivity optimization",
+    "100+ page board decks",
+    "$150K+ monthly expenses",
+    "300+ attendees with $450K budget",
+    "$40K under-spend",
+    "multi-timezone management"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

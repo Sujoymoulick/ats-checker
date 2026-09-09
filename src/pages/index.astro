@@ -515,9 +515,26 @@ import FAQ from '../components/FAQ.astro';
   }
 
   @media (max-width: 768px) {
-    .hero-title { font-size: 2.25rem; }
-    .hero-subtitle { font-size: 1.0625rem; }
-    .seo-main-title { font-size: 1.75rem; }
-    .seo-block { padding: 1.5rem 1.25rem; }
+    .hero-section {
+      padding: 2.5rem 1rem 1.5rem 1rem;
+    }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .hero-trust-list {
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .trust-item {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+    }
+    .features-section, .how-it-works-section, .seo-guide-section {
+      padding: 3rem 1rem;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    .seo-main-title { font-size: 1.5rem; }
+    .seo-block { padding: 1.25rem 1rem; }
   }
 </style>

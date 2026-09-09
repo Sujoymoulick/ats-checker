@@ -1,0 +1,69 @@
+{
+  "resumeId": "customer-success-manager",
+  "targetRole": "Senior Enterprise Customer Success Manager",
+  "category": "sales",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Claire Harrington\nSenior Enterprise Customer Success Manager\nBoston, MA | claire.harrington@csmail.com | +1 617-555-0142 | linkedin.com/in/claireharrington-csm\n\nPROFESSIONAL SUMMARY\nStrategic Senior Enterprise Customer Success Manager with 7+ years of experience driving adoption, retention, and account expansion for B2B SaaS platforms. Proven track record managing $18M+ in Annual Recurring Revenue (ARR) across Fortune 500 accounts. Expert in conducting Executive Business Reviews (QBRs), customer onboarding, churn risk mitigation, and identifying up-sell/cross-sell opportunities, achieving a 118% Net Revenue Retention (NRR) rate.\n\nWORK EXPERIENCE\nSenior Enterprise CSM | CloudMetrics SaaS | Boston, MA | 2021 - Present\n- Managed portfolio of 28 enterprise Fortune 500 accounts representing $18M in Annual Recurring Revenue (ARR).\n- Achieved 118% Net Revenue Retention (NRR) and 96% Gross Retention Rate (GRR) by orchestrating multi-tiered account health strategies in Gainsight.\n- Delivered 60+ Quarterly Executive Business Reviews (QBRs) with C-suite and VP-level stakeholders, demonstrating measurable ROI and product value realization.\n- Partnered with Sales and Account Executives to identify and close $2.8M in expansion and up-sell opportunities across existing accounts.\n- Reduced customer onboarding time from 60 days to 28 days by designing a standardized 30-60-90 day milestone adoption framework.\n\nCustomer Success Manager | DataFlow Technologies | Cambridge, MA | 2018 - 2021\n- Managed 45 mid-market and enterprise SaaS client accounts totaling $7.5M ARR with a 94% renewal rate.\n- Created proactive customer health scoring models in Salesforce and Zendesk, identifying early churn indicators and saving 14 at-risk accounts ($1.1M ARR).\n- Authored customer knowledge base articles, training webinars, and best-practice workflows, increasing product feature adoption by 42%.\n- Collaborated with Product and Engineering teams to advocate for customer feature requests, prioritizing 8 major roadmap enhancements.\n\nEDUCATION\nBachelor of Science in Business Management | Boston University | 2014 - 2018\n\nTECHNICAL SKILLS\n- CS Strategy & Methodologies: Customer Onboarding, Executive Business Reviews (QBRs), Churn Mitigation, Net Revenue Retention (NRR), Account Expansion, Stakeholder Management\n- Software & Platforms: Gainsight, Salesforce CRM, Zendesk, ChurnZero, Totango, HubSpot, Catalyst, Slack, Zoom\n- Analytics & Metrics: Customer Health Scoring, Gross Retention Rate (GRR), CSAT, Net Promoter Score (NPS), Product Usage Analytics (Mixpanel, Pendo)\n\nCERTIFICATIONS\n- Certified Customer Success Manager (CCSM) Level 3 - SuccessHACKER (2022)\n- Salesforce Certified Administrator (2020)",
+  "jobDescriptionText": "Seeking a Senior Enterprise Customer Success Manager to manage high-value accounts. Requirements:\n- 5+ years experience as a CSM managing enterprise B2B SaaS accounts ($10M+ ARR).\n- Proven track record of high Net Revenue Retention (NRR > 110%) and gross retention.\n- Strong proficiency in Gainsight, Salesforce, customer health scoring, and running executive QBRs.\n- CCSM or Salesforce certification preferred.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Customer Success",
+    "Enterprise SaaS",
+    "Gainsight",
+    "Salesforce",
+    "NRR",
+    "QBR",
+    "Account Retention",
+    "Churn Reduction",
+    "Account Expansion",
+    "Customer Health Score",
+    "Zendesk",
+    "Mixpanel"
+  ],
+  "keywords": [
+    "Customer Success Manager",
+    "CSM",
+    "Gainsight",
+    "Salesforce",
+    "Net Revenue Retention",
+    "NRR",
+    "QBR",
+    "Churn Mitigation",
+    "Enterprise SaaS",
+    "Account Management"
+  ],
+  "achievementSignals": [
+    "$18M ARR across 28 accounts",
+    "118% Net Revenue Retention (NRR)",
+    "96% Gross Retention Rate",
+    "60+ QBRs",
+    "$2.8M in account expansion",
+    "onboarding from 60 to 28 days",
+    "saved 14 at-risk accounts ($1.1M ARR)"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}

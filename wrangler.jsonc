@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "gigpilot-ai-score",
+  "name": "ats-checker",
   "compatibility_date": "2024-09-23",
   "compatibility_flags": ["nodejs_compat"]
 }

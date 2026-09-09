@@ -1,0 +1,73 @@
+{
+  "resumeId": "scrum-master",
+  "targetRole": "Senior Scrum Master & Agile Coach",
+  "category": "management",
+  "experienceLevel": "senior",
+  "expectedScore": [
+    84,
+    98
+  ],
+  "rawText": "Marcus Bennett\nSenior Scrum Master & Agile Delivery Coach\nMinneapolis, MN | marcus.bennett@agilemail.com | +1 612-555-0174 | linkedin.com/in/marcusbennett-agile\n\nPROFESSIONAL SUMMARY\nDynamic Senior Scrum Master and Agile Coach with 8+ years of experience guiding high-performing cross-functional software teams, fostering servant leadership, and scaling Agile frameworks (Scrum, Kanban, SAFe). Adept at facilitating sprint ceremonies, removing impediments, coaching product owners on backlog health, and optimizing team velocity. Boosted sprint delivery predictability from 62% to 94% across 4 distributed engineering teams.\n\nWORK EXPERIENCE\nSenior Scrum Master & Agile Coach | Targetica Technology | Minneapolis, MN | 2021 - Present\n- Coached and facilitated Scrum ceremonies (Daily Standups, Sprint Planning, Sprint Review, Retrospectives, Backlog Refinement) for 4 squads totaling 36 software engineers and designers.\n- Increased sprint delivery predictability from 62% to 94% and boosted release velocity by 35% within 12 months through root-cause retrospectives and WIP limits.\n- Spearheaded Scaled Agile Framework (SAFe) transition, coordinating quarterly Program Increment (PI) planning sessions for 120+ engineering and product stakeholders.\n- Partnered with Product Managers to refine product backlogs, ensure definition of ready (DoR) compliance, and decompose epics into high-value user stories in Jira.\n- Tracked and reported sprint burndown, velocity charts, and cumulative flow diagrams, providing actionable delivery metrics to executive leadership.\n\nScrum Master | Northern Digital Solutions | St. Paul, MN | 2017 - 2021\n- Facilitated Agile ceremonies for 2 cross-functional mobile development teams building iOS and Android apps with 1M+ downloads.\n- Identified and eliminated organizational delivery bottlenecks, cutting time-to-market for major product releases by 40%.\n- Conducted interactive Agile training workshops on Scrum values, Kanban principles, and story-point estimation techniques for 65+ employees.\n- Implemented Jira automation rules and standardized Jira workflows, reducing administrative sprint overhead by 5 hours per week per team.\n\nEDUCATION\nBachelor of Science in Project Management | University of Minnesota | 2013 - 2017\n\nTECHNICAL SKILLS\n- Agile Frameworks: Scrum, Kanban, Scaled Agile Framework (SAFe), Lean, XP (Extreme Programming)\n- Facilitation & Coaching: Sprint Planning, Daily Standups, Sprint Retrospectives, PI Planning, Team Coaching, Servant Leadership\n- Tools & Software: Jira, Confluence, Miro, Mural, Azure DevOps, Trello, Slack, Zoom\n- Metrics & Delivery: Burndown Charts, Velocity Tracking, Cycle Time, Lead Time, Cumulative Flow, OKRs, WIP Limits\n\nCERTIFICATIONS\n- Certified ScrumMaster (CSM) - Scrum Alliance (2018)\n- Advanced Certified ScrumMaster (A-CSM) (2021)\n- SAFe 5 Scrum Master (SSM) (2022)\n- Certified Scrum Product Owner (CSPO) (2020)",
+  "jobDescriptionText": "Seeking an experienced Senior Scrum Master to coach our engineering squads. Requirements:\n- 5+ years as a full-time Scrum Master or Agile Coach in software organizations.\n- Expertise in Scrum, Kanban, SAFe, and facilitation of all Agile ceremonies.\n- Proven experience improving team velocity, sprint predictability, and removing blockers.\n- CSM, A-CSM, or SAFe certification required.",
+  "sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills",
+    "certifications"
+  ],
+  "skills": [
+    "Scrum",
+    "Kanban",
+    "SAFe",
+    "Agile Coaching",
+    "Sprint Planning",
+    "Retrospectives",
+    "Jira",
+    "Confluence",
+    "Miro",
+    "Velocity Tracking",
+    "Servant Leadership",
+    "CSM",
+    "CSPO"
+  ],
+  "keywords": [
+    "Scrum Master",
+    "Agile Coach",
+    "Scrum",
+    "Kanban",
+    "SAFe",
+    "Sprint Planning",
+    "Retrospectives",
+    "Jira",
+    "Velocity",
+    "Burndown",
+    "CSM",
+    "A-CSM",
+    "Servant Leadership"
+  ],
+  "achievementSignals": [
+    "4 squads totaling 36 engineers",
+    "predictability from 62% to 94%",
+    "35% velocity boost",
+    "PI planning for 120+ stakeholders",
+    "40% faster time-to-market",
+    "65+ employees trained",
+    "5 hours per week saved"
+  ],
+  "formattingSignals": {
+    "singleColumn": true,
+    "standardHeadings": true,
+    "tables": false,
+    "graphics": false,
+    "icons": false,
+    "readablePdfText": true
+  },
+  "qualitySignals": {
+    "quantifiedAchievements": true,
+    "actionVerbs": true,
+    "relevantKeywords": true,
+    "clearDates": true,
+    "careerProgression": true
+  }
+}
